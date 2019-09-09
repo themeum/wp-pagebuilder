@@ -1,0 +1,156 @@
+@media (min-width: 992px) {
+    .slider,
+    .slide {
+        height: 80vh;
+    }
+}
+.slide {
+    position: relative;
+}
+.slide .slide__img {
+    width: 100%;
+    height: auto;
+    overflow: hidden;
+}
+@media (min-width: 992px) {
+    .slide .slide__img {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+    }
+}
+.slide .slide__img img {
+    max-width: 100%;
+    height: auto;
+    opacity: 1 !important;
+    -webkit-animation-duration: 3s;
+    animation-duration: 3s;
+    transition: all 1s ease;
+}
+.slide .slide__content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+}
+.slide .slide__content--headings {
+    text-align: center;
+    color: #FFF;
+}
+.slide .slide__content--headings h2 {
+    font-size: 4.5rem;
+    margin: 10px 0;
+}
+.slide .slide__content--headings .animated {
+    transition: all .5s ease;
+}
+.slider [data-animation-in] {
+    opacity: 0;
+    -webkit-animation-duration: 1.5s;
+    animation-duration: 1.5s;
+    transition: opacity 0.5s ease 0.3s;
+}
+.slick-dotted .slick-slider {
+    margin-bottom: 30px;
+}
+.slick-dots {
+    position: absolute;
+    bottom: 25px;
+    list-style: none;
+    display: block;
+    text-align: center;
+    padding: 0;
+    margin: 0;
+    width: 100%;
+}
+.slick-dots li {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    padding: 0;
+    cursor: pointer;
+}
+.slick-dots li button {
+    border: 0;
+    display: block;
+    outline: none;
+    line-height: 0px;
+    font-size: 0px;
+    color: transparent;
+    padding: 5px;
+    cursor: pointer;
+    transition: all .3s ease;
+}
+.slick-dots li button:hover,
+.slick-dots li button:focus {
+    outline: none;
+}
+.stick-dots .slick-dots li button {
+    position: relative;
+    opacity: 0.25;
+    padding: 0;
+    transition: 400ms;
+}
+.stick-dots .slick-dots li button:hover,
+.stick-dots .slick-dots li button:focus {
+    opacity: 1;
+}
+.stick-dots .slick-dots li.slick-active button {
+    opacity: 0.75;
+}
+.stick-dots .slick-dots li.slick-active button:hover,
+.stick-dots .slick-dots li.slick-active button:focus {
+    opacity: 1;
+}
+/* /////////// IMAGE ZOOM /////////// */
+@-webkit-keyframes zoomInImage {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    to {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+}
+@keyframes zoomInImage {
+    from {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+    to {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+}
+.zoomInImage {
+    -webkit-animation-name: zoomInImage;
+    animation-name: zoomInImage;
+}
+@-webkit-keyframes zoomOutImage {
+    from {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+@keyframes zoomOutImage {
+    from {
+        -webkit-transform: scale3d(1.1, 1.1, 1.1);
+        transform: scale3d(1.1, 1.1, 1.1);
+    }
+    to {
+        -webkit-transform: scale3d(1, 1, 1);
+        transform: scale3d(1, 1, 1);
+    }
+}
+.zoomOutImage {
+    -webkit-animation-name: zoomOutImage;
+    animation-name: zoomOutImage;
+}

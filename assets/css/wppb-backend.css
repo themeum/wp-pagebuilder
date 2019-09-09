@@ -1,0 +1,157 @@
+.wppb-backend-btn {
+    display: inline-block;
+    padding: 17px 30px;
+    border-radius: 3px;
+    text-decoration: none;
+    box-shadow: none;
+    text-shadow: none;
+    background: #d4cfcf;
+    color: #333;
+    font-size: 15px;
+    font-weight: 600;
+}
+.wppb-backend-btn:hover,
+.wppb-backend-btn:focus {
+    text-decoration: none;
+    box-shadow: none;
+    text-shadow: none;
+    outline-offset: 0;
+    outline: 0;
+}
+.wppb-backend-btn:hover,
+.wppb-backend-btn:focus {
+    background: #c0bcbc;
+    color: #333; 
+}
+.wppb-info-btn {
+    background: #08b1ae;
+    color:#fff;
+}
+.wppb-info-btn:hover,
+.wppb-info-btn:focus {
+    background: #0b8783;
+    color:#fff;
+}
+.wppb-primary-btn {
+    background: #297EE1;
+    color: #fff;
+}
+.wppb-primary-btn:hover,
+.wppb-primary-btn:focus {
+    background: rgb(34, 111, 199);
+    color: #fff; 
+}
+.wppb-edit-button-wrap {
+    margin: 30px 0;
+    border-radius: 3px;
+}
+.wppb-edit-button-default-wrap {
+    margin-top: 25px;
+    margin-bottom: 20px;
+}
+.active-wppb-editor .wppagebuilder-edit-button {
+    margin-bottom: 15px;
+}
+.wppb-back-editor,
+.wppb-editor-warper {
+    display: inline-block;
+    margin-right: 8px;
+}
+/* intial looks */
+.wppb-edit-button-wrap{
+    padding: 40px;
+    background: #fff;
+    border: 1px solid #e5e5e5;
+}
+.wppagebuilder-edit-hide-editor + #postdivrich {
+    display: none;
+}
+.inactive-wppb-editor #postdivrich {
+    display: block;
+}
+.wppb-spin {
+    -webkit-animation: wppb-spin 2s infinite linear;
+    animation: wppb-spin 2s infinite linear;
+}
+.wppb-go-premium-star{
+    color: #ef5e25;
+    margin-top: -3px;
+    font-size: 25px;
+}
+
+/**
+Guttenberg
+ */
+body.currently-activated-editor-wppb_builder_activated .editor-block-list__layout{
+    display: none;
+}
+#wp-pagebuilder-switch-to-gutenberg {
+    background: #f5f5f5;
+    text-align: center;
+    padding: 100px 0;
+    display: none;
+    margin-top: 20px;
+    border: 1px solid #e2e1e1;
+    margin: 20px auto 0;
+    border-radius: 4px;
+}
+body.currently-activated-editor-wppb_builder_activated div#wp-pagebuilder-switch-to-gutenberg{
+    display: block;
+    border: none !important;
+    color: #fff !important;
+    text-decoration: none;
+}
+#wp-pagebuilder-switch-to-gutenberg #wp-pagebuilder-switch-to-gutenberg-btn {
+    border: none !important;
+    color: #fff !important;
+    text-decoration: none;
+}
+.edit-with-wppb-builder {
+    transition: 400ms;
+}
+.wppb-editor-warper .edit-with-wppb-builder.components-button{
+    line-height: 33px !important;
+    height: 35px !important;
+    background: #297EE1 !important;
+    box-shadow: none !important;
+    border: 1px solid #2371cc !important;
+    text-shadow: none !important;
+}
+.wppb-editor-warper .wppb-back-to-gutenberg {
+    background: #f2f2f2 !important;
+    border: 1px solid #e5e5e5 !important;
+    line-height: 33px !important;
+    height: 35px !important;
+}
+.wppb-editor-warper .wppb-back-to-gutenberg:hover{
+    box-shadow: inset 0 -1px 0 #ccc !important;
+}
+
+.wppb-editor-warper .wppb-back-to-gutenberg i.dashicons {
+    line-height: 35px;
+    margin-right: 3px;
+}
+
+@-webkit-keyframes wppb-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}
+
+@keyframes wppb-spin {
+    0% {
+        -webkit-transform: rotate(0deg);
+        transform: rotate(0deg)
+    }
+
+    100% {
+        -webkit-transform: rotate(359deg);
+        transform: rotate(359deg)
+    }
+}

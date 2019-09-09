@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="27px" height="30px" viewBox="0 0 27 30" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 50.2 (55047) - http://www.bohemiancoding.com/sketch -->
+    <title>Group</title>
+    <desc>Created with Sketch.</desc>
+    <defs></defs>
+    <g id="Welcome" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd" stroke-linecap="round" stroke-linejoin="round">
+        <g id="Index-Copy-19" transform="translate(-23.000000, -11.000000)" stroke="#BEC3C8" stroke-width="1.655">
+            <g id="Group" transform="translate(24.000000, 12.000000)">
+                <path d="M12.1935484,0 C5.45945806,0 0,5.36421725 0,11.9808307 C0,12.0263578 0.0032516129,12.0710863 0.0032516129,12.1166134 L0,12.115016 L0,28 C0,28 3.91981935,27.3929712 4.65793548,23.6022364 C4.78393548,22.9576677 4.88392258,22.2915335 4.96277419,21.6261981 C6.98609032,23.0934505 9.48658065,23.9616613 12.1935484,23.9616613 C18.9276387,23.9616613 24.3870968,18.5974441 24.3870968,11.9808307 C24.3870968,5.36421725 18.9276387,0 12.1935484,0 Z" id="Stroke-1"></path>
+                <polygon id="Stroke-3" points="19.8709677 13.5483871 12.1935484 18.9677419 4.51612903 13.5483871 12.1935484 8.12903226"></polygon>
+                <polygon id="Stroke-5" points="19.8709677 10.8387097 12.1935484 16.2580645 4.51612903 10.8387097 12.1935484 5.41935484"></polygon>
+            </g>
+        </g>
+    </g>
+</svg>

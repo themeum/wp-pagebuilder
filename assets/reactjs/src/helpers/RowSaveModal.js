@@ -36,7 +36,7 @@ class RowSaveModal extends Component {
 					</div>
 					<div className="wppb-btn-modal-save">
 						<span className="wppb-builder-btn wppb-btn-success" onClick={ () => this.getRowName() }><i className="wppb-font-save"/> {page_data.i18n.save}</span>
-						<span className="wppb-builder-btn wppb-btn-danger" onClick={ e => ModalManager.close() }><i className="fa fa-times-circle"/> {page_data.i18n.discard}</span>
+						<span className="wppb-builder-btn wppb-btn-danger" onClick={ e => ModalManager.close() }><i className="fas fa-times-circle"/> {page_data.i18n.discard}</span>
 					</div>
 				</div>
 			</Modal>

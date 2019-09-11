@@ -246,7 +246,7 @@ class PageListModal extends Component {
                                 { (this.state.layer === 'multiple_entity') ?
                                     <div className="wppb-builder-template-notification">
                                         <div className="wppb-builder-template-back-button" onClick={ e=> this.setState({ layer:'multiple', currentName:''})}>
-                                            <span className="back-icon fa fa-reply"></span>
+                                            <span className="back-icon fas fa-reply"></span>
                                         </div>
                                         <div className="wppb-builder-template-notification-message">
                                             <h3 className="active-template-name"> {this.state.currentName} </h3>
@@ -279,7 +279,7 @@ class PageListModal extends Component {
                                             }
                                             { page.liveurl &&
                                             <div className="wppb-layout-wrap">
-                                                <a className="wppb-layout-view" target="_blank" href={page.liveurl}><i className="fa fa-share"/>{page_data.i18n.preview}</a>
+                                                <a className="wppb-layout-view" target="_blank" href={page.liveurl}><i className="fas fa-share"/>{page_data.i18n.preview}</a>
                                             </div>
                                             }
                                             </div>
@@ -320,7 +320,7 @@ class PageListModal extends Component {
                                                 }
                                                 { page.liveurl &&
                                                     <div className="wppb-layout-wrap">
-                                                        <a className="wppb-layout-view" target="_blank" href={page.liveurl}><i className="fa fa-share"/>{page_data.i18n.preview}</a>
+                                                        <a className="wppb-layout-view" target="_blank" href={page.liveurl}><i className="fas fa-share"/>{page_data.i18n.preview}</a>
                                                     </div>
                                                 }
                                             </div>

@@ -89,14 +89,14 @@ class Media extends Component {
                         __.map( value, ( val , key ) => {
                             return (
                                 <div className="wppb-form-media-remove wppb-form-multi-remove" style={{backgroundImage: 'url(' + val.url + ')'}} key={key}>
-                                    <div className={'wppb-media-delete'} onClick={ e => { this.deleteMedia(key) } }><i className="fa fa-trash-o"/> <span>{page_data.i18n.delete}</span></div>
+                                    <div className={'wppb-media-delete'} onClick={ e => { this.deleteMedia(key) } }><i className="fas fa-trash-alt"/> <span>{page_data.i18n.delete}</span></div>
                                 </div>
                             )
                         })
                         :
                         ( value && value.url ) &&
                         <div className="wppb-form-media-remove" style={{backgroundImage: 'url(' + value.url + ')'}}>
-                            <div className={'wppb-media-delete'} onClick={ e => { this.deleteMedia('single') } }><i className="fa fa-trash-o"/> <span>{page_data.i18n.delete}</span></div>
+                            <div className={'wppb-media-delete'} onClick={ e => { this.deleteMedia('single') } }><i className="fas fa-trash-alt"/> <span>{page_data.i18n.delete}</span></div>
                         </div>
                     }
                     { ( value && value.size ) &&

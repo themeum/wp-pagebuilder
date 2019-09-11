@@ -63,7 +63,7 @@ class WPPB_Addon_Pricing_Table{
 			'pt_icon_list' => array(
 				'type' => 'icon',
 				'title' => __('Icon list','wp-pagebuilder'),
-				'std' => 'fa fa-star-o',
+				'std' => 'far fa-star',
 				'depends' => array(array('pricing_layout', '!=', array('three'))),
 			),
 			'pricing_feature' => array(
@@ -73,22 +73,22 @@ class WPPB_Addon_Pricing_Table{
 				'std' => array(
 					array( 
 						'feature_text' => 'One year support',
-						'icon_list' => 'fa fa-check',
+						'icon_list' => 'fas fa-check',
 						'icon_list_color' => '#23c131'
 					),
 					array( 
 						'feature_text' => 'Unlimited ready theme',
-						'icon_list' => 'fa fa-close',
+						'icon_list' => 'fas fa-times',
 						'icon_list_color' => '#ff0000'
 					),
 					array( 
 						'feature_text' => 'Unlimited Free addons',
-						'icon_list' => 'fa fa-check',
+						'icon_list' => 'fas fa-check',
 						'icon_list_color' => '#23c131'
 					),
 					array( 
 						'feature_text' => 'Five site support',
-						'icon_list' => 'fa fa-check',
+						'icon_list' => 'fas fa-check',
 						'icon_list_color' => '#23c131'
 					),
 				),
@@ -101,7 +101,7 @@ class WPPB_Addon_Pricing_Table{
 					'icon_list' => array(
 						'type' => 'icon',
 						'title' => __('Icon','wp-pagebuilder'),
-						'std' => 'fa fa-check'
+						'std' => 'fas fa-check'
 					),
 					'icon_list_color' => array(
 						'type' => 'color',
@@ -918,13 +918,13 @@ class WPPB_Addon_Pricing_Table{
 
 		if( $pt_icon_list ){
 			$data_pt_media  .= '<div class="wppb-pricing-table-icon">';
-			$data_pt_media  .= '<i class="fa ' . esc_attr($pt_icon_list) . '"></i>';
+			$data_pt_media  .= '<i class="' . esc_attr($pt_icon_list) . '"></i>';
 			$data_pt_media  .= '</div>';
 		}
 		if( $icon_position == 'left' ) {
-			$button = (esc_attr($icon_list)) ? '<i class="fa ' . esc_attr($icon_list) . '"></i> ' . esc_attr($button_text) : esc_attr($button_text);
+			$button = (esc_attr($icon_list)) ? '<i class="' . esc_attr($icon_list) . '"></i> ' . esc_attr($button_text) : esc_attr($button_text);
 		} elseif( $icon_position == 'right' ){
-			$button = (esc_attr($icon_list)) ? esc_attr($button_text) . ' <i class="fa ' . esc_attr($icon_list) . '"></i>' : esc_attr($button_text);
+			$button = (esc_attr($icon_list)) ? esc_attr($button_text) . ' <i class="' . esc_attr($icon_list) . '"></i>' : esc_attr($button_text);
 		} else {
 			$button = (esc_attr($icon_list)) ? esc_attr($button_text) : esc_attr($button_text);
 		}
@@ -979,7 +979,7 @@ class WPPB_Addon_Pricing_Table{
 								$output  .= '<div class="repeater-'.$key.'">';
 									$output  .= '<div class="wppb-pricing-list">';
 									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="fa '.$value['icon_list'].'"></i>';
+										$output  .= '<i class="'.$value['icon_list'].'"></i>';
 									}
 									if( ! empty( $value['feature_text'] ) ) {
 										$output  .= '<span>'.$value['feature_text'].'</span>';
@@ -1044,7 +1044,7 @@ class WPPB_Addon_Pricing_Table{
 								$output  .= '<div class="repeater-'.$key.'">';
 									$output  .= '<div class="wppb-pricing-list">';
 									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="fa '.$value['icon_list'].'"></i>';
+										$output  .= '<i class="'.$value['icon_list'].'"></i>';
 									}
 									if( ! empty( $value['feature_text'] ) ) {
 										$output  .= '<span>'.$value['feature_text'].'</span>';
@@ -1111,7 +1111,7 @@ class WPPB_Addon_Pricing_Table{
 								$output  .= '<div class="repeater-'.$key.'">';
 									$output  .= '<div class="wppb-pricing-list">';
 									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="fa '.$value['icon_list'].'"></i>';
+										$output  .= '<i class="'.$value['icon_list'].'"></i>';
 									}
 									if( ! empty( $value['feature_text'] ) ) {
 										$output  .= '<span>'.$value['feature_text'].'</span>';
@@ -1144,7 +1144,7 @@ class WPPB_Addon_Pricing_Table{
 			var data_pt_media = "";
 			if( data.pt_icon_list ){
 				data_pt_media  += "<div class=\'wppb-pricing-table-icon\'>";
-				data_pt_media  += "<i class=\'fa "+data.pt_icon_list+"\'></i>";
+				data_pt_media  += "<i class=\' "+data.pt_icon_list+"\'></i>";
 				data_pt_media  += "</div>";
 			}
 			if(data.featured_check == "1"){
@@ -1196,13 +1196,13 @@ class WPPB_Addon_Pricing_Table{
 
 					<div class="wppb-pricing-feature">
 						<#  _.forEach(data.pricing_feature, function(value, key) { #>
-							<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class="fa {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
+							<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class=" {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
 						<# }); #>
 					</div>
 	
 					<# if( data.btn_link.link ){ #>	
 						<a class="wppb-btn-pricing wppb-{{ data.button_display }}" {{ data.btn_link.nofolow ? "rel=\"nofollow\"" : "" }} href="{{data.btn_link.link}}" target="{{data.btn_link.window ? "_blank" : "_self"}}">
-						<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class="fa {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class="fa {{ data.icon_list }}"></i><# } #>
+						<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class=" {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class=" {{ data.icon_list }}"></i><# } #>
 						</a>
 					<# } #>
 	
@@ -1248,13 +1248,13 @@ class WPPB_Addon_Pricing_Table{
 
 					<div class="wppb-pricing-feature">
 						<#  _.forEach(data.pricing_feature, function(value, key) { #>
-							<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class="fa {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
+							<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class=" {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
 						<# }); #>
 					</div>
 
 					<# if( data.btn_link.link ){ #>	
 						<a class="wppb-btn-pricing wppb-{{ data.button_display }}" {{ data.btn_link.nofolow ? "rel=\"nofollow\"" : "" }} href="{{data.btn_link.link}}" target="{{data.btn_link.window ? "_blank" : "_self"}}">
-						<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class="fa {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class="fa {{ data.icon_list }}"></i><# } #>
+						<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class=" {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class=" {{ data.icon_list }}"></i><# } #>
 						</a>
 					<# } #>
 
@@ -1303,13 +1303,13 @@ class WPPB_Addon_Pricing_Table{
 
 						<div class="wppb-pricing-feature">
 							<#  _.forEach(data.pricing_feature, function(value, key) { #>
-								<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class="fa {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
+								<div class="repeater-{{key}}"><div class="wppb-pricing-list"><i class=" {{value.icon_list}}"></i><span>{{value.feature_text}}</span></div></div>
 							<# }); #>
 						</div>
 
 						<# if( data.btn_link.link ){ #>	
 							<a class="wppb-btn-pricing wppb-{{ data.button_display }}" {{ data.btn_link.nofolow ? "rel=\"nofollow\"" : "" }} href="{{data.btn_link.link}}" target="{{data.btn_link.window ? "_blank" : "_self"}}">
-							<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class="fa {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class="fa {{ data.icon_list }}"></i><# } #>
+							<# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class=" {{ data.icon_list }}"></i> <# } #>{{data.button_text}}<# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class=" {{ data.icon_list }}"></i><# } #>
 							</a>
 						<# } #>
 

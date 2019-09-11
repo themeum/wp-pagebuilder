@@ -326,7 +326,7 @@ class PaddingController extends Component {
                         {T_height > limit ?
                             <span className="wppb-padding-controller-instant-offset-height">
                                 <span>{T_height}{this.state.unit}</span>
-                                <span className={horizontalLock ? "fa fa-lock" : "fa fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'h')}></span>
+                                <span className={horizontalLock ? "fas fa-lock" : "fas fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'h')}></span>
                             </span>
                             : null}
                     </span>
@@ -343,7 +343,7 @@ class PaddingController extends Component {
                         {R_width > limit ?
                             <span className="wppb-padding-controller-instant-offset-height">
                                 <span>{R_width}{this.state.unit}</span>
-                                <span className={ verticalLock ? "fa fa-lock" : "fa fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'v')}></span>
+                                <span className={ verticalLock ? "fas fa-lock" : "fas fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'v')}></span>
                             </span>
                             : null}
                     </span>
@@ -360,7 +360,7 @@ class PaddingController extends Component {
                         {B_height > limit ?
                             <span className="wppb-padding-controller-instant-offset-height">
                                 <span>{B_height}{this.state.unit}</span>
-                                <span className={horizontalLock ? "fa fa-lock" : "fa fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'h')}></span>
+                                <span className={horizontalLock ? "fas fa-lock" : "fas fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'h')}></span>
                             </span>
                             : null}
                     </span>
@@ -377,7 +377,7 @@ class PaddingController extends Component {
                         {L_width > limit ?
                             <span className="wppb-padding-controller-instant-offset-height">
                                 <span>{L_width}{this.state.unit}</span>
-                                <span className={verticalLock ? "fa fa-lock" : "fa fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'v')}></span>
+                                <span className={verticalLock ? "fas fa-lock" : "fas fa-unlock-alt"} onClick={this.onLockAction.bind(this, 'v')}></span>
                             </span>
                             : null}
                     </span>

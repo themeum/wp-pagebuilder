@@ -51,11 +51,11 @@ class WPPB_Addon_Person_Carousel{
 						'designation' => 'Developer',
 						'introtext' => 'Reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 						'show_social' => '1',
-						'icon_list1' => 'fa fa-facebook',
+						'icon_list1' => 'fab fa-facebook-f',
 						'socialurl1' => '#',
-						'icon_list2' => 'fa fa-twitter',
+						'icon_list2' => 'fab fa-twitter',
 						'socialurl2' => '#',
-						'icon_list3' => 'fa fa-flickr',
+						'icon_list3' => 'fab fa-flickr',
 						'socialurl3' => '#'
 					),
 					array(
@@ -65,11 +65,11 @@ class WPPB_Addon_Person_Carousel{
 						'designation' => 'Designer',
 						'introtext' => 'Reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 						'show_social' => '1',
-						'icon_list1' => 'fa fa-facebook',
+						'icon_list1' => 'fab fa-facebook-f',
 						'socialurl1' => '#',
-						'icon_list2' => 'fa fa-twitter',
+						'icon_list2' => 'fab fa-twitter',
 						'socialurl2' => '#',
-						'icon_list3' => 'fa fa-flickr',
+						'icon_list3' => 'fab fa-flickr',
 						'socialurl3' => '#'
 					),
 					array( 
@@ -79,11 +79,11 @@ class WPPB_Addon_Person_Carousel{
 						'designation' => 'Founder',
 						'introtext' => 'Reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 						'show_social' => '1',
-						'icon_list1' => 'fa fa-facebook',
+						'icon_list1' => 'fab fa-facebook-f',
 						'socialurl1' => '#',
-						'icon_list2' => 'fa fa-twitter',
+						'icon_list2' => 'fab fa-twitter',
 						'socialurl2' => '#',
-						'icon_list3' => 'fa fa-flickr',
+						'icon_list3' => 'fab fa-flickr',
 						'socialurl3' => '#'
 					),
 
@@ -127,7 +127,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list1' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 1','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl1' => array(
@@ -139,7 +139,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list2' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 2','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl2' => array(
@@ -151,7 +151,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list3' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 3','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl3' => array(
@@ -163,7 +163,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list4' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 4','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl4' => array(
@@ -175,7 +175,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list5' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 4','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl5' => array(
@@ -187,7 +187,7 @@ class WPPB_Addon_Person_Carousel{
 					'icon_list6' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon 6','wp-pagebuilder'),
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 						'depends' => array(array('show_social', '!=', '')),
 					),
 					'socialurl6' => array(

@@ -50,24 +50,24 @@ class Alignment extends Component {
                     { params.responsive &&
                         <div className="wppb-builder-device-wrap">
                             <ul className={ 'wppb-builder-device wppb-builder-device-' + mediaDevice }>
-                                <li><i className="fa fa-laptop md" onClick={ () => ResponsiveManager.setDevice('md') }/></li>
-                                <li><i className="fa fa-tablet sm" onClick={ () => ResponsiveManager.setDevice('sm') }/></li>
-                                <li><i className="fa fa-mobile xs" onClick={ () => ResponsiveManager.setDevice('xs') }/></li>
+                                <li><i className="fas fa-laptop md" onClick={ () => ResponsiveManager.setDevice('md') }/></li>
+                                <li><i className="fas fa-tablet-alt sm" onClick={ () => ResponsiveManager.setDevice('sm') }/></li>
+                                <li><i className="fas fa-mobile-alt xs" onClick={ () => ResponsiveManager.setDevice('xs') }/></li>
                             </ul>
                         </div>
                     }
                     <div className="wppb-element-form-group-align">
                         <div onClick={ () => this.onClickHandle('left') } className={ this.cssSelector('left') }>
-                            <span><i className={ 'fa fa-align-left' }/></span>
+                            <span><i className={ 'fas fa-align-left' }/></span>
                         </div>
                         <div onClick={ () => this.onClickHandle('center') } className={ this.cssSelector('center') }>
-                            <span><i className={ 'fa fa-align-center' }/></span>
+                            <span><i className={ 'fas fa-align-center' }/></span>
                         </div>
                         <div onClick={ () => this.onClickHandle('right') } className={ this.cssSelector('right') }>
-                            <span><i className={ 'fa fa-align-right' }/></span>
+                            <span><i className={ 'fas fa-align-right' }/></span>
                         </div>
                         <div onClick={ () => this.onClickHandle('justify') } className={ this.cssSelector('justify') }>
-                            <span><i className={ 'fa fa-align-justify' }/></span>
+                            <span><i className={ 'fas fa-align-justify' }/></span>
                         </div>
                     </div>
                 </div>

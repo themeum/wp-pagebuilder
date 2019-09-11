@@ -100,7 +100,7 @@ class SectionLibrary extends Component {
                                                 counter++;
                                                 return(
                                                     <div key={index} className="form-section">
-                                                        <div className={'section-title' + ( this.state.currentSection == index ? ' active':'' ) } onClick = {(e) => { this._classEvents(index); }}>{index} <div className="section-title-carat"><i className="fa fa-angle-down"/></div></div>
+                                                        <div className={'section-title' + ( this.state.currentSection == index ? ' active':'' ) } onClick = {(e) => { this._classEvents(index); }}>{index} <div className="section-title-carat"><i className="fas fa-angle-down"/></div></div>
                                                         <div className={'section-content' + ( this.state.currentSection == index ? ' active':'' ) }>
                                                             {
                                                                 __.map( element,(el, i ) => {

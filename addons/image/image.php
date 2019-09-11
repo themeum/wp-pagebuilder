@@ -304,7 +304,7 @@ class WPPB_Addon_Image{
 		$output  .= '<figure class="wppb-image-addon-content-wrap">';
 		$output  .= '<div class="wppb-image-addon-content wppb-'.esc_attr($image_display).'">';
 		if($lightbox) {
-		    $icon = $lightbox_icon == 1 ? '<i class="fa fa-plus wppb-addon-image-overlay-icon" aria-hidden="true"></i>' : '';
+		    $icon = $lightbox_icon == 1 ? '<i class="fas fa-plus wppb-addon-image-overlay-icon" aria-hidden="true"></i>' : '';
             $output .= '<a class="wppb-image-popup" data-popup_type="image" data-mainclass="mfp-no-margins mfp-with-zoom" href="'. esc_url($img_url) .'">';
 			$output  .= '<div class="wppb-addon-image-overlay">'.$icon.'</div>';
 		}
@@ -337,7 +337,7 @@ class WPPB_Addon_Image{
 					<# if( data.lightbox == 1 ) { #>
 					    <a class="wppb-image-popup" data-popup_type="image" data-mainclass="mfp-no-margins mfp-with-zoom" href="{{data.upload_image.url }}">
 						<div class="wppb-addon-image-overlay">
-						    <# if(data.lightbox_icon) { #><i class="fa fa-plus wppb-addon-image-overlay-icon" aria-hidden="true"></i> <# } #>
+						    <# if(data.lightbox_icon) { #><i class="fas fa-plus wppb-addon-image-overlay-icon" aria-hidden="true"></i> <# } #>
                         </div>
 					<# } #>
 					<# if( data.lightbox == 0 && !__.isEmpty(data.image_link.link) ) { #>

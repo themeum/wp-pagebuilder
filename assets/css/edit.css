@@ -4920,7 +4920,7 @@ input[type=range]:focus::-ms-fill-upper {
   font-weight: 600;
   text-transform: capitalize;
 }
-.wppb-builder-form-group label .fa.fa-unlock, .wppb-builder-form-group label .fa.fa-lock {
+.wppb-builder-form-group label .fas.fa-unlock, .wppb-builder-form-group label .fas.fa-lock {
   margin-left: 10px;
 }
 .wppb-builder-form-group label .fa.fa-lock {

@@ -27,13 +27,13 @@ class WPPB_Addon_Accordion{
 				'std' => array(
 					array( 
 						'title' => 'Page Builder',
-						'icon_list' => 'fa fa-star-o',
+						'icon_list' => 'far fa-star',
 						'icon_position' => 'left',
 						'content' => 'Reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 					),
 					array( 
 						'title' => 'Drag and Drop',
-						'icon_list' => 'fa fa-arrows-alt',
+						'icon_list' => 'fas fa-arrows-alt',
 						'icon_position' => 'right',
 						'content' => 'Anim pariatur cliche reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 					),
@@ -88,9 +88,7 @@ class WPPB_Addon_Accordion{
 					'' => __('None','wp-pagebuilder'),
 					'fa-plus' => __('Plus','wp-pagebuilder'),
 					'fa-plus-circle' => __('Plus circle','wp-pagebuilder'),
-					'fa-plus-square-o' => __('Plus square','wp-pagebuilder'),
 					'fa-plus-square' => __('Plus fill square','wp-pagebuilder'),
-					'fa-arrow-circle-o-right' => __('Arrow circle','wp-pagebuilder'),
 					'fa-arrow-circle-right' => __('Arrow fill circle','wp-pagebuilder'),
 					'fa-angle-right' => __('Angle','wp-pagebuilder'),
 					'fa-angle-double-right' => __('Angle double','wp-pagebuilder'),
@@ -444,7 +442,7 @@ class WPPB_Addon_Accordion{
 				$output  .= '<div class="wppb-accordion-title wppb-toggle-'.$navigation_direction.' '.$activeClass.'">';
 				if( $navigation_direction == 'left' ) {
 					if($navigation) {
-						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa '.$navigation.'"></i></span>';
+						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa fas '.$navigation.'"></i></span>';
 					}
 				}
 				if(get_wppb_array_value_by_key($value, 'icon_position') == "left" ) {
@@ -462,7 +460,7 @@ class WPPB_Addon_Accordion{
 				}
 				if( $navigation_direction == 'right' ) {
 					if($navigation) {
-						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa '.$navigation.'"></i></span>';
+						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa fas '.$navigation.'"></i></span>';
 					}
 				}
 
@@ -499,14 +497,14 @@ class WPPB_Addon_Accordion{
 								<div class="wppb-accordion-title wppb-toggle-{{navigation_direction}} {{ activeClass }}">
 									<# if(navigation_direction == "left") { #>
 										<# if(data.navigation) { #>
-											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa {{data.navigation}}"></i></span>
+											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa fas {{data.navigation}}"></i></span>
 										<# } #>	
 									<# } #>	
-									<# if(value.icon_position == "left" && !__.isEmpty(value.icon_list)) { #> <i class="{{ value.icon_list }}"></i><# } #><span class="wppb-accordion-title-content">{{value.title}}</span><# if(value.icon_position == "right" && !__.isEmpty(value.icon_list)) { #> <i class="fa {{ value.icon_list }}"></i><# } #>
+									<# if(value.icon_position == "left" && !__.isEmpty(value.icon_list)) { #> <i class="{{ value.icon_list }}"></i><# } #><span class="wppb-accordion-title-content">{{value.title}}</span><# if(value.icon_position == "right" && !__.isEmpty(value.icon_list)) { #> <i class=" {{ value.icon_list }}"></i><# } #>
 
 									<# if(navigation_direction == "right") { #>
 										<# if(data.navigation) { #>
-											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa {{data.navigation}}"></i></span>
+											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa fas {{data.navigation}}"></i></span>
 										<# } #>	
 									<# } #>	
 								</div>

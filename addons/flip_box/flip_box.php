@@ -1073,7 +1073,7 @@ class WPPB_Addon_Flip_Box{
 		if($back_show_icon == 1) {	
 			if( !empty( $back_icon_list ) ){
 				$data_back_media .= '<div class="wppb-flip-back-icon">';
-					$data_back_media .= '<i class="fa ' . esc_attr($back_icon_list) . '"></i>';
+					$data_back_media .= '<i class="' . esc_attr($back_icon_list) . '"></i>';
 				$data_back_media .= '</div>';
 			}
 		} else {
@@ -1186,7 +1186,7 @@ class WPPB_Addon_Flip_Box{
 		if( data.back_show_icon == 1 ) {	
 			if( data.back_icon_list ){
 				data_back_media  += "<div class=\'wppb-flip-back-icon\'>";
-				data_back_media  += "<i class=\'fa "+data.back_icon_list+"\'></i>";
+				data_back_media  += "<i class=\'"+data.back_icon_list+"\'></i>";
 				data_back_media  += "</div>";
 			}
 

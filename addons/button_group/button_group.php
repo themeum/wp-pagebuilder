@@ -39,7 +39,7 @@ class WPPB_Addon_Button_Group{
 						'style' => 'info',
 						'btn_size' => 'standard',
 						'shape' => 'square',
-						'icon_list' => 'fa fa-cog',
+						'icon_list' => 'fas fa-cog',
 						'icon_position' => 'left',
 					),
 					array(
@@ -48,7 +48,7 @@ class WPPB_Addon_Button_Group{
 						'style' => 'success',
 						'btn_size' => 'standard',
 						'shape' => 'rounded',
-						'icon_list' => 'fa fa-apple',
+						'icon_list' => 'fab fa-apple',
 						'icon_position' => 'right',
 					)
 				),
@@ -300,9 +300,9 @@ class WPPB_Addon_Button_Group{
 							<a {{ value.button_link.link ? "href="+value.button_link.link : "" }} {{ value.button_link.window ? "target=_blank" : "" }} {{ value.button_link.nofolow ? "rel=nofolow" : "" }}  class="wppb-btn-addons {{classList}}">
 								<# if(value.icon_list){ #>
 									<# if(value.icon_position == "right" ) { #>
-										<i class="fa {{value.icon_list}}"></i> {{ value.button_text }}
+										<i class=" {{value.icon_list}}"></i> {{ value.button_text }}
 									<# }else{ #>
-										{{ value.button_text }} <i class="fa {{value.icon_list}}"></i>
+										{{ value.button_text }} <i class=" {{value.icon_list}}"></i>
 									<# } #>
 								<# }else{ #>
 									{{ value.button_text }} 

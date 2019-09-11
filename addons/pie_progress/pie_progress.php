@@ -87,7 +87,7 @@ class WPPB_Addon_Pie_Progress{
 			'icon_list' => array(
 				'type' => 'icon',
 				'title' => __('Icon list','wp-pagebuilder'),
-				'std' => 'fa fa-star',
+				'std' => 'fas fa-star',
 				'depends' => array(array('show_icon_title', '=', '2')),
 			),
 

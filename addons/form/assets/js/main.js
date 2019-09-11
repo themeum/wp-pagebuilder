@@ -68,7 +68,7 @@
             data: $formData,
             beforeSend: function (jqXHR, settings) {
                 $form.find('.wppb-form-msg').html('');
-                $form.find('.wppb-btn-forms').append('<i class="fa fa-spin wppb-font-sync"></i>');
+                $form.find('.wppb-btn-forms').append('<i class="fas fa-spinner wppb-font-sync"></i>');
             },
             error: function(jqXHR, textStatus, errorThrown){
                 $form.find('.wppb_form_response').html("<p class='wppb_alert_error'>"+ textStatus+"("+jqXHR.status+")" +" : "+ errorThrown + "</p>");

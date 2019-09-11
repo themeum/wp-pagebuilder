@@ -10,7 +10,7 @@ class ToolTips extends Component {
     render(){
         return(
             <span className="wppb-tool-tips">
-                <i onClick={ () => this.openAction() } className="fa fa-question-circle"></i>
+                <i onClick={ () => this.openAction() } className="fas fa-question-circle"></i>
                 { ( this.state.open && this.props.desc ) &&
                     <span dangerouslySetInnerHTML={{ __html: this.props.desc }} ></span>
                 }

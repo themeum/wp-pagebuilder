@@ -12,16 +12,16 @@ class InsideAddonForm extends Component{
         return(
             <form className="wppb-inside-form" onSubmit={ handleSubmit }>
                 <div>
-                    <button type="submit" className="wppb-builder-btn wppb-btn-success"><i className="fa fa-check-square-o"/></button>
+                    <button type="submit" className="wppb-builder-btn wppb-btn-success"><i className="far fa-check-square-o"/></button>
                     <span className="wppb-builder-btn wppb-btn-default" onClick ={(e)=>{ this.props.cancelInsideAddonForm(); }}>
-                        <i className="fa fa-times-circle"/>
+                        <i className="fas fa-times-circle"/>
                     </span>
                 </div>
                 <PBFormRender addonOps={ addonOps } formName="insideForm" />
                 <div>
-                    <button type="submit" className="wppb-builder-btn wppb-btn-success"><i className="fa fa-check-square-o"/> Apply</button>
+                    <button type="submit" className="wppb-builder-btn wppb-btn-success"><i className="far fa-check-square-o"/> Apply</button>
                     <span className="wppb-builder-btn wppb-btn-default" onClick ={(e)=>{ this.props.cancelInsideAddonForm(); }}>
-                        <i className="fa fa-times-circle"/> {page_data.i18n.cancel}
+                        <i className="fas fa-times-circle"/> {page_data.i18n.cancel}
                     </span>
                 </div>
             </form>

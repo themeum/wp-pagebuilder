@@ -164,7 +164,7 @@ class InnerColumn extends Component {
 			<div {...attribute} className={overClass.join(' ')}>
 				{ this.state.move &&
 					<div className="wppb-builder-column-drag-movable">
-						<span className="close-column-movable" onClick={() => { this.setState({ move:false }) }} ><i className="fa fa-close"/></span>
+						<span className="close-column-movable" onClick={() => { this.setState({ move:false }) }} ><i className="fas fa-times"/></span>
 						<div className="wppb-builder-column-drag">
 							{ connectDragSource(<div className="wppb-builder-drag-column"><i className="wppb-font-arrows"/></div>) }
 						</div>

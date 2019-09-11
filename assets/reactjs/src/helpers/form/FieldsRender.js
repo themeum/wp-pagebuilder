@@ -390,7 +390,7 @@ class FieldsRender extends Component {
 
                         return(
                             <div key={ key } className="form-section">
-                                <div className={'section-title ' + (currentSection == key ? 'active':'') } onClick = {(e) => { this._classEvents(key); }}>{__.startCase(key)}<div className="section-title-carat"><i className="fa fa-angle-down"/></div></div>
+                                <div className={'section-title ' + (currentSection == key ? 'active':'') } onClick = {(e) => { this._classEvents(key); }}>{__.startCase(key)}<div className="section-title-carat"><i className="fas fa-angle-down"/></div></div>
                                 <div className={ 'section-content ' + (currentSection == key ? 'active':'') }>
                                     {fieldsHtml[0]}
                                 </div>

@@ -15,9 +15,9 @@ import PageListModal from '../helpers/PageListModal'
 import { ModalManager } from '../helpers/index'
 
 const deviceList = [
-                    { device: 'md', name: 'desktop', icon: 'fa fa-laptop' },
-                    { device:'sm', name: 'tablet', icon: 'fa fa-tablet' },
-                    { device: 'xs', name: 'mobile', icon: 'fa fa-mobile'}
+                    { device: 'md', name: 'desktop', icon: 'fas fa-laptop' },
+                    { device:'sm', name: 'tablet', icon: 'fas fa-tablet-alt' },
+                    { device: 'xs', name: 'mobile', icon: 'fas fa-mobile-alt'}
                 ];
 
 class PageTools extends Component{
@@ -614,11 +614,11 @@ class PageTools extends Component{
                                 <button className="wppb-builder-close-edit" onClick={ e => { EditPanelManager.hideEditPanel(); this.goBackToAddonList();}}><i className="wppb-font-left-arrow"/> {__.capitalize(panelTitle)} </button>
                                 
                             </span>
-                            <div className="wppb-edit-show-hide"><a className="wppb-edit-show-toggle" href="#"><i className="fa fa-angle-left"/></a></div>
+                            <div className="wppb-edit-show-hide"><a className="wppb-edit-show-toggle" href="#"><i className="fas fa-angle-left"/></a></div>
                         </div>
                         :
                         <div className="pagetools default-mode">
-                            <div className="wppb-edit-show-hide"><a className="wppb-edit-show-toggle" href="#"><i className="fa fa-angle-left"/></a></div>
+                            <div className="wppb-edit-show-hide"><a className="wppb-edit-show-toggle" href="#"><i className="fas fa-angle-left"/></a></div>
                         </div>
                     }
                 </div>

@@ -22,7 +22,7 @@ export class socialOption extends Component{
             onMouseDown={ () => this.handleMouseDown() }
             onMouseEnter={ () => this.handleMouseEnter() }
             onMouseMove={ () => this.handleMouseMove() }
-            title={this.props.option.title}><i className={ 'fa fa-'+this.props.children }/> {this.props.children}</div> );
+            title={this.props.option.title}><i className={ 'fab fa-'+this.props.children }/> {this.props.children}</div> );
 	}
 }
 
@@ -32,7 +32,7 @@ export class socialValue extends Component{
     }
 	render () {
 		return (
-            <div className="wppb-social-value"><i className={ 'fa fa-'+this.props.children }/> {this.props.children}</div>
+            <div className="wppb-social-value"><i className={ 'fab fa-'+this.props.children }/> {this.props.children}</div>
 		);
 	}
 }
@@ -49,7 +49,7 @@ class IconSocial extends Component {
 
     render(){
         const { params } = this.props
-        let iconsList = __.map( IconSocialList, val => { return { value:'fa fa-' + val , label: val } } );
+        let iconsList = __.map( IconSocialList, val => { return { value:'fab fa-' + val , label: val } } );
         return(
             <div className="wppb-builder-form-group wppb-builder-form-group-wrap">
                 <span className="wppb-builder-form-group-title">

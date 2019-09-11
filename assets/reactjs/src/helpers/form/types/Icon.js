@@ -66,8 +66,8 @@ class Icon extends Component {
 							}
 						</span>
 						<span className="wppb-builder-remove-fa-icon" onClick={(e) => { this.setIcon(''); }} > <i className="wppb-font-close" /></span>
-						<i className="fa fa-angle-up" />
-						<i className="fa fa-angle-down" />
+						<i className="fas fa-angle-up" />
+						<i className="fas fa-angle-down" />
 					</div>
 
 					<div className="clearfix wppb-builder-fontawesome-dropdown">
@@ -97,14 +97,14 @@ class Icon extends Component {
 									return (
 										<li key={index} onClick={(e) => {
 											if (name.indexOf('fa-') !== -1) {
-												this.setIcon('fa ' + name);
+												this.setIcon(name);
 											} else {
 												this.setIcon(name);
 											}
 										}} className="wppb-builder-fa-list-icon">
 											<div><div><div>
 												{(name.indexOf('fa-') !== -1) ?
-													<i className={'fa ' + name} />
+													<i className={name} />
 													:
 													<i className={name} />
 												}

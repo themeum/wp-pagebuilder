@@ -75,15 +75,15 @@ class WPPB_Addon_Person{
 				'label' => 'icon_list',
 				'std' => array(
 					array( 
-						'icon_list' => 'fa fa-facebook',
+						'icon_list' => 'fab fa-facebook-f',
 						'socialurl' => '#'
 					),
 					array(
-						'icon_list' => 'fa fa-google',
+						'icon_list' => 'fab fa-linkedin',
 						'socialurl' => '#'
 					),
 					array(
-						'icon_list' => 'fa fa-flickr',
+						'icon_list' => 'fab fa-flickr',
 						'socialurl' => '#'
 					)
 				),
@@ -91,7 +91,7 @@ class WPPB_Addon_Person{
 					'icon_list' => array(
 						'type' => 'iconsocial',
 						'title' => __('Icon List','wp-pagebuilder'),
-						'std' => 'fa fa-facebook'
+						'std' => 'fab fa-facebook-f'
 					),
 					'socialurl' => array(
 						'type' => 'text',

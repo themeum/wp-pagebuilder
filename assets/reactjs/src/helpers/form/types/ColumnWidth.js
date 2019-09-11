@@ -129,9 +129,9 @@ class ColumnWidth extends Component {
                 <label className="wppb-builder-device-wrap">
                     { params.responsive &&
                         <ul className={ 'wppb-builder-device wppb-builder-device-' + active }>
-                            <li><i className="fa fa-laptop md" onClick = { e => { ResponsiveManager.setDevice('md'); }}/></li>
-                            <li><i className="fa fa-tablet sm" onClick = { e => { ResponsiveManager.setDevice('sm'); }}/></li>
-                            <li><i className="fa fa-mobile xs" onClick = { e => { ResponsiveManager.setDevice('xs'); }}/></li>
+                            <li><i className="fas fa-laptop md" onClick = { e => { ResponsiveManager.setDevice('md'); }}/></li>
+                            <li><i className="fas fa-tablet-alt sm" onClick = { e => { ResponsiveManager.setDevice('sm'); }}/></li>
+                            <li><i className="fas fa-mobile-alt xs" onClick = { e => { ResponsiveManager.setDevice('xs'); }}/></li>
                         </ul>
                     }
                 </label>

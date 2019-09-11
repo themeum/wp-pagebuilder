@@ -27,19 +27,19 @@ class WPPB_Addon_Social_Button{
 
 				'std' => array(
 					array( 
-						'icon_list'  => 'fa fa-facebook',
+						'icon_list'  => 'fab fa-facebook-f',
 						'socialurl'  => array( 'link'=>'www.facebook.com','window'=>false,'nofolow'=>false ),
 						'socialtext' => 'facebook',
 						'style'      => 'primary',
 					),
 					array(
-						'icon_list' => 'fa fa-twitter',
+						'icon_list' => 'fab fa-twitter',
 						'socialurl'  => array( 'link'=>'www.twitter.com','window'=>false,'nofolow'=>false ),
 						'socialtext' => 'twitter',
 						'style' => 'info',
 					),
 					array(
-						'icon_list' => 'fa fa-youtube',
+						'icon_list' => 'fab fa-youtube',
 						'socialurl'  => array( 'link'=>'www.youtube.com/user/themeumwp','window'=>false,'nofolow'=>false ),
 						'socialtext' => 'youtube',
 						'style' => 'danger',
@@ -50,7 +50,7 @@ class WPPB_Addon_Social_Button{
 					'icon_list' => array(
 						'type' => 'iconsocial',
 						'title' => 'Title',
-						'std' => 'fa fa-facebook',
+						'std' => 'fab fa-facebook-f',
 					),
 					'socialurl' => array(
 						'type' => 'link',

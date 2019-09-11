@@ -32,6 +32,7 @@ if (! class_exists('WPPB_Initial_Setup')) {
 	            $wppb_options = (array) get_option('wppb_options');
 	            $wppb_options['supported_post_type'] = array('post', 'page');
 	            $wppb_options['css_save_as'] = 'wp_head';
+	            $wppb_options['load_font_awesome_4'] = 'yes';
 	            update_option('wppb_options', $wppb_options);
 	            update_option( 'wppb_is_used', WPPB_VERSION );
             }

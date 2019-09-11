@@ -38,7 +38,7 @@ class SectionItem extends Component {
                     <div className="wppb-block-preview">
                         <h3>{element.title}</h3>
                         { element.liveurl &&
-                            <span><a className="wppb-block-view" target="_blank" href={element.liveurl}><i className="fa fa-share"/>{page_data.i18n.preview}</a></span>
+                            <span><a className="wppb-block-view" target="_blank" href={element.liveurl}><i className="fas fa-share"/>{page_data.i18n.preview}</a></span>
                         }
                     </div>
                 </div>

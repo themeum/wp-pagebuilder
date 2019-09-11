@@ -1096,9 +1096,9 @@ class WPPB_Addon_Posts_Grid{
 
 							if ($post_pagination_type === 'numbers_next_previous'){
 								if ($current_page > 1){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fa fa-angle-left'></i></a>";
+									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fas fa-angle-left'></i></a>";
 								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fa fa-angle-left'></i></span>";
+									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-left'></i></span>";
 								}
 
 								for ($i = 1; $i <= $max_pages; $i++){
@@ -1106,9 +1106,9 @@ class WPPB_Addon_Posts_Grid{
 									echo "<a href='#' class='wppb-posts-paginate-link {$active_class}' data-paged='{$i}'>{$i}</a>";
 								}
 								if ( $current_page < $max_pages){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fa fa-angle-right'></i></a>";
+									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fas fa-angle-right'></i></a>";
 								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fa fa-angle-right'></i></span>";
+									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-right'></i></span>";
 								}
 							}
 							if ($post_pagination_type === 'numbers') {
@@ -1119,15 +1119,15 @@ class WPPB_Addon_Posts_Grid{
 							}
 							if ($post_pagination_type === 'next_previous') {
 								if ($current_page > 1){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fa fa-angle-left'></i></a>";
+									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fas fa-angle-left'></i></a>";
 								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fa fa-angle-left'></i></span>";
+									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-left'></i></span>";
 								}
 
 								if ( $current_page < $max_pages){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fa fa-angle-right'></i></a>";
+									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fas fa-angle-right'></i></a>";
 								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fa fa-angle-right'></i></span>";
+									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-right'></i></span>";
 								}
 							}
 							if ($post_pagination_type === 'load_more'){

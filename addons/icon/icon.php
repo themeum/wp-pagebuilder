@@ -22,7 +22,7 @@ class WPPB_Addon_Icon{
 			'icon_list' => array(
 				'type' => 'icon',
 				'title' => __('Icon','wp-pagebuilder'),
-				'std' => 'fa fa-home'
+				'std' => 'fas fa-home'
 			),
 			'icon_link' => array(
 				'type' => 'link',
@@ -308,10 +308,10 @@ class WPPB_Addon_Icon{
 			$output  .= '<div class="wppb-icon-content">';
 			if($icon_link['link']) {
 				$output  .= '<span class="wppb-icon-inner"><a '.esc_attr($nofolow).' href="'.esc_url($icon_link['link']).'" '.esc_attr($target).'>';
-				$output  .= '<i class="fa ' . esc_attr($icon_list) . '"></i>';
+				$output  .= '<i class="' . esc_attr($icon_list) . '"></i>';
 				$output  .= '</a></span>';
 			} else {
-				$output  .= '<span class="wppb-icon-inner"><i class="fa ' . esc_attr($icon_list) . '"></i></span>';
+				$output  .= '<span class="wppb-icon-inner"><i class="' . esc_attr($icon_list) . '"></i></span>';
 			}
 			$output  .= '</div>';
 		$output  .= '</div>';
@@ -326,10 +326,10 @@ class WPPB_Addon_Icon{
 				<div class="wppb-icon-content">
 					<# if( !__.isEmpty(data.icon_link.link) ) { #>
 						<span class="wppb-icon-inner"><a {{ data.icon_link.link ? "href="+data.icon_link.link : "" }} {{ data.icon_link.window ? "target=_blank" : "" }} {{ data.icon_link.nofolow ? "rel=nofolow" : "" }}>
-						<i class="fa {{data.icon_list}}"></i>
+						<i class=" {{data.icon_list}}"></i>
 						</a></span>
 					<# } else { #>	
-						<span class="wppb-icon-inner"><i class="fa {{data.icon_list}}"></i></span>
+						<span class="wppb-icon-inner"><i class=" {{data.icon_list}}"></i></span>
 					<# } #>
 				</div>
 			</div>

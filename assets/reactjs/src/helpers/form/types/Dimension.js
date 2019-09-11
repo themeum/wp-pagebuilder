@@ -94,9 +94,9 @@ class Dimension extends Component {
                     { params.title &&
                         <label>{ params.title }
                             { this.state.lock ? (
-                                    <i className="fa fa-lock" onClick={e => { this.setState({ lock: !this.state.lock }); }}/>
+                                    <i className="fas fa-lock" onClick={e => { this.setState({ lock: !this.state.lock }); }}/>
                                 ):(
-                                    <i className="fa fa-unlock" onClick={e => { this.setState({ lock: !this.state.lock }); }}/>
+                                    <i className="fas fa-unlock" onClick={e => { this.setState({ lock: !this.state.lock }); }}/>
                                 )
                             }
                         </label>
@@ -110,9 +110,9 @@ class Dimension extends Component {
                         { params.responsive &&
                             <div className="wppb-builder-device-wrap">
                                 <ul className={ 'wppb-builder-device wppb-builder-device-' + mediaDevice }>
-                                    <li><i className="fa fa-laptop md" onClick={e => { ResponsiveManager.setDevice('md'); }}></i></li>
-                                    <li><i className="fa fa-tablet sm" onClick={e => { ResponsiveManager.setDevice('sm'); }}></i></li>
-                                    <li><i className="fa fa-mobile xs" onClick={e => { ResponsiveManager.setDevice('xs'); }}></i></li>
+                                    <li><i className="fas fa-laptop md" onClick={e => { ResponsiveManager.setDevice('md'); }}></i></li>
+                                    <li><i className="fas fa-tablet-alt sm" onClick={e => { ResponsiveManager.setDevice('sm'); }}></i></li>
+                                    <li><i className="fas fa-mobile-alt xs" onClick={e => { ResponsiveManager.setDevice('xs'); }}></i></li>
                                 </ul>
                             </div>
                         }

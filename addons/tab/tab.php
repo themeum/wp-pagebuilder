@@ -80,13 +80,13 @@ class WPPB_Addon_Tab{
 				'std' => array(
 					array(
 						'title' => 'Page Builder',
-						'icon_list' => 'fa fa-star-o',
+						'icon_list' => 'far fa-star',
 						'icon_position' => 'left',
 						'content' => 'Reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 					),
 					array(
 						'title' => 'Drag and Drop',
-						'icon_list' => 'fa fa-arrows-alt',
+						'icon_list' => 'fas fa-arrows-alt',
 						'icon_position' => 'right',
 						'content' => 'Anim pariatur cliche reprehenderit enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor',
 					),
@@ -110,7 +110,7 @@ class WPPB_Addon_Tab{
 					'icon_list' => array(
 						'type' => 'icon',
 						'title' => __('Icon','wp-pagebuilder'),
-						'std' => 'fa fa-home'
+						'std' => 'fas fa-home'
 					),
 					'icon_position' => array(
 						'type' => 'select',

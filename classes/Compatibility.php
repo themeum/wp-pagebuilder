@@ -14,6 +14,8 @@ class Compatibility {
 
 		add_action( 'updated_post_meta', array( $this, 'thirdparty_pagebuilder_comparability_check' ) , 12, 4 );
 
+		add_action( 'init', array( $this, 'replace_old_icon_with_new_icon' ));
+
 		if( defined('GIVE_VERSION') ){
 			add_action( 'wppb_enqueue_scripts_in_editor', array( $this, 'wppb_give_compatibility' ) ); // Give Plugins Compatibility
 		}
@@ -57,6 +59,35 @@ class Compatibility {
 		}
 	}
 
+
+ 	/**
+	 * Replace FontAwesome 4 class with FontAwesome 5
+	 * @since v 1.2.1
+	 */
+	function replace_old_icon_with_new_icon(){
+		global $wpdb;
+		$results  = $wpdb->get_results( "SELECT post_id, meta_value  FROM $wpdb->postmeta WHERE meta_key = '_wppb_content'" );
+
+		$replace_to = array(
+			'/fa fa-facebook/',
+			'/fa fa-home/',
+			'/fa fa-ambulance/',
+			'/fa fa-dribbble/',
+			'/fa fa-whatsapp/'
+		);
+		$replace_by = array(
+			'fab fa-facebook',
+			'fas fa-home',
+			'fab fa-ambulance',
+			'fab fa-dribbble',
+			'fab fa-whatsapp'
+		);
+
+		foreach($results as $result) {
+			$data = preg_replace($replace_to, $replace_by, $result->meta_value);
+			update_post_meta( $result->post_id, '_wppb_content', addslashes($data) );
+		}
+	}
 
 
 	/**

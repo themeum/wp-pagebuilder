@@ -3744,18 +3744,18 @@ input[type=range]:focus::-ms-fill-upper {
   display: block;
   width: 20%;
   text-align: center;
-  padding-right: 5px;
-  padding-left: 5px;
+  padding-right: 3px;
+  padding-left: 3px;
   box-sizing: border-box;
-  margin-bottom: 10px;
+  margin-bottom: 6px;
 }
 .wppb-repeatable-fields .wppb-builder-fontawesome-icon-chooser .wppb-builder-fontawesome-dropdown ul.wppb-builder-fontawesome-icons > li {
   width: 25%;
 }
 .wppb-builder-fontawesome-icon-chooser .wppb-builder-fontawesome-dropdown ul.wppb-builder-fontawesome-icons > li > div {
   display: block;
-  height: 50px;
-  line-height: 50px;
+  height: 30px;
+  line-height: 30px;
   border: 1px solid #e4e4e4;
   box-shadow: none;
   border-radius: 0;
@@ -3768,7 +3768,7 @@ input[type=range]:focus::-ms-fill-upper {
   padding: 0;
 }
 .wppb-builder-font-list span {
-  margin-right: 25px;
+  margin-right: 10px;
   font-size: 12px;
   text-transform: capitalize;
   display: inline-block;

@@ -16,7 +16,7 @@ if ( ! class_exists('WPPB_Frontend')){
 			//enqueue scripts
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_common_scripts'));
 			//enqueue style
-			add_action('wp_enqueue_scripts', array($this, 'enqueue_common_style'));
+			add_action('wp_enqueue_scripts', array($this, 'enqueue_common_style'), 1);
 
 			//Load Addon Specific scripts
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_addon_handler_scripts'), 30);

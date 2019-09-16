@@ -287,7 +287,7 @@ class PageListModal extends Component {
                                                 <span className="wppb-tmpl-title" dangerouslySetInnerHTML={{__html:page.name}}/>
                                                 <span className="wppb-builder-btn wppb-btn-success" onClick={(e) => { this.importTemplate(page.ID,page.pro,( page.file ? page.file : false ) ) }}>
                                                 { this.state.spinner == page.ID ?
-                                                    <i className="fa wppb-font-sync fa-spin" />
+                                                    <i className="fas wppb-font-sync fa-spin" />
                                                     :
                                                     <i className="wppb-font-download-alt" />
                                                 } {page_data.i18n.import}</span>
@@ -328,7 +328,7 @@ class PageListModal extends Component {
                                                 <span className="wppb-tmpl-title">{__.split(page.name,'&#8211;')[1]}</span>
                                                 <span className="wppb-builder-btn wppb-btn-success" onClick={(e) => this.importTemplate(page.ID,page.pro,( page.file ? page.file : false )) }>
                                                 { this.state.spinner == page.ID ?
-                                                    <i className="fa wppb-font-sync fa-spin" />
+                                                    <i className="fas wppb-font-sync fa-spin" />
                                                     :
                                                     <i className="wppb-font-download-alt" />
                                                 } {page_data.i18n.import} </span>

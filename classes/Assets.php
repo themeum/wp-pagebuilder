@@ -120,7 +120,7 @@ if ( ! class_exists('WPPB_Assets')) {
 					'vertical' => __('Vertical','wp-pagebuilder'), 'blur' => __('Blur','wp-pagebuilder'), 'spread' => __('Spread','wp-pagebuilder'), 'top' => __('Top','wp-pagebuilder'), 'right' => __('Right','wp-pagebuilder'), 
 					'bottom' => __('Bottom','wp-pagebuilder'), 'left' => __('Left','wp-pagebuilder'), 'gradient_type' => __('Gradient Type','wp-pagebuilder'), 
 					'gradient_direction' => __('Gradient Direction','wp-pagebuilder'), 'start_position' => __('Start Position','wp-pagebuilder'), 'end_position' => __('End Position','wp-pagebuilder'), 
-					'all' => __('All','wp-pagebuilder'), 'wppb_icon' => __('WPPB Icon','wp-pagebuilder'), 'fontawesome' => __('Font Awesome','wp-pagebuilder'), 
+					'all' => __('All','wp-pagebuilder'), 'wppb_icon' => __('Default Icon','wp-pagebuilder'), 'fontawesome' => __('Font Awesome 5','wp-pagebuilder'), 
 					'open_in_new_window' => __('Open in new window','wp-pagebuilder'), 'nofollow' => __('nofollow','wp-pagebuilder'), 'delete' => __('Delete','wp-pagebuilder'), 
 					'width' => __('Width','wp-pagebuilder'), 'height' => __('Height','wp-pagebuilder'), 'flip' => __('Flip','wp-pagebuilder'), 'invert' => __('Invert','wp-pagebuilder'), 
 					'bring_to_front' => __('Bring to Front','wp-pagebuilder'), 'font_family' => __('Font Family','wp-pagebuilder'), 'font_size' => __('Font Size','wp-pagebuilder'), 
@@ -179,15 +179,8 @@ if ( ! class_exists('WPPB_Assets')) {
 		public function wppb_enqueue_styles(){
 			$suffix = wppb_helper()->is_script_debug() ? '' : '.min';
 			wp_enqueue_style( 'jquery-ui', WPPB_DIR_URL . 'assets/css/jquery-ui.css',false,'1.12.1');
-
 			wp_enqueue_style( 'animate', WPPB_DIR_URL . 'assets/css/animate.min.css',false,'all');
-			
 			wp_enqueue_style( 'font-awesome-5', WPPB_DIR_URL . 'assets/css/font-awesome-5.min.css',false,'all');
-
-			$load_font_awesome_4 = wppb_get_option( 'load_font_awesome_4' );
-			if($load_font_awesome_4 == 'yes'){
-				wp_enqueue_style( 'font-awesome', WPPB_DIR_URL . 'assets/css/font-awesome.min.css',false,'all');
-			}
 			wp_enqueue_style( 'wppb-fonts', WPPB_DIR_URL . 'assets/css/wppb-fonts.css',false,'all');
 			wp_enqueue_style( 'magnific-popup', WPPB_DIR_URL . 'assets/css/magnific-popup.css',false,'all');
 

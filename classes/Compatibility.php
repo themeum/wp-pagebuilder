@@ -67,7 +67,7 @@ class Compatibility {
 	 * @since v 1.2.1
 	 */
 	function wppb_replace_font_awesome_icon_class(){
-		if ( get_option( 'wppb_run_icon_replace' ) != 'completed' ) {		
+		if ( get_option( 'wppb_fontawesome_five_upgrade' ) != 'completed' ) {		
 			global $wpdb;
 			$results  = $wpdb->get_results( "SELECT post_id, meta_value  FROM $wpdb->postmeta WHERE meta_key = '_wppb_content'" );
 
@@ -78,8 +78,7 @@ class Compatibility {
 				$data = preg_replace($replace_to, $replace_by, $result->meta_value);
 				update_post_meta( $result->post_id, '_wppb_content', addslashes($data) );
 			}
-
-			update_option( 'wppb_run_icon_replace', 'completed' );
+			update_option( 'wppb_fontawesome_five_upgrade', 'completed' );
 		}
 	}
 

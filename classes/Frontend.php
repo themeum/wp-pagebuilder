@@ -72,11 +72,6 @@ if ( ! class_exists('WPPB_Frontend')){
 			wp_enqueue_style( 'animate', WPPB_DIR_URL . 'assets/css/animate.min.css',false,'all');
 			
 			wp_enqueue_style( 'font-awesome-5', WPPB_DIR_URL . 'assets/css/font-awesome-5.min.css',false,'all');
-
-			$load_font_awesome_4 = wppb_get_option( 'load_font_awesome_4' );
-			if($load_font_awesome_4 == 'yes'){
-				wp_enqueue_style( 'font-awesome', WPPB_DIR_URL . 'assets/css/font-awesome.min.css',false,'all');
-			}
 			
 			wp_enqueue_style( 'wppb-fonts', WPPB_DIR_URL . 'assets/css/wppb-fonts.css',false,'all');
 			wp_enqueue_style( 'magnific-popup', WPPB_DIR_URL . 'assets/css/magnific-popup.css',false,'all');

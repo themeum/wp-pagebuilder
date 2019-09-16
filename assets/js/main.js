@@ -162,8 +162,8 @@ jQuery(document).ready(function($){ 'use strict';
             ]
         };
         if( nav == true ){
-            argument.nextArrow = '<span class="wppb-carousel-prev"><i class="fa fa-angle-right"></i></span>';
-            argument.prevArrow = '<span class="wppb-carousel-next"><i class="fa fa-angle-left"></i></span>';
+            argument.nextArrow = '<span class="wppb-carousel-prev"><i class="fas fa-angle-right"></i></span>';
+            argument.prevArrow = '<span class="wppb-carousel-next"><i class="fas fa-angle-left"></i></span>';
         }
         if( type == 'backend' ){
             Container.not('.slick-initialized').slick(argument);

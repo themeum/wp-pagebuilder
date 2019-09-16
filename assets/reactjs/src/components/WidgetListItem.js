@@ -92,7 +92,7 @@ class WidgetListItem extends Component {
                     <span>
                         { widget.id_base in defaultClass ?
                              (defaultClass[widget.id_base].indexOf('fa-') !== -1) ?
-                                <i className={ 'fa '+ defaultClass[widget.id_base] }/>
+                                <i className={ 'fas '+ defaultClass[widget.id_base] }/>
                                 :
                                 <i className={ defaultClass[widget.id_base] }/>
                             :

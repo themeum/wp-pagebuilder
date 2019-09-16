@@ -442,7 +442,7 @@ class WPPB_Addon_Accordion{
 				$output  .= '<div class="wppb-accordion-title wppb-toggle-'.$navigation_direction.' '.$activeClass.'">';
 				if( $navigation_direction == 'left' ) {
 					if($navigation) {
-						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa fas '.$navigation.'"></i></span>';
+						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fas '.$navigation.'"></i></span>';
 					}
 				}
 				if(get_wppb_array_value_by_key($value, 'icon_position') == "left" ) {
@@ -460,7 +460,7 @@ class WPPB_Addon_Accordion{
 				}
 				if( $navigation_direction == 'right' ) {
 					if($navigation) {
-						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fa fas '.$navigation.'"></i></span>';
+						$output  .= '<span class="wppb-toggle-direction wppb-toggle-'.$navigation_direction.'"><i class="fas '.$navigation.'"></i></span>';
 					}
 				}
 
@@ -497,14 +497,14 @@ class WPPB_Addon_Accordion{
 								<div class="wppb-accordion-title wppb-toggle-{{navigation_direction}} {{ activeClass }}">
 									<# if(navigation_direction == "left") { #>
 										<# if(data.navigation) { #>
-											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa fas {{data.navigation}}"></i></span>
+											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fas {{data.navigation}}"></i></span>
 										<# } #>	
 									<# } #>	
 									<# if(value.icon_position == "left" && !__.isEmpty(value.icon_list)) { #> <i class="{{ value.icon_list }}"></i><# } #><span class="wppb-accordion-title-content">{{value.title}}</span><# if(value.icon_position == "right" && !__.isEmpty(value.icon_list)) { #> <i class=" {{ value.icon_list }}"></i><# } #>
 
 									<# if(navigation_direction == "right") { #>
 										<# if(data.navigation) { #>
-											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fa fas {{data.navigation}}"></i></span>
+											<span class="wppb-toggle-direction wppb-toggle-{{navigation_direction}}"><i class="fas {{data.navigation}}"></i></span>
 										<# } #>	
 									<# } #>	
 								</div>

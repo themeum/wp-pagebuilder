@@ -47,9 +47,6 @@ if ( ! class_exists('WPPB_Options')){
 				if ( ! empty( $options['css_save_as'] ) ) {
 					$options['css_save_as'] = sanitize_text_field( $options['css_save_as'] );
 				}
-				if ( ! empty( $options['load_font_awesome_4'] ) ) {
-					$options['load_font_awesome_4'] = sanitize_text_field( $options['load_font_awesome_4'] );
-				}
 				if ( ! empty( $options['supported_post_type'] ) ) {
 					$options['supported_post_type'] = $options['supported_post_type'];
 				}
@@ -149,28 +146,6 @@ if ( ! class_exists('WPPB_Options')){
                                 <p class="description"> <?php _e('Select where you want to save the CSS.', 'wp-pagebuilder'); ?></p>
                             </td>
 						</tr>
-						
-						<!--Load Font Awesome 4 -->
-						<tr>
-                            <th scope="row"><?php esc_html_e( 'Load Font Awesome 4', 'wp-pagebuilder' ); ?></th>
-                            <td>
-								<?php $value = $option_data['load_font_awesome_4']; ?>
-                                <select name="wppb_options[load_font_awesome_4]">
-									<?php
-									$options = array(
-										'yes' 	=> __( 'Yes','wp-pagebuilder' ),
-										'no'    => __( 'No','wp-pagebuilder' ),
-									);
-									foreach ( $options as $id => $label ) { ?>
-                                        <option value="<?php echo esc_attr( $id ); ?>" <?php selected( $value, $id, true ); ?>>
-											<?php echo strip_tags( $label ); ?>
-                                        </option>
-									<?php } ?>
-                                </select>
-                                <p class="description"> <?php _e('Font Awesome 4 icons are displayed correctly while using Font Awesome 5 library', 'wp-pagebuilder'); ?></p>
-                            </td>
-						</tr>
-						<!--Load Font Awesome 4 -->
 
                         <tr>
                             <th scope="row"><?php esc_html_e( 'Cache', 'wp-pagebuilder' ); ?></th>

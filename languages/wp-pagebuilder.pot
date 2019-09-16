@@ -2525,11 +2525,11 @@ msgid "All"
 msgstr ""
 
 #: classes/Assets.php:123
-msgid "WPPB Icon"
+msgid "Default Icon"
 msgstr ""
 
 #: classes/Assets.php:123
-msgid "Font Awesome"
+msgid "Font Awesome 5"
 msgstr ""
 
 #: classes/Assets.php:124

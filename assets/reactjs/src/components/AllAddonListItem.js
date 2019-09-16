@@ -92,7 +92,7 @@ class AllAddonListItem extends Component {
                             <img src={addon.icon} alt={addon.title} />
                         }
                         { (addon.icon.indexOf('fa-') !== -1) &&
-                            <i className={ 'fa '+addon.icon }/>
+                            <i className={ 'fas '+addon.icon }/>
                         }
                         { (addon.icon.indexOf('wppb-font-') !== -1) &&
                             <i className={ addon.icon }/>

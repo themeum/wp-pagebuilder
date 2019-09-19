@@ -237,7 +237,7 @@ If any bug is found, Please let us know by posting on the support section of thi
 
 == Changelog ==
 
-= 1.2.1 - September 18, 2019 =
+= 1.2.1 - September 19, 2019 =
 Fix: fontawesome 5 upgrade
 
 = 1.2.0 - April 19, 2019 =

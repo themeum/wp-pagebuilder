@@ -5,7 +5,7 @@ Tags: page builder, website builder, live editor, wp page builder, drag and drop
 Requires at least: 4.7
 Tested up to: 5.1
 Requires PHP: 5.4.0
-Stable tag: 1.2.0
+Stable tag: 1.2.1
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -236,6 +236,9 @@ If any bug is found, Please let us know by posting on the support section of thi
 6. Heading Addon
 
 == Changelog ==
+
+= 1.2.1 - September 18, 2019 =
+Fix: fontawesome 5 upgrade
 
 = 1.2.0 - April 19, 2019 =
 Fix: W3 Validation issue

@@ -433,6 +433,16 @@ class WPPB_Addon_Form{
 				'section' => 'Button',
 				'depends' => array(array('form_type', '=', array('wppb_default_form'))),
 			),
+			'fullwidth_button' => array(
+				'type' => 'select',
+				'section' => 'Button',
+				'title' => __('Full Width','wp-pagebuilder'),
+				'values' => array(
+					'full-yes' => __('Yes','wp-pagebuilder'),
+					'full-no' => __('No','wp-pagebuilder'),
+				),
+				'std' => 'no',
+			),
 
 			// form style
 			'vertical_form_space' => array(
@@ -531,13 +541,24 @@ class WPPB_Addon_Form{
 				'std' => '#454545',
 				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields select, {{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} select, {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea { color: {{data.input_color}}; }'
 			),
+			'input_shadow' => array(
+				'type' => 'boxshadow',
+				'tab' => 'style',
+				'section' => 'Form Style',
+				'title' => __('Input Boxshadow','wp-pagebuilder'),
+				'std' => array(
+						'shadowValue'=> array( 'top' => '120px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px' ), 
+						'shadowColor' 	=> '#ffffff' 
+					),
+				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields select, {{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} select, {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea'
+			),
 			'paceholder_color' => array(
 				'type' => 'color',
 				'title' => __('Placeholder color','wp-pagebuilder'),
 				'tab' => 'style',
 				'section' => 'Form Style',
 				'std' => '#d5d5d5',
-				'selector' => '{{SELECTOR}} .wppb-form-field-input input::-webkit-input-placeholder, {{SELECTOR}} .wppb-form-field-email input[type=email]::-webkit-input-placeholder, {{SELECTOR}} .wppb-form-field-textarea textarea::-webkit-input-placeholder { color: {{data.paceholder_color}}; }'
+				'selector' => '{{SELECTOR}} .wppb-form-field-input input::-webkit-input-placeholder, {{SELECTOR}} .wppb-form-field-email input[type=email]::-webkit-input-placeholder, {{SELECTOR}} .wppb-form-field-textarea textarea::-webkit-input-placeholder, span.wppb-form-field-item.wppb-form-field-select select { color: {{data.paceholder_color}}; }'
 			),
 			'input_bg' => array(
 				'type' => 'color',
@@ -594,7 +615,7 @@ class WPPB_Addon_Form{
 				'responsive' => true,
 				'tab' => 'style',
 				'section' => 'Form Style',
-				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea { border-radius: {{data.input_radius}}; }'
+				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea, span.wppb-form-field-item.wppb-form-field-select select { border-radius: {{data.input_radius}}; }'
 			),
 			'input_padding' => array(
 				'type' => 'dimension',
@@ -608,7 +629,7 @@ class WPPB_Addon_Form{
 				'responsive' => true,
 				'section' => 'Form Style',
 				'tab' => 'style',
-				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea { padding: {{data.input_padding}}; }'
+				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea, span.wppb-form-field-item.wppb-form-field-select select { padding: {{data.input_padding}}; }'
 			),
 			'textarea_resize' => array(
 				'type' => 'switch',
@@ -859,11 +880,15 @@ class WPPB_Addon_Form{
 
 	public function generateDefaultForm($data = array()){
 		$settings 				= $data['settings'];
+		$classlist 				= '';
 		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
 		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : 'Submit Form';
 		$icon_list 				= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
 		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
 		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
+		$fullwidth_button 		= isset($settings["fullwidth_button"]) ? $settings["fullwidth_button"] : '';
+		
+		$classlist .= (isset($fullwidth_button) && $fullwidth_button) ? ' wppb-btn-' . $fullwidth_button : '';
 
 		if ( $form_type !== 'wppb_default_form'){
 			return '';
@@ -942,7 +967,7 @@ class WPPB_Addon_Form{
 				?>
 
                 <div class="wppb_form_addon_submit_btn_wrap wppb-form-btn-wrap">
-                    <button class="wppb-btn-forms wppb_form_addon_submit" type="submit"> <?php echo $button; ?> </button>
+                    <button class="wppb-btn-forms wppb_form_addon_submit <?php echo esc_attr($classlist); ?>" type="submit"> <?php echo $button; ?> </button>
                 </div>
 
                 <div class="wppb_form_response"></div>
@@ -1199,7 +1224,10 @@ class WPPB_Addon_Form{
 
 	public function getTemplate(){
 		$output = '
-
+		<# 
+		var classList = ""; 
+		classList += " wppb-btn-"+data.fullwidth_button;
+		#>
 		<div class="wppb-forms-addon">
             <div class="wppb-form-content">
                 <# if(data.wppb_default_form && data.form_type === "wppb_default_form") { #>
@@ -1272,7 +1300,7 @@ class WPPB_Addon_Form{
                         </div>
                         <# } #>
                         <div class="wppb-form-btn-wrap">
-                            <button class="wppb-btn-forms" type="button"><# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class="{{ data.icon_list }}"></i> <# } #><span>{{ data.button_text ? data.button_text : "Submit Form" }}</span><# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class="{{ data.icon_list }}"></i><# } #></button>
+                            <button class="wppb-btn-forms {{classList}}" type="button"><# if(data.icon_position == "left" && !_.isEmpty(data.icon_list)) { #><i class="{{ data.icon_list }}"></i> <# } #><span>{{ data.button_text ? data.button_text : "Submit Form" }}</span><# if(data.icon_position == "right" && !_.isEmpty(data.icon_list)) { #> <i class="{{ data.icon_list }}"></i><# } #></button>
                         </div>
                         
                     <# }else{

@@ -183,7 +183,7 @@ class WPPB_Addon_Image_Hover{
                 'type' => 'color',
                 'title' => __('Overlay Hover Background','wp-pagebuilder'),
                 'std' => '#377133',
-                'selector' => '{{SELECTOR}} .wppb-image-hover-content:hover .wppb-image-hover-background{ background-color: {{data.back_bg}}; }',
+                'selector' => '{{SELECTOR}} .wppb-image-hover-content:hover .wppb-image-hover-overlay{ background-color: {{data.back_bg}}; }',
                 'section' => 'Background',
             ),
 

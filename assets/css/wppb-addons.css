@@ -3823,6 +3823,31 @@ ul.wpuf-form li .wpuf-fields select,
     padding: 0;
     margin: 0;
 }
+span.wppb-form-field-item.wppb-form-field-select select{
+    -webkit-appearance: none;
+    height: auto;
+}
+span.wppb-form-field-item.wppb-form-field-select{
+    position: relative;
+}
+span.wppb-form-field-item.wppb-form-field-select:after{
+    content:"";
+    display:block;
+    width:0;
+    height:0;
+    border-color:#000 transparent transparent transparent;
+    border-width:6px 3px 6px 3px;
+    border-style:solid;
+    position:absolute;
+    right:10px;
+    top:50%;
+    margin-top:-2.5px;
+}
+.wppb-global-form-content input:focus, 
+.wppb-global-form-content textarea:focus, 
+span.wppb-form-field-item.wppb-form-field-select select{
+    outline: 0;
+}
 .wppb-global-form-content .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit],
 .wpuf-form-add.wpuf-style ul.wpuf-form .wpuf-submit input[type=submit] {
     box-shadow: none;
@@ -3873,4 +3898,8 @@ ul.wpuf-form li .wpuf-fields .wpuf-name-field-wrap.format-first-last .wpuf-name-
 }
 .wppb-btn-forms {
     font-weight: 400;
+}
+.wppb-btn-forms.wppb-btn-full-yes{
+    display: block;
+    width: 100%;
 }

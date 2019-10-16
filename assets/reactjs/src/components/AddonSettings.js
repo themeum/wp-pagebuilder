@@ -1,7 +1,8 @@
 import React, { Component } from 'react';
 import EditPanelManager from '../helpers/EditPanelManager';
 import { connect } from 'react-redux';
-import { addInnerRow, deleteColumn, deleteInnerColumn, disableColumn, disableInnerColumn, cloneAddon, deleteAddon, cloneAddonInner, deleteInnerAddon, saveSetting, disableAddon, disableInnerAddon } from '../actions/index'
+import { bindActionCreators } from 'redux';
+import { addInnerRow, deleteColumn, deleteInnerColumn, disableColumn, disableInnerColumn, cloneAddon, deleteAddon, cloneAddonInner, deleteInnerAddon, saveSetting, disableAddon, disableInnerAddon, copyAddon, copyAddonInner } from '../actions/index';
 
 
 class AddonSettings extends Component{
@@ -28,7 +29,7 @@ class AddonSettings extends Component{
     }
 
     render(){
-        const { addon, rowIndex, colIndex, addonIndex, innerColIndex, addonInnerIndex, cloneAddon, cloneAddonInner, deleteInnerAddon, deleteAddon, disableAddon, disableInnerAddon, connectDragSource } = this.props;
+        const { addon, rowIndex, colIndex, addonIndex, innerColIndex, addonInnerIndex, cloneAddon, cloneAddonInner, deleteInnerAddon, deleteAddon, disableAddon, disableInnerAddon, connectDragSource, copyAddon, copyAddonInner } = this.props;
 
         let options = {
             index: rowIndex,
@@ -88,6 +89,15 @@ class AddonSettings extends Component{
                         <i className="wppb-font-trash"/>
                     </li>
                     }
+                    {addon.visibility &&
+                    <li title="Copy Addon" onClick={ (e) => {
+                        typeof addonInnerIndex === 'undefined'
+                            ? copyAddon(options)
+                            : copyAddonInner(options)
+                    }}>
+                        <i className="wppb-font-copy-alt"/>
+                    </li>
+                    }
                 </ul>
                 <div onClick={ () => { this._editAddons( rowIndex, colIndex, addonIndex, addon.id, addon.htmlContent, addon.name, addon.settings, addon.type, innerColIndex, addonInnerIndex ); }}></div>
             </div>
@@ -99,45 +109,21 @@ const mapStateToProps = (state) => {
     return { state };
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        onSettingsClick: (options) => {
-            dispatch(saveSetting(options))
-        },
-        addInnerRow: ( rowIndex, colIndex ) => {
-            dispatch(addInnerRow( rowIndex, colIndex ))
-        },
-        deleteColumn: (index,colIndex) => {
-            dispatch(deleteColumn(index,colIndex))
-        },
-        deleteInnerColumn: (options) => {
-            dispatch(deleteInnerColumn(options))
-        },
-        disableColumn: (index, colIndex, id) => {
-            dispatch(disableColumn(index, colIndex, id))
-        },
-        disableInnerColumn: (options) => {
-            dispatch(disableInnerColumn(options))
-        },
-        cloneAddon: (options) => {
-            dispatch(cloneAddon(options))
-        },
-        deleteAddon: (options) => {
-            dispatch(deleteAddon(options))
-        },
-        cloneAddonInner: (options) => {
-            dispatch(cloneAddonInner(options))
-        },
-        deleteInnerAddon: (options) => {
-            dispatch(deleteInnerAddon(options))
-        },
-        disableAddon: (options) => {
-            dispatch(disableAddon(options))
-        },
-        disableInnerAddon: (options) => {
-            dispatch(disableInnerAddon(options))
-        }
-    }
+function mapDispatchToProps(dispatch) {
+    return bindActionCreators({
+        onSettingsClick: saveSetting,
+        addInnerRow,
+        deleteColumn,
+        deleteInnerColumn,
+        copyAddon,
+        copyAddonInner,
+        cloneAddon,
+        deleteAddon,
+        cloneAddonInner,
+        deleteInnerAddon,
+        disableAddon,
+        disableInnerAddon
+    }, dispatch);
 }
 
 export default connect(

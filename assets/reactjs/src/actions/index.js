@@ -169,6 +169,42 @@ export const saveSetting = (options) => {
 	}
 };
 
+export const copyAddon = (options) => {
+	return {
+		type: 'ADDON_COPY',
+		index: options.index,
+		settings: options.settings
+	}
+};
+
+export const copyAddonInner = (options) => {
+	return {
+		type: 'ADDON_INNER_COPY',
+		index: options.index,
+		settings: options.settings
+	}
+};
+
+export const pasteAddon = ( index, colIndex, id ) => {
+	return {
+		type: 'ADDON_PASTE',
+		index: index,
+		settings: {
+			colIndex: colIndex,
+			id: id
+		}
+	}
+};
+
+export const pasteAddonInner = ( options ) => {
+	console.log( options );
+	return {
+		type: 'ADDON_INNER_PASTE',
+		index: options.index,
+		settings: options.settings
+	}
+};
+
 export const cloneAddon = (options) => {
 	return {
 		type: 'ADDON_CLONE',

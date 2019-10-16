@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import EditPanelManager from '../helpers/EditPanelManager';
-import { cloneColumn, cloneInnerColumn, innerExtraColumn, addExtraColumn, addInnerRow, deleteColumn, deleteInnerColumn, disableColumn, disableInnerColumn, saveSetting } from '../actions/index'
+import { cloneColumn, cloneInnerColumn, innerExtraColumn, addExtraColumn, addInnerRow, deleteColumn, deleteInnerColumn, disableColumn, disableInnerColumn, saveSetting, pasteAddon, pasteAddonInner } from '../actions/index';
 
 class ColumnSettings extends Component{
     constructor( props ){
@@ -49,8 +49,17 @@ class ColumnSettings extends Component{
             : this.props.cloneInnerColumn(options);
     }
 
+    _pasteAddonHandle(){
+        const { rowIndex, colIndex, column } = this.props;
+        const options = this._getSettingObjects();
+
+        typeof this.props.innerColIndex === 'undefined'
+            ? this.props.pasteAddon( rowIndex, colIndex, column.id )
+            : this.props.pasteAddonInner( options );
+    }
+
     render(){
-        const { column, row, innerRow, rowIndex, colIndex , addonIndex, innerColIndex, connectDragSource } = this.props;
+        const { column, row, innerRow, rowIndex, colIndex , addonIndex, innerColIndex, connectDragSource, pasteAddon, pasteAddonInner } = this.props;
         return(
             <ul>
                 { column.visibility &&
@@ -113,6 +122,12 @@ class ColumnSettings extends Component{
                     <li title={page_data.i18n.add_inner_row} onClick = { () => { this.props.addInnerRow( rowIndex, colIndex ); }}><i className="wppb-font-add-row"/></li>
                 }
                 { connectDragSource(<li title={page_data.i18n.drag_column} onClick ={ (e) => { this.props.columnMove(true); }}><i className="wppb-font-arrows"/></li>) }
+                
+                <li title="Paste Addon" onClick = { () => { this._pasteAddonHandle(); }}>
+                    { column.visibility && 
+                        <i className="fa fa-paste"/>
+                    }
+                </li>
             </ul>
         )
     }
@@ -154,6 +169,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         disableInnerColumn: (options) => {
             dispatch(disableInnerColumn(options))
+        },
+        pasteAddon: ( rowIndex, colIndex, id ) => {
+            dispatch(pasteAddon( rowIndex, colIndex, id ))
+        },
+        pasteAddonInner: ( options ) => {
+            dispatch(pasteAddonInner( options ))
         }
     }
 }

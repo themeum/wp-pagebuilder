@@ -11,7 +11,6 @@ if ( ! class_exists('WPPB_Frontend')){
 		 * WPPB_Frontend constructor.
 		 */
 		public function __construct() {
-			$array = '';
 			add_action('wp_enqueue_scripts', array($this, 'enqueue_frontend_scripts'));
 
 			//enqueue scripts

@@ -131,6 +131,10 @@ const pageBuilder = ( state = page_data.initialState, action ) => {
         case 'ADDON_DELETE':
         case 'ADDON_DISABLE':
         case 'ADDON_SETTING':
+        case 'ADDON_COPY':
+        case 'ADDON_INNER_COPY':
+        case 'ADDON_PASTE':
+        case 'ADDON_INNER_PASTE':
         case 'ADDON_INNER_SETTING':
         case 'ADDON_INNER_CLONE':
         case 'ADDON_INNER_DELETE':
@@ -865,6 +869,10 @@ const row = (state,action) => {
 
         case 'ADDON_DELETE':
         case 'ADDON_SETTING':
+        case 'ADDON_COPY':
+        case 'ADDON_INNER_COPY':
+        case 'ADDON_PASTE':
+        case 'ADDON_INNER_PASTE':
         case 'ADDON_EDIT':
         case 'ADDON_CLONE':
         case 'ADDON_INNER_DELETE':
@@ -1070,6 +1078,8 @@ const columns = ( state, action ) => {
 
         case 'ADDON_INNER_SETTING':
         case 'ADDON_INNER_CLONE':
+        case 'ADDON_INNER_COPY':
+        case 'ADDON_INNER_PASTE':
         case 'ADDON_INNER_DELETE':
         case 'ADDON_INNER_EDIT':
         case 'ADDON_INNER_DISABLE':
@@ -1081,8 +1091,15 @@ const columns = ( state, action ) => {
             if (action.type === 'ADDON_INNER_CLONE') {
                 action.type = 'ADDON_CLONE';
             }
+            if (action.type === 'ADDON_INNER_COPY') {
+                action.type = 'ADDON_COPY';
+                
+            }
             if (action.type === 'ADDON_INNER_DELETE') {
                 action.type = 'ADDON_DELETE';
+            }
+            if (action.type === 'ADDON_INNER_PASTE') {
+                action.type = 'ADDON_PASTE';
             }
             if (action.type === 'ADDON_INNER_EDIT') {
                 action.type = 'ADDON_EDIT';
@@ -1330,6 +1347,8 @@ const addons = (state,action) => {
         case 'ADDON_DISABLE':
         case 'ADDON_INNER_EDIT':
         case 'ADDON_INNER_CLONE':
+        case 'ADDON_INNER_COPY':
+        case 'ADDON_INNER_PASTE':
         case 'ADDON_INNER_DELETE':
         case 'ADDON_INNER_DISABLE':
         case 'ADDON_INNER_SETTING':
@@ -1371,6 +1390,20 @@ const addons = (state,action) => {
                     ...state.addons.slice(action.settings.addonIndex+1)
                 ]
             });
+
+        case 'ADDON_PASTE':
+            var copiedAddon = JSON.parse(localStorage.getItem('copiedAddon'));
+
+            return Object.assign({},state,{
+                addons: [
+                    ...state.addons,
+                    copiedAddon
+                ]
+            });
+
+        case 'ADDON_COPY':
+            var copiedAddon = Object.assign({}, state.addons[ start ]);
+            localStorage.setItem( 'copiedAddon', JSON.stringify(copiedAddon) );
 
         default:
             return state;

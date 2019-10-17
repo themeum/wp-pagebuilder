@@ -121,13 +121,13 @@ class ColumnSettings extends Component{
                      typeof this.props.innerColIndex === 'undefined' &&
                     <li title={page_data.i18n.add_inner_row} onClick = { () => { this.props.addInnerRow( rowIndex, colIndex ); }}><i className="wppb-font-add-row"/></li>
                 }
-                { connectDragSource(<li title={page_data.i18n.drag_column} onClick ={ (e) => { this.props.columnMove(true); }}><i className="wppb-font-arrows"/></li>) }
-                
                 <li title="Paste Addon" onClick = { () => { this._pasteAddonHandle(); }}>
                     { column.visibility && 
                         <i className="fa fa-paste"/>
                     }
                 </li>
+                { connectDragSource(<li title={page_data.i18n.drag_column} onClick ={ (e) => { this.props.columnMove(true); }}><i className="wppb-font-arrows"/></li>) }
+                
             </ul>
         )
     }

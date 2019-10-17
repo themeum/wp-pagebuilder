@@ -74,6 +74,16 @@ class AddonSettings extends Component{
                     </li>
 
                     {addon.visibility &&
+                    <li title="Copy Addon" onClick={ (e) => {
+                        typeof addonInnerIndex === 'undefined'
+                            ? copyAddon(options)
+                            : copyAddonInner(options)
+                    }}>
+                        <i className="wppb-font-copy-alt"/>
+                    </li>
+                    }
+
+                    {addon.visibility &&
                     <li title="Delete Addon" onClick={ () => {
                         // if (window.confirm("Do you really want to delete this addon?")) {
                             jQuery(window.frames['wppb-builder-view'].window.document).find('#addon-script-'+addon.id).remove();
@@ -89,15 +99,7 @@ class AddonSettings extends Component{
                         <i className="wppb-font-trash"/>
                     </li>
                     }
-                    {addon.visibility &&
-                    <li title="Copy Addon" onClick={ (e) => {
-                        typeof addonInnerIndex === 'undefined'
-                            ? copyAddon(options)
-                            : copyAddonInner(options)
-                    }}>
-                        <i className="wppb-font-copy-alt"/>
-                    </li>
-                    }
+                    
                 </ul>
                 <div onClick={ () => { this._editAddons( rowIndex, colIndex, addonIndex, addon.id, addon.htmlContent, addon.name, addon.settings, addon.type, innerColIndex, addonInnerIndex ); }}></div>
             </div>

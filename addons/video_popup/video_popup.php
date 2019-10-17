@@ -17,6 +17,9 @@ class WPPB_Addon_Video_Popup{
 	public function get_enqueue_script(){
 		return array( 'jquery.magnific-popup' );
 	}
+	public function get_enqueue_style(){
+		return array('magnific-popup');
+	}
 
 	// Video Settings Fields
 	public function get_settings() {

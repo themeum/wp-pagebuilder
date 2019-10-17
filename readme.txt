@@ -244,7 +244,7 @@ Fix: Form addon full-width submit button option
 Fix: Form addon input field box-shadow missing
 Fix: Form addon select padding issue	
 Fix: Accordion addon Active border Title
-Fix: Image Hover add-on - Hover color issue
+Fix: Image Hover addon Hover color issue
 
 = 1.2.1 - September 19, 2019 =
 Fix: fontawesome 5 upgrade

@@ -880,7 +880,7 @@ class WPPB_Addon_Form{
 
 	public function generateDefaultForm($data = array()){
 		$settings 				= $data['settings'];
-		$classlist 				= '';
+		$classlist				= '';
 		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
 		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : 'Submit Form';
 		$icon_list 				= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
@@ -1224,10 +1224,7 @@ class WPPB_Addon_Form{
 
 	public function getTemplate(){
 		$output = '
-		<# 
-		var classList = ""; 
-		classList += " wppb-btn-"+data.fullwidth_button;
-		#>
+		<# var classList = " wppb-btn-"+data.fullwidth_button; #>
 		<div class="wppb-forms-addon">
             <div class="wppb-form-content">
                 <# if(data.wppb_default_form && data.form_type === "wppb_default_form") { #>

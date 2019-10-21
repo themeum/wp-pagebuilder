@@ -77,6 +77,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    z-index: 2;
 }
 .wppb-addon-image-overlay-icon{
     color: #fff;

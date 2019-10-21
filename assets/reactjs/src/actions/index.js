@@ -197,7 +197,6 @@ export const pasteAddon = ( index, colIndex, id ) => {
 };
 
 export const pasteAddonInner = ( options ) => {
-	console.log( options );
 	return {
 		type: 'ADDON_INNER_PASTE',
 		index: options.index,

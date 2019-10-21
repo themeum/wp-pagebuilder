@@ -1393,6 +1393,8 @@ const addons = (state,action) => {
 
         case 'ADDON_PASTE':
             var copiedAddon = JSON.parse(localStorage.getItem('copiedAddon'));
+            copiedAddon.id = nextNodeId++;
+            copiedAddon.type = "addon";
 
             return Object.assign({},state,{
                 addons: [

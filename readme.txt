@@ -237,14 +237,13 @@ If any bug is found, Please let us know by posting on the support section of thi
 
 == Changelog ==
 
-= 1.2.2 - October 17, 2019 =
+= 1.2.2 - October 22, 2019 =
 New: Addon copy paste features 
-New: Addon specific css file load with Filter
 Fix: Form addon full-width submit button option
 Fix: Form addon input field box-shadow missing
 Fix: Form addon select padding issue	
-Fix: Accordion addon Active border Title
-Fix: Image Hover addon Hover color issue
+Fix: Accordion addon active border title
+Fix: Image Hover addon hover color issue
 
 = 1.2.1 - September 19, 2019 =
 Fix: fontawesome 5 upgrade

@@ -188,6 +188,7 @@ class WPPB_Addon_Accordion{
 				'title' => 'Active Border',
 				'tab' => 'style',
 				'section' => 'Title',
+				'std'	=> '#e5e5e5',
 				'selector' => '{{SELECTOR}} .wppb-accordion-title.active { border-color: {{data.title_active_border}}; }'
 			),
 			'title_border_radius' => array(

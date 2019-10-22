@@ -547,8 +547,8 @@ class WPPB_Addon_Form{
 				'section' => 'Form Style',
 				'title' => __('Input Boxshadow','wp-pagebuilder'),
 				'std' => array(
-						'shadowValue'=> array( 'top' => '120px', 'right' => '0px', 'bottom' => '0px', 'left' => '0px' ), 
-						'shadowColor' 	=> '#ffffff' 
+						'shadowValue'=> array( 'top' => '0px', 'right' => '0px', 'bottom' => '10px', 'left' => '0px' ), 
+						'shadowColor' 	=> '#333' 
 					),
 				'selector' => '{{SELECTOR}} ul.wpuf-form li .wpuf-fields select, {{SELECTOR}} ul.wpuf-form li .wpuf-fields textarea, {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=url], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=email], {{SELECTOR}} ul.wpuf-form li .wpuf-fields input[type=text], {{SELECTOR}} select, {{SELECTOR}} input[type=text], {{SELECTOR}} input[type=email], {{SELECTOR}} textarea, {{SELECTOR}} .wppb-form-field-input input, {{SELECTOR}} .wppb-form-field-email input, {{SELECTOR}} .wppb-form-field-textarea textarea'
 			),

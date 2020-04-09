@@ -52,13 +52,16 @@ if ( ! class_exists('WPPB_General')){
 		 * display post states in the wp post list
 		 */
 		public function wppb_display_post_states($post_states, $post){
+			require_once(ABSPATH . 'wp-admin/includes/screen.php');
 			$screen = get_current_screen();
-			if ( $screen->base === 'edit'){
-				$wppb_supports_post_types = wppb_helper()->wppb_supports_post_types();
-				if ( in_array($post->post_type, $wppb_supports_post_types)) {
-					$is_wppb_editor_page = get_post_meta( $post->ID, '_is_wppb_editor', true );
-					if ( $is_wppb_editor_page ) {
-						$post_states[] = ' WP Page Builder ';
+			if (isset($screen->base)) {
+				if ( $screen->base === 'edit'){
+					$wppb_supports_post_types = wppb_helper()->wppb_supports_post_types();
+					if ( in_array($post->post_type, $wppb_supports_post_types)) {
+						$is_wppb_editor_page = get_post_meta( $post->ID, '_is_wppb_editor', true );
+						if ( $is_wppb_editor_page ) {
+							$post_states[] = ' WP Page Builder ';
+						}
 					}
 				}
 			}

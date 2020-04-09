@@ -2,10 +2,10 @@
 Contributors: themeum
 Donate link: https://www.themeum.com
 Tags: page builder, website builder, live editor, wp page builder, drag and drop editor, responsive, site editor, editor, drag-and-drop, visual editor, landing page, frontend editor, wordpress page builder, free page builder, layout builder
-Requires at least: 4.7
-Tested up to: 5.1
-Requires PHP: 5.4.0
-Stable tag: 1.2.1
+Requires at least: 5.0
+Tested up to: 5.4
+Requires PHP: 7.0
+Stable tag: 1.2.3
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -178,7 +178,7 @@ Alongside all the amazing benefits of the free version, you will get **15+ premi
 Anytime you need a web page builder tool on WordPress, Try WP Page Builder for the smoothest, fastest, and easiest site development experience. If you have any question, please [drop us a query](https://www.themeum.com/support-forums/). We’ll reach you as soon as possible.
 
 > You may find the documentation here
-> [Documentation](https://www.themeum.com/docs/wp-page-builder-introduction/)
+> [Documentation](https://docs.themeum.com/wp-pagebuilder/)
 > [Developer Documentation](https://github.com/themeum/WP-Page-Builder)
 
 == Installation ==
@@ -236,6 +236,9 @@ If any bug is found, Please let us know by posting on the support section of thi
 6. Heading Addon
 
 == Changelog ==
+
+= 1.2.3 - April 9, 2020 =
+Fix: Undefined function get_current_screen issue
 
 = 1.2.2 - October 22, 2019 =
 New: Addon copy paste features 

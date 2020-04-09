@@ -269,9 +269,9 @@ if ( ! class_exists('WPPB_Helper')) {
 		public function plugin_row_meta_callback( $links , $plugin ){
 			if( WPPB_BASENAME === $plugin ){
 			$actionsLinks =  array(
-				'wppb_docs' =>  '<a href="https://www.themeum.com/docs/wp-page-builder-introduction/" target="_blank">'.__('Docs', 'wp-pagebuilder').'</a>',
+				'wppb_docs' =>  '<a href="https://docs.themeum.com/wp-pagebuilder/" target="_blank">'.__('Docs', 'wp-pagebuilder').'</a>',
 				'wppb_dev_docs' =>  '<a href="https://github.com/themeum/WP-Page-Builder" target="_blank">'.__('Dev Docs', 'wp-pagebuilder').'</a>',
-				'wppb_support' =>  '<a href="https://www.themeum.com/support-forums/" target="_blank">'.__('Free Support', 'wp-pagebuilder').'</a>',
+				'wppb_support' =>  '<a href="https://www.themeum.com/support/" target="_blank">'.__('Free Support', 'wp-pagebuilder').'</a>',
 			);
 				$links = array_merge( $links, $actionsLinks );
 			}

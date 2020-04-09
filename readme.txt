@@ -239,6 +239,7 @@ If any bug is found, Please let us know by posting on the support section of thi
 
 = 1.2.3 - April 9, 2020 =
 Fix: Undefined function get_current_screen issue
+Fix: Support and documentation broken link issue
 
 = 1.2.2 - October 22, 2019 =
 New: Addon copy paste features 

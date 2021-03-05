@@ -150,7 +150,7 @@ if ( ! class_exists('WPPB_Helper')) {
 			$exclude = array();
 			$wppb_options = $this->wppb_options();
 
-			if ( empty($wppb_options['exclude_role'])){
+			if ( ! empty( $wppb_options['exclude_role'] ) ) {
 				$exclude = $wppb_options['exclude_role'];
 			}
 

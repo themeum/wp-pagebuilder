@@ -95,18 +95,19 @@ if ( ! class_exists('WPPB_Options')){
                         </tr>
 
                         <tr>
-                            <th scope="row"><?php esc_html_e( 'Exclude User Role', 'wp-pagebuilder' ); ?></th>
+                            <th scope="row"><?php esc_html_e( 'Include User Role', 'wp-pagebuilder' ); ?></th>
                             <td>
 								<?php
-								$value = wppb_get_option('exclude_role');
-								if( $user_roles ){
-									foreach( $user_roles as $user_slug => $single_role ){ ?>
-                                        <label><input type="checkbox" name="wppb_options[exclude_role][]" value="<?php echo $user_slug; ?>" <?php if( $value ){ if(in_array( $user_slug, $value )){ echo 'checked'; } } ?> > <?php echo $single_role['name']; ?><br></label>
+								$included_user_roles = wppb_get_option( 'include_role' );
+
+								if ( $user_roles ) {
+									foreach ( $user_roles as $user_slug => $single_role ) { ?>
+                                        <label><input type="checkbox" name="wppb_options[include_role][]" value="<?php echo $user_slug; ?>" <?php if ( $included_user_roles ) { if (in_array( $user_slug, $included_user_roles )){ echo 'checked'; } } ?> > <?php echo $single_role['name']; ?><br></label>
 									<?php }
 								}
 								?>
 
-                                <p class="description"> <?php _e('Exclude the user roles that you want to prevent from editing this site with WP Page Builder.', 'wp-pagebuilder'); ?></p>
+                                <p class="description"> <?php _e('Include the user roles that you want to allow editing this site with WP Page Builder.', 'wp-pagebuilder'); ?></p>
 
                             </td>
                         </tr>

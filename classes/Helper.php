@@ -150,7 +150,7 @@ if ( ! class_exists('WPPB_Helper')) {
 			$exclude = array();
 			$wppb_options = $this->wppb_options();
 
-			if ( ! empty($wppb_options['exclude_role'])){
+			if ( empty($wppb_options['exclude_role'])){
 				$exclude = $wppb_options['exclude_role'];
 			}
 
@@ -162,17 +162,21 @@ if ( ! class_exists('WPPB_Helper')) {
 		 *
 		 * @since v.1.0.0
 		 */
-		public function can_edit_editor(){
-			if ( ! is_user_logged_in()){
+		public function can_edit_editor() {
+			if ( ! is_user_logged_in() ) {
 				return false;
 			}
-			$exclude_roles = $this->wppb_exclude_roles();
 			$user_meta = get_userdata( get_current_user_id() );
 
-			$bool = true;
-			if (count($exclude_roles)){
-				if( count( array_intersect( $user_meta->roles , $exclude_roles ) ) > 0 ){
-					$bool = false;
+			$wppb_options = $this->wppb_options();
+
+			$included_users_roles = $wppb_options['include_role'];
+
+			$bool = false;
+
+			if ( ! empty( $included_users_roles ) ) {
+				if ( count( array_intersect( $user_meta->roles, $included_users_roles ) ) > 0 ) {
+					$bool = true;
 				}
 			}
 			return $bool;

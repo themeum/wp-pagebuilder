@@ -882,7 +882,7 @@ class WPPB_Addon_Form{
 		$settings 				= $data['settings'];
 		$classlist				= '';
 		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
-		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : 'Submit Form';
+		$button_text 			= isset($settings["button_text"]) ? sanitize_text_field( $settings["button_text"] ) : 'Submit Form';
 		$icon_list 				= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
 		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
 		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
@@ -1046,14 +1046,14 @@ class WPPB_Addon_Form{
 
 		$submitedRowData = array();
 		if (isset($_POST['wppb_default_form'])){
-			$submitedRowData = $_POST['wppb_default_form'];
+			$submitedRowData = sanitize_text_field( $_POST['wppb_default_form'] );
 		}
 
 		//Getting only fields from form
 		$submittedFormData = array();
 		foreach ($submitedRowData as $key => $rowData){
 			$field = $formField[$key];
-			$field['submitted_data'] = $rowData;
+			$field['submitted_data'] = sanitize_text_field( $rowData );
 
 			$submittedFormData[] = $field;
 		}
@@ -1083,9 +1083,9 @@ class WPPB_Addon_Form{
 		}
 
 
-		$toEmail = ! empty($formSettings['wppb_default_form_to_email']) ? $formSettings['wppb_default_form_to_email'] : '';
-		$fromEmail = ! empty($formSettings['wppb_default_form_from_email']) ? $formSettings['wppb_default_form_from_email'] : '';
-		$subject = ! empty($formSettings['wppb_default_form_subject']) ? $formSettings['wppb_default_form_subject'] : '';
+		$toEmail = ! empty($formSettings['wppb_default_form_to_email']) ? sanitize_email( $formSettings['wppb_default_form_to_email'] ) : '';
+		$fromEmail = ! empty($formSettings['wppb_default_form_from_email']) ? sanitize_email( $formSettings['wppb_default_form_from_email'] ) : '';
+		$subject = ! empty($formSettings['wppb_default_form_subject']) ? sanitize_text_field( $formSettings['wppb_default_form_subject'] ) : '';
 
 		$date = date(get_option('date_format'));
 		$time = date(get_option('time_format'));
@@ -1109,7 +1109,6 @@ class WPPB_Addon_Form{
 
 		//Setting Mail Headers
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-
 		//Send E-Mail Now or through error msg
 		try{
 			$isMail = wp_mail($toEmail, $subject, $htmlEmail, $headers );
@@ -1194,9 +1193,9 @@ class WPPB_Addon_Form{
 	// Form
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
-		$cf7_form 				= isset($settings["cf7_form"]) ? $settings["cf7_form"] : '';
-		$we_form 				= isset($settings["we_form"]) ? $settings["we_form"] : '';
+		$form_type 				= isset($settings["form_type"]) ? sanitize_text_field( $settings["form_type"] ) : '';
+		$cf7_form 				= isset($settings["cf7_form"]) ? sanitize_text_field( $settings["cf7_form"] ) : '';
+		$we_form 				= isset($settings["we_form"]) ? sanitize_text_field( $settings["we_form"] ) : '';
 		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
 
 		$output = '';

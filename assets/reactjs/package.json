@@ -15,7 +15,7 @@
     "deepcopy": "^0.6.3",
     "react-color": "^2.17.0",
     "react-dnd": "^2.5.1",
-    "react-dnd-html5-backend": "^2.5.1",
+    "react-dnd-html5-backend": "github:themeum/react-dnd-html5-backend",
     "react-redux": "^5.0.6",
     "react-select": "^1.2.1",
     "redux": "^3.7.2",

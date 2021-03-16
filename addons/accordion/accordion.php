@@ -478,7 +478,7 @@ class WPPB_Addon_Accordion{
 
 				$panelStyle = (($key != 0 || $openitem == "hide") && $openitem != "show") ? "display: none;" : "";
 				$output  .= '<div class="wppb-panel-collapse" style="'.$panelStyle.'">';
-				$output  .= '<div class="wppb-accordion-content">'.$value['content'].'</div>';
+				$output  .= '<div class="wppb-accordion-content">'.wp_kses_post( $value['content'] ).'</div>';
 				$output  .= '</div>';//wppb-panel-collapse
 				$output  .= '</div>';
 			}

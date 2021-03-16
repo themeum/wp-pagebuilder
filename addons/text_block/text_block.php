@@ -98,7 +98,7 @@ class WPPB_Addon_Text_Block{
 	// text block Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings'];
-		$text 			= isset($settings['text']) ? $settings['text'] : '';
+		$text 			= isset($settings['text']) ? sanitize_text_field( $settings['text'] ) : '';
 		$drop_cap 		= isset($settings['drop_cap']) ? $settings['drop_cap'] : '';
 
 		$output = '';

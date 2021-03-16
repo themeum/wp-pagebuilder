@@ -3,7 +3,7 @@
  * Plugin Name:       WP Page Builder
  * Plugin URI:        https://www.themeum.com/product/wp-pagebuilder/
  * Description:       WP Page Builder is a FREE drag & drop website building tool for WordPress. This plugin lets you develop a wonderful site in minutes without any coding.
- * Version:           1.2.3
+ * Version:           1.2.4
  * Author:            Themeum.com
  * Author URI:        https://themeum.com
  * Text Domain:       wp-pagebuilder

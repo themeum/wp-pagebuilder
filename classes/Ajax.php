@@ -138,10 +138,9 @@ if ( ! class_exists('WPPB_Ajax')){
 			if ( ! $wp_filesystem ) {
 				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			}
-
 			$page_id = (int) sanitize_text_field($_POST['page_id']);
 			$page_builder_data = $_POST['page_builder_data'];
-			$wppb_page_css = stripslashes($_POST['wppb_page_css']);
+			$wppb_page_css = wp_kses_post( stripslashes( $_POST['wppb_page_css'] ) );
 			$wppb_page_css = $wppb_page_css . $this->get_content_common_css();
 			$wppb_page_css = $this->move_import_url_to_top_css($wppb_page_css);
 

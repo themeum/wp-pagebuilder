@@ -3,9 +3,9 @@ Contributors: themeum
 Donate link: https://www.themeum.com
 Tags: page builder, website builder, live editor, wp page builder, drag and drop editor, responsive, site editor, editor, drag-and-drop, visual editor, landing page, frontend editor, wordpress page builder, free page builder, layout builder
 Requires at least: 5.0
-Tested up to: 5.4
+Tested up to: 5.7
 Requires PHP: 7.0
-Stable tag: 1.2.3
+Stable tag: 1.2.4
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -236,6 +236,11 @@ If any bug is found, Please let us know by posting on the support section of thi
 6. Heading Addon
 
 == Changelog ==
+
+= 1.2.4 - March 17, 2021 =
+Update: Changed the User Role select box with proper privileges and defaults
+Fix: Filtering of Pagebuilder addon data for Raw HTML before saving to DB
+Fix: Sanitization and Escaping of user inputs
 
 = 1.2.3 - April 9, 2020 =
 Fix: Undefined function get_current_screen issue

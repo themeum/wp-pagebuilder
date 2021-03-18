@@ -170,7 +170,7 @@ if ( ! class_exists('WPPB_Helper')) {
 
 			$wppb_options = $this->wppb_options();
 
-			$included_users_roles = $wppb_options['include_role'];
+			$included_users_roles = isset( $wppb_options['include_role'] ) ? $wppb_options['include_role'] : array();
 
 			$bool = false;
 

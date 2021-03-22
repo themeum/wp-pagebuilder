@@ -78,7 +78,7 @@ jQuery(document).ready(function($){
             let isBtnExists = this.toolbarSelector.find('#wppb-edit-with-btn-in-gutenberg-toolbar').length;
             let btnHtmlWrap = $('#wppb-edit-with-btn-in-gutenberg-toolbar');
             if (!isBtnExists && btnHtmlWrap.length) {
-                $('.edit-post-header-toolbar').append(btnHtmlWrap.html());
+                $('.edit-post-header__toolbar').append(btnHtmlWrap.html());
             }
         },
         addSwitchTemplate: function(){
@@ -111,11 +111,7 @@ jQuery(document).ready(function($){
                 last_editor : 'gutenberg',
             },
         });
-
     });
-
-
-
 });
 
 

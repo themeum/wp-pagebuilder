@@ -129,6 +129,31 @@ if ( ! class_exists('WPPB_Ajax')){
 			return $css;
 		}
 
+		/**
+		 * Validate CSS.
+		 *
+		 * Checks for imbalanced braces, brackets, and comments.
+		 * Notifications are rendered when the customizer state is saved.
+		 *
+		 * @since 4.7.0
+		 * @since 4.9.0 Checking for balanced characters has been moved client-side via linting in code editor.
+		 *
+		 * @param string $css The input string.
+		 * @return true|WP_Error True if the input was validated, otherwise WP_Error.
+		 */
+		public function validate( $css ) {
+			$validity = new WP_Error();
+
+			if ( preg_match( '#</?\w+#', $css ) ) {
+				$validity->add( 'illegal_markup', __( 'Markup is not allowed in CSS.' ) );
+			}
+
+			if ( ! $validity->has_errors() ) {
+				$validity = $this->validate( $css );
+			}
+			return $validity;
+		}
+
 
 		/**
 		 * Save Page Builder data wp post meta
@@ -140,7 +165,8 @@ if ( ! class_exists('WPPB_Ajax')){
 			}
 			$page_id = (int) sanitize_text_field($_POST['page_id']);
 			$page_builder_data = $_POST['page_builder_data'];
-			$wppb_page_css = wp_kses_post( stripslashes( $_POST['wppb_page_css'] ) );
+			$wppb_page_css = strip_tags( $_POST['wppb_page_css'], '<style>' );
+			
 			$wppb_page_css = $wppb_page_css . $this->get_content_common_css();
 			$wppb_page_css = $this->move_import_url_to_top_css($wppb_page_css);
 

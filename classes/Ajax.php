@@ -165,7 +165,7 @@ if ( ! class_exists('WPPB_Ajax')){
 			}
 			$page_id = (int) sanitize_text_field($_POST['page_id']);
 			$page_builder_data = $_POST['page_builder_data'];
-			$wppb_page_css = strip_tags( $_POST['wppb_page_css'], '<style>' );
+			$wppb_page_css = strip_tags( stripslashes( $_POST['wppb_page_css'] ), '<style>' );
 			
 			$wppb_page_css = $wppb_page_css . $this->get_content_common_css();
 			$wppb_page_css = $this->move_import_url_to_top_css($wppb_page_css);
@@ -300,7 +300,7 @@ if ( ! class_exists('WPPB_Ajax')){
 							}
 						}, $matche_weight[0] );
 						foreach ( $fonts as $key => $val ) {
-							$fonts[$key] = str_replace( "');",'', $val ).':'.implode( ',',$weight )."');";
+							$fonts[$key] = str_replace( "');",'', $val ).':ital,wght@'.implode( ',',$weight )."');";
 						}
 					}
 

@@ -64,12 +64,12 @@ if ( ! class_exists('WPPB_Layout_Generator')){
 					
 					<?php if( !empty($setting['settings']['row_shape'])  && $setting['settings']['row_shape']['itemOpenShape'] == 1 && $setting['settings']['row_screen'] != 'row-default' ){ ?>
                         <div class="wppb-shape-container wppb-top-shape">
-							<?php echo file_get_contents( WPPB_DIR_URL.'assets/shapes/'.$setting['settings']['row_shape']['shapeStyle'].'.svg' ); ?>
+							<?php echo file_get_contents( __DIR__.'/../assets/shapes/'.$setting['settings']['row_shape']['shapeStyle'].'.svg' ); ?>
 						</div>
 					<?php } ?>
 					<?php if( !empty($setting['settings']['row_shape_bottom'])  && $setting['settings']['row_shape_bottom']['itemOpenShape'] == 1 && $setting['settings']['row_screen'] != 'row-default' ){ ?>
                         <div class="wppb-shape-container wppb-bottom-shape">
-							<?php echo file_get_contents( WPPB_DIR_URL.'assets/shapes/'.$setting['settings']['row_shape_bottom']['shapeStyle'].'.svg' ); ?>
+							<?php echo file_get_contents( __DIR__.'/../assets/shapes/'.$setting['settings']['row_shape_bottom']['shapeStyle'].'.svg' ); ?>
 						</div>
 					<?php } ?>
 
@@ -84,12 +84,12 @@ if ( ! class_exists('WPPB_Layout_Generator')){
 					<div class="wppb-container <?php echo $row_container_class.implode( ' ', $full_container_stretch ); ?>">
 						<?php if( !empty($setting['settings']['row_shape'])  && $setting['settings']['row_shape']['itemOpenShape'] == 1 && $setting['settings']['row_screen'] == 'row-default' ){ ?>
 							<div class="wppb-shape-container wppb-top-shape">
-								<?php echo file_get_contents( WPPB_DIR_URL.'assets/shapes/'.$setting['settings']['row_shape']['shapeStyle'].'.svg' ); ?>
+								<?php echo file_get_contents( __DIR__.'/../assets/shapes/'.$setting['settings']['row_shape']['shapeStyle'].'.svg' ); ?>
 							</div>
 						<?php } ?>
 						<?php if( !empty($setting['settings']['row_shape_bottom'])  && $setting['settings']['row_shape_bottom']['itemOpenShape'] == 1 && $setting['settings']['row_screen'] == 'row-default' ){ ?>
 							<div class="wppb-shape-container wppb-bottom-shape">
-								<?php echo file_get_contents( WPPB_DIR_URL.'assets/shapes/'.$setting['settings']['row_shape_bottom']['shapeStyle'].'.svg' ); ?>
+								<?php echo file_get_contents( __DIR__.'/../assets/shapes/'.$setting['settings']['row_shape_bottom']['shapeStyle'].'.svg' ); ?>
 							</div>
 						<?php } ?>
 	

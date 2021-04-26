@@ -8,6 +8,7 @@ if ( ! class_exists('WPPB_Helper')) {
 		public function __construct() {
 			add_filter( 'plugin_action_links_' . WPPB_BASENAME, array($this, 'plugin_action_links_callback') );
 			add_filter( 'plugin_row_meta' , array($this, 'plugin_row_meta_callback'), 10, 2 );
+			add_filter( 'wp_kses_allowed_html', array( $this, 'custom_wpkses_post_tags' ), 10, 2 );
 		}
 
 		/**
@@ -282,6 +283,23 @@ if ( ! class_exists('WPPB_Helper')) {
 			return $links;
 		}
 
+		/**
+		 * Adding custom tags to allowed html
+		 */
+		public function custom_wpkses_post_tags( $tags, $context ) {
+
+			if ( $this->is_wppb_content( get_the_ID() ) ) {
+				$tags['iframe'] = array(
+					'src'             => true,
+					'height'          => true,
+					'width'           => true,
+					'frameborder'     => true,
+					'allowfullscreen' => true,
+				);
+			}
+		
+			return $tags;
+		}
 	}
 }
 

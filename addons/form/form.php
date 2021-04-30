@@ -881,12 +881,12 @@ class WPPB_Addon_Form{
 	public function generateDefaultForm($data = array()){
 		$settings 				= $data['settings'];
 		$classlist				= '';
-		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
+		$form_type 				= isset($settings["form_type"]) ? sanitize_text_field( $settings["form_type"] ) : '';
 		$button_text 			= isset($settings["button_text"]) ? sanitize_text_field( $settings["button_text"] ) : 'Submit Form';
-		$icon_list 				= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
-		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
-		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
-		$fullwidth_button 		= isset($settings["fullwidth_button"]) ? $settings["fullwidth_button"] : '';
+		$icon_list 				= isset($settings["icon_list"]) ? sanitize_text_field( $settings["icon_list"] ) : '';
+		$icon_position 			= isset($settings["icon_position"]) ? sanitize_text_field( $settings["icon_position"] ) : '';
+		$textarea_resize 		= isset($settings["textarea_resize"]) ? sanitize_text_field( $settings["textarea_resize"] ) : '';
+		$fullwidth_button 		= isset($settings["fullwidth_button"]) ? sanitize_text_field( $settings["fullwidth_button"] ) : '';
 		
 		$classlist .= (isset($fullwidth_button) && $fullwidth_button) ? ' wppb-btn-' . $fullwidth_button : '';
 
@@ -1046,14 +1046,14 @@ class WPPB_Addon_Form{
 
 		$submitedRowData = array();
 		if (isset($_POST['wppb_default_form'])){
-			$submitedRowData = sanitize_text_field( $_POST['wppb_default_form'] );
+			$submitedRowData = $_POST['wppb_default_form'];
 		}
 
 		//Getting only fields from form
 		$submittedFormData = array();
 		foreach ($submitedRowData as $key => $rowData){
 			$field = $formField[$key];
-			$field['submitted_data'] = sanitize_text_field( $rowData );
+			$field['submitted_data'] = $rowData;
 
 			$submittedFormData[] = $field;
 		}

@@ -441,7 +441,18 @@ if ( ! function_exists('wppb_get_saved_addon_settings')) {
 							}
 
 							if ( $addon_type === 'inner_row' ) {
-
+								$the_addon = array();
+								if ( isset( $addon['columns'] ) && ! empty( $addon['columns'] ) ) {
+									foreach ( $addon['columns'] as $inner_columns ) {
+										foreach ( $inner_columns['addons'] as $inner_addon ) {
+											$the_addon = $inner_addon;
+										}
+									}
+								}
+								$saved_addon_id = (int) isset( $the_addon ) ? $the_addon['id'] : 0;
+								if ( $addon_id === $saved_addon_id ) {
+									return $the_addon;
+								}
 							} else {
 								if ( $addon_type === 'addon' ) {
 									$saved_addon_id = (int) isset( $addon ) ? $addon['id'] : 0;
@@ -484,6 +495,7 @@ if ( ! function_exists('wppb_get_saved_addons_by_name')){
 						}
 
 						if ($addons_count) {
+							
 							foreach ( $col['addons'] as $addon ) {
 
 								$addon_type = '';
@@ -491,9 +503,20 @@ if ( ! function_exists('wppb_get_saved_addons_by_name')){
 									$addon_type = $addon['type'];
 								}
 
-								if ($addon_type === 'inner_row'){
-
-								}else{
+								if ( $addon_type === 'inner_row' ) {
+									$the_addon = array();
+									if ( isset( $addon['columns'] ) && ! empty( $addon['columns'] ) ) {
+										foreach ( $addon['columns'] as $inner_columns ) {
+											foreach ( $inner_columns['addons'] as $inner_addon ) {
+												$the_addon = $inner_addon;
+											}
+										}
+									}
+									$inner_addon_name = isset( $the_addon ) ? $the_addon['name'] : '';
+									if ( $addon_name === $inner_addon_name ) {
+										$addons[] = $the_addon;
+									}
+								} else {
 									if ( $addon_type === 'addon' ) {
 										$addon_name = isset($addon) ? $addon['name'] : '';
 										if ($addon_name === $addon_name){

@@ -5,7 +5,7 @@ Tags: page builder, website builder, live editor, wp page builder, drag and drop
 Requires at least: 5.0
 Tested up to: 5.7
 Requires PHP: 7.0
-Stable tag: 1.2.5
+Stable tag: 1.2.6
 License: GPLv3
 License URI: https://www.gnu.org/licenses/gpl-3.0.html
 
@@ -236,6 +236,12 @@ If any bug is found, Please let us know by posting on the support section of thi
 6. Heading Addon
 
 == Changelog ==
+
+= 1.2.6 - May 3, 2021 =
+Fix: List formating issue in Text Addon
+Fix: Whitelisted iframe support in RAW HTML Addon
+Fix: Blank email body issue in Form Addon for default form
+Fix: Form Addon's form submission issue of default forms when added inside Inner Row
 
 = 1.2.5 - March 22, 2021 =
 Fix: CSS breaking issue fixed

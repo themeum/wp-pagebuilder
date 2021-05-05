@@ -1009,7 +1009,7 @@ class WPPB_Addon_Form{
 
 		$responseData = array();
 		$responseData['enable_redirect_url'] = false;
-		$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
+		//$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
 
 
 		//Checking Recaptcha if exists?
@@ -1112,7 +1112,7 @@ class WPPB_Addon_Form{
 		//Send E-Mail Now or through error msg
 		try{
 			$isMail = wp_mail($toEmail, $subject, $htmlEmail, $headers );
-			if ($isMail){
+			if ( $isMail ) {
 				$responseData['msg'] = __('Thank you for submitting form', 'wp-pagebuilder');
 				if ( ! empty($formSettings['success_message'])){
 					$responseData['msg'] = $formSettings['success_message'];
@@ -1122,8 +1122,11 @@ class WPPB_Addon_Form{
 					$responseData['enable_redirect_url'] = (bool) $formSettings['enable_redirect_url'];
 					$responseData['redirect_url'] = $formSettings['redirect_url'];
 				}
+				wp_send_json_success($responseData);
+			} else {
+				$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
+				wp_send_json_error( $responseData );
 			}
-			wp_send_json_success($responseData);
 		}catch (\Exception $e){
 			$responseData['msg'] = $e->getMessage();
 			wp_send_json_error($responseData);

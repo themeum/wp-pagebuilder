@@ -63,6 +63,9 @@ if ( ! class_exists('WPPB_Ajax')){
 		}
 
 		public function wppb_image_size_url(){
+
+			WPPB_Helper::wppb_verify_ajax_call();
+
 			if ( empty($_POST['id']) || empty($_POST['size']) ){
 				wp_send_json_error();
 				return;
@@ -163,9 +166,12 @@ if ( ! class_exists('WPPB_Ajax')){
 			if ( ! $wp_filesystem ) {
 				require_once( ABSPATH . 'wp-admin/includes/file.php' );
 			}
-			$page_id = (int) sanitize_text_field($_POST['page_id']);
-			$page_builder_data = $_POST['page_builder_data'];
-			$wppb_page_css = strip_tags( stripslashes( $_POST['wppb_page_css'] ), '<style>' );
+
+			WPPB_Helper::wppb_verify_ajax_call();
+
+			$page_id = isset( $_POST['page_id'] ) ? (int) sanitize_text_field( $_POST['page_id'] ) : 0;
+			$page_builder_data = isset( $_POST['page_builder_data'] ) ? $_POST['page_builder_data'] : array();
+			$wppb_page_css = isset( $_POST['wppb_page_css'] ) ? strip_tags( stripslashes( $_POST['wppb_page_css'] ), '<style>' ) : '';
 			
 			$wppb_page_css = $wppb_page_css . $this->get_content_common_css();
 			$wppb_page_css = $this->move_import_url_to_top_css($wppb_page_css);
@@ -197,13 +203,13 @@ if ( ! class_exists('WPPB_Ajax')){
 		}
 
 		public function wppb_pagebuilder_section_action(){
-			$action_type 	= sanitize_text_field($_POST['actionType']);
-			$section_id 	= sanitize_text_field($_POST['id']);
+			$action_type 	= isset( $_POST['actionType'] ) ? sanitize_text_field( $_POST['actionType'] ) : 'get';
+			$section_id 	= isset( $_POST['id'] ) ? sanitize_text_field( $_POST['id'] ) : 0;
 			$db_section 	= get_option( 'wppb_section', false );
 			if( $action_type == 'save' ){
-				$id 			= sanitize_text_field($_POST['id']);
-				$title 			= sanitize_text_field($_POST['title']);
-				$section_data 	= json_decode( stripslashes_deep( $_POST['section_data'] ) );
+				$id 			= isset( $_POST['id'] ) ? sanitize_text_field( $_POST['id'] ) : 0;
+				$title 			= isset( $_POST['title'] ) ? sanitize_text_field( $_POST['title'] ) : '';
+				$section_data 	= isset( $_POST['section_data'] ) ? json_decode( stripslashes_deep( $_POST['section_data'] ) ) : array();
 				if( $db_section ){
 					$db_section = json_decode( $db_section );
 					$db_section->$id = array( 'id' => $id, 'title' => $title, 'block' => $section_data );
@@ -256,6 +262,9 @@ if ( ! class_exists('WPPB_Ajax')){
 
 
 		public function wppb_render_addon(){
+
+			WPPB_Helper::wppb_verify_ajax_call();
+
 			$addon_name = null;
 			if (empty($_POST['addon'])){
 				wp_send_json_error();
@@ -337,6 +346,9 @@ if ( ! class_exists('WPPB_Ajax')){
 		 * Get Template
 		 */
 		public function wppb_load_page_template(){
+
+			WPPB_Helper::wppb_verify_ajax_call();
+
 			$cachedTemplateFile = "wppb-templates.json";
 			$cache_time = (60*60*24*7); //cached for 7 days
 
@@ -445,9 +457,11 @@ if ( ! class_exists('WPPB_Ajax')){
 		 * @since 1.0.0
 		 * Import single template
 		 */
-		public function wppb_import_single_page_template(){
-			$template_id = (int) sanitize_text_field($_POST['template_id']);
-			$fileUrl = $_POST['fileUrl'];
+		public function wppb_import_single_page_template() {
+			WPPB_Helper::wppb_verify_ajax_call();
+
+			$template_id = isset( $_POST['template_id'] ) ? (int) sanitize_text_field( $_POST['template_id'] ) : 0;
+			$fileUrl = isset( $_POST['fileUrl'] ) ? $_POST['fileUrl'] : '';
 
 			if( !$fileUrl ){
 				$cache_time = (60*60*24*7); //cached for 7 days

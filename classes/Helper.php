@@ -300,6 +300,18 @@ if ( ! class_exists('WPPB_Helper')) {
 		
 			return $tags;
 		}
+
+		/**
+		 * Verify ajax call
+		 */
+		public static function wppb_verify_ajax_call() {
+			check_ajax_referer( 'wppb-ajax-verification', 'security' );
+
+			// Check if user has the WP capability to import layout data.
+			if ( false === WPPB_Helper()->can_edit_editor() ) {
+				wp_die( _e( 'Your user role isn\'t high enough. You don\'t have permission to access this feature.', 'wp-pagebuilder' ) );
+			}
+		}
 	}
 }
 

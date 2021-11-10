@@ -8,6 +8,7 @@ if ( ! class_exists('WPPB_Helper')) {
 		public function __construct() {
 			add_filter( 'plugin_action_links_' . WPPB_BASENAME, array($this, 'plugin_action_links_callback') );
 			add_filter( 'plugin_row_meta' , array($this, 'plugin_row_meta_callback'), 10, 2 );
+			add_filter( 'wp_kses_allowed_html', array( $this, 'custom_wpkses_post_tags' ), 10, 2 );
 		}
 
 		/**
@@ -150,7 +151,7 @@ if ( ! class_exists('WPPB_Helper')) {
 			$exclude = array();
 			$wppb_options = $this->wppb_options();
 
-			if ( ! empty($wppb_options['exclude_role'])){
+			if ( ! empty( $wppb_options['exclude_role'] ) ) {
 				$exclude = $wppb_options['exclude_role'];
 			}
 
@@ -162,17 +163,21 @@ if ( ! class_exists('WPPB_Helper')) {
 		 *
 		 * @since v.1.0.0
 		 */
-		public function can_edit_editor(){
-			if ( ! is_user_logged_in()){
+		public function can_edit_editor() {
+			if ( ! is_user_logged_in() ) {
 				return false;
 			}
-			$exclude_roles = $this->wppb_exclude_roles();
 			$user_meta = get_userdata( get_current_user_id() );
 
-			$bool = true;
-			if (count($exclude_roles)){
-				if( count( array_intersect( $user_meta->roles , $exclude_roles ) ) > 0 ){
-					$bool = false;
+			$wppb_options = $this->wppb_options();
+
+			$included_users_roles = isset( $wppb_options['include_role'] ) ? $wppb_options['include_role'] : array();
+
+			$bool = false;
+
+			if ( ! empty( $included_users_roles ) ) {
+				if ( count( array_intersect( $user_meta->roles, $included_users_roles ) ) > 0 ) {
+					$bool = true;
 				}
 			}
 			return $bool;
@@ -278,6 +283,35 @@ if ( ! class_exists('WPPB_Helper')) {
 			return $links;
 		}
 
+		/**
+		 * Adding custom tags to allowed html
+		 */
+		public function custom_wpkses_post_tags( $tags, $context ) {
+
+			if ( $this->is_wppb_content( get_the_ID() ) ) {
+				$tags['iframe'] = array(
+					'src'             => true,
+					'height'          => true,
+					'width'           => true,
+					'frameborder'     => true,
+					'allowfullscreen' => true,
+				);
+			}
+		
+			return $tags;
+		}
+
+		/**
+		 * Verify ajax call
+		 */
+		public static function wppb_verify_ajax_call() {
+			check_ajax_referer( 'wppb-ajax-verification', 'security' );
+
+			// Check if user has the WP capability to import layout data.
+			if ( false === WPPB_Helper()->can_edit_editor() ) {
+				wp_die( _e( 'Your user role isn\'t high enough. You don\'t have permission to access this feature.', 'wp-pagebuilder' ) );
+			}
+		}
 	}
 }
 
@@ -419,7 +453,18 @@ if ( ! function_exists('wppb_get_saved_addon_settings')) {
 							}
 
 							if ( $addon_type === 'inner_row' ) {
-
+								$the_addon = array();
+								if ( isset( $addon['columns'] ) && ! empty( $addon['columns'] ) ) {
+									foreach ( $addon['columns'] as $inner_columns ) {
+										foreach ( $inner_columns['addons'] as $inner_addon ) {
+											$the_addon = $inner_addon;
+										}
+									}
+								}
+								$saved_addon_id = (int) isset( $the_addon ) ? $the_addon['id'] : 0;
+								if ( $addon_id === $saved_addon_id ) {
+									return $the_addon;
+								}
 							} else {
 								if ( $addon_type === 'addon' ) {
 									$saved_addon_id = (int) isset( $addon ) ? $addon['id'] : 0;
@@ -462,6 +507,7 @@ if ( ! function_exists('wppb_get_saved_addons_by_name')){
 						}
 
 						if ($addons_count) {
+							
 							foreach ( $col['addons'] as $addon ) {
 
 								$addon_type = '';
@@ -469,9 +515,20 @@ if ( ! function_exists('wppb_get_saved_addons_by_name')){
 									$addon_type = $addon['type'];
 								}
 
-								if ($addon_type === 'inner_row'){
-
-								}else{
+								if ( $addon_type === 'inner_row' ) {
+									$the_addon = array();
+									if ( isset( $addon['columns'] ) && ! empty( $addon['columns'] ) ) {
+										foreach ( $addon['columns'] as $inner_columns ) {
+											foreach ( $inner_columns['addons'] as $inner_addon ) {
+												$the_addon = $inner_addon;
+											}
+										}
+									}
+									$inner_addon_name = isset( $the_addon ) ? $the_addon['name'] : '';
+									if ( $addon_name === $inner_addon_name ) {
+										$addons[] = $the_addon;
+									}
+								} else {
 									if ( $addon_type === 'addon' ) {
 										$addon_name = isset($addon) ? $addon['name'] : '';
 										if ($addon_name === $addon_name){

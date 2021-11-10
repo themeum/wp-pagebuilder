@@ -149,10 +149,10 @@ class WPPB_Addon_Alert{
 	// Alert Render HTML
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$alert_title 			= isset($settings['alert_title']) ? $settings['alert_title'] : '';
-		$alert_description 		= isset($settings['alert_description']) ? $settings['alert_description'] : '';
+		$alert_title 			= isset($settings['alert_title']) ? sanitize_text_field( $settings['alert_title'] ) : '';
+		$alert_description 		= isset($settings['alert_description']) ? sanitize_text_field( $settings['alert_description'] ) : '';
 		$alert_close 			= (bool) isset($settings['alert_close']) ? $settings['alert_close'] : false;
-		$alert_style 			= isset($settings['alert_style']) ? $settings['alert_style'] : 'info';
+		$alert_style 			= isset($settings['alert_style']) ? sanitize_text_field( $settings['alert_style'] ) : 'info';
 		$output = '';
 
 		$output  .= '<div class="wppb-alert-addon">';

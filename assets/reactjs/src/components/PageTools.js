@@ -362,7 +362,8 @@ class PageTools extends Component{
             url: page_data.ajaxurl,
             dataType: 'json',
             data: { 
-                action: 'wppb_page_save', 
+                action: 'wppb_page_save',
+                security: page_data.ajax_nonce,
                 page_id: pageID,
                 page_builder_data: addonPresentSettings, 
                 wppb_page_css: wppb_page_css

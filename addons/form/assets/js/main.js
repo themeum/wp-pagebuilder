@@ -1,37 +1,39 @@
 'use strict';
 ;(function ($) {
     'use strict';
-    $(document).on('submit', '.wppb-global-form-addon form', function(e){
-        e.preventDefault();
 
+    $('.wppb-global-form-addon form').each(function(){
         var $form = $(this);
         var $formData = $form.serialize()+'&action=wppb_form_process';
         var $formErrors = { msg : '', requiredFields : [] };
 
-        $('[data-required="true"]').each(function(index, element){
-            var $field = $(this);
-            var field_type = $field[0].type;
-            var $closestDiv = $field.closest('.wppb-form-field-wrap');
+        $form.submit(function (e) {
+            e.preventDefault();
+            $form.find('[data-required="true"]').each(function(index,element){
+            
+                var $field = $(this);
+                var field_type = $field[0].type;
+                var $closestDiv = $field.closest('.wppb-form-field-wrap');
 
-            if (field_type === 'switch' || field_type === 'radio'){
-                $closestDiv.addClass('has-multi-input');
-            }else{
-                if (!$field.val()){
-                    $field.addClass('wppb-form-field-has-error');
-                    $formErrors.requiredFields.push($field.data('label'));
-                }else {
-                    if (field_type === 'email' && ! wppbFormValidateEmail($field.val()) ){
+                if (field_type === 'switch' || field_type === 'radio'){
+                    $closestDiv.addClass('has-multi-input');
+                }else{
+                    if (!$field.val()){
                         $field.addClass('wppb-form-field-has-error');
                         $formErrors.requiredFields.push($field.data('label'));
                     }else {
-                        $field.removeClass('wppb-form-field-has-error');
+                        if (field_type === 'email' && ! wppbFormValidateEmail($field.val()) ){
+                            $field.addClass('wppb-form-field-has-error');
+                            $formErrors.requiredFields.push($field.data('label'));
+                        }else {
+                            $field.removeClass('wppb-form-field-has-error');
+                            $formErrors.requiredFields = [];
+                        }
                     }
                 }
-            }
-        });
+            });
 
-        if ($('.has-multi-input').length){
-            $('.has-multi-input').each(function(index, element){
+            $(this).find('.has-multi-input').each(function(index,element){
                 var $that = $(this);
                 var $firstField = $that.find('input').first();
 
@@ -46,57 +48,59 @@
                     $that.removeClass('wppb-form-field-has-error');
                 }
             });
-        }
-        var ErrorMsg = '<div class="wppb_alert_warning">';
-        
-        if ($formErrors.requiredFields.length){
-            ErrorMsg += 'Please, fill in the following fields:';
-            ErrorMsg += '<ul>';
 
-            $.each($formErrors.requiredFields, function(errorIndex, error ) {
-                ErrorMsg += '<li>'+error+'</li>';
-            });
+            var ErrorMsg = '<div class="wppb_alert_warning">';
+            
+            if ($formErrors.requiredFields.length){
+                ErrorMsg += 'Please, fill in the following fields:';
+                ErrorMsg += '<ul>';
 
-            ErrorMsg += '</ul></div>';
-            $form.find('.wppb-form-msg').html(ErrorMsg);
-            return;
-        }
+                $.each($formErrors.requiredFields, function(errorIndex, error ) {
+                    ErrorMsg += '<li>'+error+'</li>';
+                });
 
-        $.ajax({
-            type: 'POST',
-            url: wppb_form.ajax_url,
-            data: $formData,
-            beforeSend: function (jqXHR, settings) {
-                $form.find('.wppb-form-msg').html('');
-                $form.find('.wppb-btn-forms').append('<i class="fas fa-spinner wppb-font-sync"></i>');
-            },
-            error: function(jqXHR, textStatus, errorThrown){
-                $form.find('.wppb_form_response').html("<p class='wppb_alert_error'>"+ textStatus+"("+jqXHR.status+")" +" : "+ errorThrown + "</p>");
-            },
-            success: function (data, textStatus, jqXHR ) {
-                if (data.data) {
-                    if (data.success) {
-                        $form.find('.wppb_form_response').html('<p class="wppb_alert_success">' + data.data.msg + '</p>');
-                        setTimeout(function(){
-                            $form.find('.wppb_form_response').html('');
-                        }, 2000);
+                ErrorMsg += '</ul></div>';
+                $form.find('.wppb-form-msg').html(ErrorMsg);
+                return;
+            }
 
-                        $form[0].reset();
-                        if (data.data.enable_redirect_url) {
-                            location.href = data.data.redirect_url;
+            $.ajax({
+                type: 'POST',
+                url: wppb_form.ajax_url,
+                data: $formData,
+                beforeSend: function (jqXHR, settings) {
+                    $form.find('.wppb-form-msg').html('');
+                    $form.find('.wppb-btn-forms').append('<i class="fas fa-spinner wppb-font-sync"></i>');
+                },
+                error: function(jqXHR, textStatus, errorThrown){
+                    $form.find('.wppb_form_response').html("<p class='wppb_alert_error'>"+ textStatus+"("+jqXHR.status+")" +" : "+ errorThrown + "</p>");
+                },
+                success: function (data, textStatus, jqXHR ) {
+                    if (data.data) {
+                        if (data.success) {
+                            $form.find('.wppb_form_response').html('<p class="wppb_alert_success">' + data.data.msg + '</p>');
+                            setTimeout(function(){
+                                $form.find('.wppb_form_response').html('');
+                            }, 2000);
+
+                            $form[0].reset();
+                            if (data.data.enable_redirect_url) {
+                                location.href = data.data.redirect_url;
+                            }
+                        }else{
+                            $form.find('.wppb-form-msg').html('<div class="wppb_alert_warning">'+data.data.msg+'</div>');
                         }
-                    }else{
-                        $form.find('.wppb-form-msg').html('<div class="wppb_alert_warning">'+data.data.msg+'</div>');
+                    }
+                },
+                complete: function(jqXHR, textStatus){
+                    console.log( $form.find('.fas.fa-spin.wppb-font-sync') );
+                    $form.find('.fas.fa-spinner.wppb-font-sync').remove();
+                    if (typeof grecaptcha !== 'undefined'){
+                        grecaptcha.reset();
                     }
                 }
-            },
-            complete: function(jqXHR, textStatus){
-                $form.find('.fa.fa-spin.wppb-font-sync').remove();
-                if (typeof grecaptcha !== 'undefined'){
-                    grecaptcha.reset();
-                }
-            }
-        });
+            });
+        })
     });
 })(jQuery);
 

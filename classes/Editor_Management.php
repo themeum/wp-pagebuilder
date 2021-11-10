@@ -346,9 +346,9 @@ if ( ! class_exists('WPPB_Editor_Management')){
 			?>
 			<script id="wppb-edit-with-btn-in-gutenberg-toolbar" type="text/html">
 				<div class="wppb-editor-warper">
-					<a href="<?php echo wppb_helper()->get_editor_url($post->ID); ?>" class="components-button  is-button is-primary is-large edit-with-wppb-builder" style="display: <?php echo $currentEditor !== 'wppb_builder_activated'? 'block':'none'; ?>;"><?php _e('Edit With WP Page Builder','wp-pagebuilder');?></a>
+					<a href="<?php echo wppb_helper()->get_editor_url($post->ID); ?>" class="components-button  is-button is-primary is-large edit-with-wppb-builder" style="display: <?php echo $currentEditor !== 'wppb_builder_activated'? 'flex':'none'; ?>;"><?php _e('Edit With WP Page Builder','wp-pagebuilder');?></a>
 
-					<a href="<?php echo wppb_helper()->get_editor_url($post->ID); ?>" class="components-button  is-button is-default is-large wppb-back-to-gutenberg" style="display: <?php echo $currentEditor === 'wppb_builder_activated'? 'block':'none'; ?>;"><i class="
+					<a href="<?php echo wppb_helper()->get_editor_url($post->ID); ?>" class="components-button  is-button is-default is-large wppb-back-to-gutenberg" style="display: <?php echo $currentEditor === 'wppb_builder_activated'? 'flex':'none'; ?>;"><i class="
 dashicons dashicons-arrow-left-alt2"></i><?php _e('Back to Guttenberg',
 					'wp-pagebuilder');?></a>
 				</div>

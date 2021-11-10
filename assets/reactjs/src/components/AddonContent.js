@@ -52,7 +52,7 @@ class AddonContent extends Component {
                     type: 'POST',
                     url: page_data.ajaxurl,
                     dataType: 'json',
-                    data: { action: 'wppb_render_addon', addon: addon },
+                    data: { action: 'wppb_render_addon', security: page_data.ajax_nonce, addon: addon },
                     cache: false,
                     async: false,
                     success: function(response) {

@@ -82,7 +82,7 @@ class PageListModal extends Component {
                 that.setState({requestFailedMsg: requestFailedMsg });
             }
         };
-        xhr.send("action=wppb_load_page_template");
+        xhr.send("action=wppb_load_page_template&security="+page_data.ajax_nonce);
     }
 
     getCurrentData( type ){
@@ -170,7 +170,7 @@ class PageListModal extends Component {
                     }
                 }
             };
-            xhr.send("action=wppb_import_single_page_template&template_id="+template_id+"&fileUrl="+fileUrl);
+            xhr.send("action=wppb_import_single_page_template&template_id="+template_id+"&fileUrl="+fileUrl+"&security="+page_data.ajax_nonce);
         }
     }
 

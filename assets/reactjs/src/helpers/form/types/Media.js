@@ -60,7 +60,7 @@ class Media extends Component {
             type: 'POST',
             url: page_data.ajaxurl,
             dataType: 'json',
-            data: { action: 'wppb_image_size_url', id: value.id, size: val },
+            data: { action: 'wppb_image_size_url', security: page_data.ajax_nonce, id: value.id, size: val },
             cache: false,
             async: false,
             success: function(response) {

@@ -28,13 +28,29 @@ if (! class_exists('WPPB_Initial_Setup')) {
             self::wppb_legacy_data();
 
             // Activating default post type
-            if ( !get_option('wppb_is_used') ){ 
-	            $wppb_options = (array) get_option('wppb_options');
-	            $wppb_options['supported_post_type'] = array('post', 'page');
+            if ( ! get_option( 'wppb_is_used' ) ) { 
+	            $wppb_options = ( array ) get_option( 'wppb_options' );
+	            $wppb_options['supported_post_type'] = array( 'post', 'page' );
+                $wppb_options['include_role'] = array(
+                    'administrator',
+                    'editor',
+                    'author',
+                    'contributor'
+                );
 	            $wppb_options['css_save_as'] = 'wp_head';
-	            update_option('wppb_options', $wppb_options);
+	            update_option( 'wppb_options', $wppb_options );
 	            update_option( 'wppb_is_used', WPPB_VERSION );
             }
+            $wppb_options = ( array ) get_option( 'wppb_options' );
+            $wppb_options['supported_post_type'] = array( 'post', 'page' );
+            $wppb_options['include_role'] = array(
+                'administrator',
+                'editor',
+                'author',
+                'contributor'
+            );
+            $wppb_options['css_save_as'] = 'wp_head';
+            update_option( 'wppb_options', $wppb_options );
             update_option( 'wppb_is_used', WPPB_VERSION );
         }
 

@@ -149,6 +149,7 @@ if ( ! class_exists('WPPB_Assets')) {
 						'SvgShape'			=> $addons_data->getSvgShapes(),
 						'wppbimagesize'		=> wppb_getLall_image_sizes_option(),
 						'i18n'				=> $js_translate,
+						'ajax_nonce'        => wp_create_nonce( 'wppb-ajax-verification' ),
 					)
 				);
 				

@@ -405,11 +405,11 @@ class WPPB_Addon_Testimonial{
 		$settings 					= $data['settings'];
 
 		$image 						= isset($settings['image']) ? $settings['image'] : array();
-		$name 						= isset($settings['name']) ? $settings['name'] : '';
+		$name 						= isset($settings['name']) ? sanitize_text_field( $settings['name'] ) : '';
 		$name_link 					= isset($settings['name_link']) ? $settings['name_link'] : array();
-		$designation 				= isset($settings['designation']) ? $settings['designation'] : '';
-		$introtext 					= isset($settings['introtext']) ? $settings['introtext'] : '';
-		$testimonial_layout 		= isset($settings['testimonial_layout']) ? $settings['testimonial_layout'] : '';
+		$designation 				= isset($settings['designation']) ? sanitize_text_field( $settings['designation'] ) : '';
+		$introtext 					= isset($settings['introtext']) ? sanitize_text_field( $settings['introtext'] ) : '';
+		$testimonial_layout 		= isset($settings['testimonial_layout']) ? sanitize_text_field( $settings['testimonial_layout'] ) : '';
 
 		$output = $img_url = '' ;
 
@@ -423,27 +423,27 @@ class WPPB_Addon_Testimonial{
 		$nofolow = ( isset($name_link['nofolow']) && $name_link['nofolow'] ) ? 'rel=nofolow' : "";
 
 		$output  .= '<div class="wppb-testimonial-addon">';
-		$output  .= '<div class="wppb-testimonial-addon-content testimonial-layout-'.esc_attr($testimonial_layout).'">';
+		$output  .= '<div class="wppb-testimonial-addon-content testimonial-layout-' . esc_attr( $testimonial_layout ) . '">';
 
-		if( $testimonial_layout == "two" ){
+		if ( $testimonial_layout == "two" ) {
 			$output  .= '<div class="wppb-testimonial-content">';
-			if($img_url) {
+			if ( $img_url ) {
 				$output  .= '<div class="wppb-testimonial-image">';
-				$output  .= '<img class="wppb-testimonial-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+				$output  .= '<img class="wppb-testimonial-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 				$output  .= '</div>';
 			}
-			if($introtext) {
-				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post($introtext) . '</div>';
+			if ( $introtext ) {
+				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post( $introtext ) . '</div>';
 			}
-			if($name || $designation) {
+			if ($name || $designation ) {
 				$output  .= '<div class="wppb-testimonial-title">';
-				if( $name_link_url ){
-					if($name){ $output .= '<h4 class="wppb-testimonial-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link_url).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></h4>';}
+				if ( $name_link_url ) {
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link_url ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></h4>';}
 				} else {
-					if($name){ $output .= '<h4 class="wppb-testimonial-name">' . wp_kses_post($name) .'</h4>';}
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name">' . esc_html( $name ) . '</h4>';}
 				}
-				if($designation) {
-					$output  .= '<span class="wppb-testimonial-designation">' . wp_kses_post($designation) . '</span>';
+				if ( $designation ) {
+					$output  .= '<span class="wppb-testimonial-designation">' . esc_html( $designation ) . '</span>';
 				}
 				$output  .= '</div>';//wppb-testimonial-title
 			}
@@ -451,23 +451,23 @@ class WPPB_Addon_Testimonial{
 
 		} elseif ( $testimonial_layout == "three" ) {
 			$output  .= '<div class="wppb-testimonial-content">';
-			if($introtext) {
-				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post($introtext) . '</div>';
+			if ( $introtext ) {
+				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post( $introtext ) . '</div>';
 			}
-			if($img_url) {
+			if ( $img_url ) {
 				$output  .= '<div class="wppb-testimonial-image">';
-				$output  .= '<img class="wppb-testimonial-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+				$output  .= '<img class="wppb-testimonial-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 				$output  .= '</div>';
 			}
-			if($name || $designation) {
+			if ( $name || $designation ) {
 				$output  .= '<div class="wppb-testimonial-title">';
-				if( $name_link_url ){
-					if($name){ $output .= '<h4 class="wppb-testimonial-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link_url).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></h4>';}
+				if ( $name_link_url ) {
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link_url ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></h4>';}
 				} else {
-					if($name){ $output .= '<h4 class="wppb-testimonial-name">' . wp_kses_post($name) .'</h4>';}
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name">' . esc_html( $name ) . '</h4>';}
 				}
-				if($designation) {
-					$output  .= '<span class="wppb-testimonial-designation">' . wp_kses_post($designation) . '</span>';
+				if ( $designation ) {
+					$output  .= '<span class="wppb-testimonial-designation">' . esc_html( $designation ) . '</span>';
 				}
 				$output  .= '</div>';//wppb-testimonial-title
 			}
@@ -477,23 +477,23 @@ class WPPB_Addon_Testimonial{
 		} elseif ( $testimonial_layout == "four" ) {
 			$output  .= '<div class="wppb-testimonial-content">';
 			$output  .= '<span class="wppb-testimonial-quote wppb-font-quote"></span>';
-			if($introtext) {
-				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post($introtext) . '</div>';
+			if ( $introtext ) {
+				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post( $introtext ) . '</div>';
 			}
-			if($img_url) {
+			if ( $img_url ) {
 				$output  .= '<div class="wppb-testimonial-image">';
-				$output  .= '<img class="wppb-testimonial-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+				$output  .= '<img class="wppb-testimonial-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 				$output  .= '</div>';
 			}
-			if($name || $designation) {
+			if ( $name || $designation ) {
 				$output  .= '<div class="wppb-testimonial-title">';
-				if( $name_link_url ){
-					if($name){ $output .= '<h4 class="wppb-testimonial-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link_url).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></h4>';}
+				if ( $name_link_url ) {
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link_url ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></h4>';}
 				} else {
-					if($name){ $output .= '<h4 class="wppb-testimonial-name">' . wp_kses_post($name) .'</h4>';}
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name">' . esc_html( $name ) . '</h4>';}
 				}
-				if($designation) {
-					$output  .= '<span class="wppb-testimonial-designation">' . wp_kses_post($designation) . '</span>';
+				if ( $designation ) {
+					$output  .= '<span class="wppb-testimonial-designation">' . esc_html( $designation ) . '</span>';
 				}
 				$output  .= '</div>';//wppb-testimonial-title
 			}
@@ -501,25 +501,25 @@ class WPPB_Addon_Testimonial{
 
 		} else {
 			$output  .= '<div class="wppb-testimonial-content">';
-			if($introtext) {
-				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post($introtext) . '</div>';
+			if ( $introtext ) {
+				$output  .= '<div class="wppb-testimonial-introtext">' . wp_kses_post( $introtext ) . '</div>';
 			}
 
-			if($name || $designation) {
+			if ( $name || $designation ) {
 				$output  .= '<div class="wppb-testimonial-information">';
-				if($img_url) {
+				if ( $img_url ) {
 					$output  .= '<div class="wppb-testimonial-image">';
-					$output  .= '<img class="wppb-testimonial-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+					$output  .= '<img class="wppb-testimonial-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 					$output  .= '</div>';
 				}
 				$output  .= '<div class="wppb-testimonial-title">';
-				if( $name_link_url ){
-					if($name){ $output .= '<h4 class="wppb-testimonial-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link_url).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></h4>';}
+				if ( $name_link_url ) {
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link_url ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></h4>';}
 				} else {
-					if($name){ $output .= '<h4 class="wppb-testimonial-name">' . wp_kses_post($name) .'</h4>';}
+					if ( $name ) { $output .= '<h4 class="wppb-testimonial-name">' . esc_html( $name ) . '</h4>';}
 				}
-				if($designation) {
-					$output  .= '<span class="wppb-testimonial-designation">' . wp_kses_post($designation) . '</span>';
+				if ( $designation ) {
+					$output  .= '<span class="wppb-testimonial-designation">' . esc_html( $designation ) . '</span>';
 				}
 				$output  .= '</div>';//wppb-testimonial-title
 				$output  .= '</div>';//wppb-testimonial-information

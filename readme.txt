@@ -3,7 +3,7 @@ Contributors: themeum
 Donate link: https://www.themeum.com
 Tags: page builder, website builder, live editor, wp page builder, drag and drop editor, responsive, site editor, editor, drag-and-drop, visual editor, landing page, frontend editor, wordpress page builder, free page builder, layout builder
 Requires at least: 5.0
-Tested up to: 5.7.2
+Tested up to: 5.8
 Requires PHP: 7.0
 Stable tag: 1.2.7
 License: GPLv3
@@ -237,7 +237,8 @@ If any bug is found, Please let us know by posting on the support section of thi
 
 == Changelog ==
 
-= 1.2.7 - June 3, 2021 =
+= 1.2.7 =
+Update: Security Update
 Improvement: Implemented additional security check for Ajax requests.
 Improvement: User permission check for accessing WPPB features.
 

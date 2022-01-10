@@ -1043,55 +1043,55 @@ class WPPB_Addon_Feature_Box{
 	// Feature box Render HTML
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$layout 				= isset($settings['layout']) ? $settings['layout'] : '';
-		$title 					= isset($settings['title']) ? $settings['title'] : '';
-		$selector 				= isset($settings["heading_selector"]) ? $settings["heading_selector"] : '';
-		$subtitle 				= isset($settings['subtitle']) ? $settings['subtitle'] : '';
-		$subselector 			= isset($settings["subheading_selector"]) ? $settings["subheading_selector"] : '';
-		$subtitle_animation 	= isset($settings["subtitle_animation"]) ? $settings["subtitle_animation"] : array();
-		$number 				= isset($settings["number"]) ? $settings["number"] : '';
-		$number_animation 		= isset($settings["number_animation"]) ? $settings["number_animation"] : array();
-		$title_link 			= isset($settings['title_link']) ? $settings['title_link'] : array();
-		$introtext 				= isset($settings['introtext']) ? $settings['introtext'] : '';
-		$intro_animation 		= isset($settings['intro_animation']) ? $settings['intro_animation'] : array();
-		$show_image 			= isset($settings['show_image']) ? $settings['show_image'] : '';
-		$icon_list 				= isset($settings['icon_list']) ? $settings['icon_list'] : '';
-		$icon_animation 		= isset($settings['icon_animation']) ? $settings['icon_animation'] : array();
-		$image_upload 			= isset($settings['image_upload']) ? $settings['image_upload'] : array();
-		$image_animation 		= isset($settings['image_animation']) ? $settings['image_animation'] : array();
-		$title_animation 	    = isset($settings['title_animation']) ? $settings['title_animation'] : array();
-		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : '';
-		$button_link 			= isset($settings['button_link']) ? $settings['button_link'] : array();
-		$btn_icon_list 			= isset($settings["btn_icon_list"]) ? $settings["btn_icon_list"] : '';
-		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
-		$feature_align 			= isset($settings["feature_align"]) ? $settings["feature_align"] : '';
+		$layout 				= isset( $settings['layout'] ) ? sanitize_text_field( $settings['layout'] ) : '';
+		$title 					= isset( $settings['title'] ) ? sanitize_text_field( $settings['title'] ) : '';
+		$selector 				= isset( $settings["heading_selector"] ) ? sanitize_text_field( $settings["heading_selector"] ) : '';
+		$subtitle 				= isset( $settings['subtitle'] ) ? sanitize_text_field( $settings['subtitle'] ) : '';
+		$subselector 			= isset( $settings["subheading_selector"] ) ? sanitize_text_field( $settings["subheading_selector"] ) : '';
+		$subtitle_animation 	= isset( $settings["subtitle_animation"] ) ? $settings["subtitle_animation"] : array();
+		$number 				= isset( $settings["number"] ) ? sanitize_text_field( $settings["number"] ) : '';
+		$number_animation 		= isset( $settings["number_animation"] ) ? $settings["number_animation"] : array();
+		$title_link 			= isset( $settings['title_link'] ) ? $settings['title_link'] : array();
+		$introtext 				= isset( $settings['introtext'] ) ? sanitize_text_field( $settings['introtext'] ) : '';
+		$intro_animation 		= isset( $settings['intro_animation'] ) ? $settings['intro_animation'] : array();
+		$show_image 			= isset( $settings['show_image'] ) ? sanitize_text_field( $settings['show_image'] ) : '';
+		$icon_list 				= isset( $settings['icon_list'] ) ? sanitize_text_field( $settings['icon_list'] ) : '';
+		$icon_animation 		= isset( $settings['icon_animation'] ) ? $settings['icon_animation'] : array();
+		$image_upload 			= isset( $settings['image_upload'] ) ? $settings['image_upload'] : array();
+		$image_animation 		= isset( $settings['image_animation'] ) ? $settings['image_animation'] : array();
+		$title_animation 	    = isset( $settings['title_animation'] ) ? $settings['title_animation'] : array();
+		$button_text 			= isset( $settings["button_text"] ) ? sanitize_text_field( $settings["button_text"] ) : '';
+		$button_link 			= isset( $settings['button_link'] ) ? $settings['button_link'] : array();
+		$btn_icon_list 			= isset( $settings["btn_icon_list"] ) ? sanitize_text_field( $settings["btn_icon_list"] ) : '';
+		$icon_position 			= isset( $settings["icon_position"] ) ? sanitize_text_field( $settings["icon_position"] ) : '';
+		$feature_align 			= isset( $settings["feature_align"] ) ? sanitize_text_field( $settings["feature_align"] ) : '';
 
 		$output = $img_url = $data_media = $data_title = $data_number = $data_subtitle = $data_intro = $btndata = $classlist = $button = '' ;
 
 		$classlist .= (isset($style) && $style) ? ' wppb-btn-' . $style : '';
 
-		if($show_image == 1) {	
+		if ( $show_image == 1 ) {	
 			if ( ! empty($image_upload['url']) ) {
 				$img_url = $image_upload['url'];
-				if( isset( $image_animation['itemOpen'] ) && $image_animation['itemOpen'] ){
+				if ( isset( $image_animation['itemOpen'] ) && $image_animation['itemOpen'] ) {
 					$data_media .= '<div class="wppb-feature-box-img wppb-wow wppb-animated '.esc_attr($image_animation['name']).'" data-wow-duration="'.esc_attr($image_animation['duration']).'ms" data-wow-delay="'.esc_attr($image_animation['delay']).'ms">';
-					$data_media .= '<img src="'.esc_url($img_url).'" alt="'. esc_attr($title) .'">';
+					$data_media .= '<img src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $title ) . '">';
 					$data_media .= '</div>';
 				} else {
 					$data_media .= '<div class="wppb-feature-box-img">';
-					$data_media .= '<img src="'.esc_url($img_url).'" alt="'. esc_attr($title) .'">';
+					$data_media .= '<img src="' . esc_url( $img_url ) . '" alt="'. esc_attr( $title ) .'">';
 					$data_media .= '</div>';
 				}
 			}
 		} else {
-			if( !empty( $icon_list ) ){
-				if( isset( $icon_animation['itemOpen'] ) && $icon_animation['itemOpen'] ) {
-					$data_media .= '<div class="wppb-feature-box-icon wppb-wow wppb-animated '.esc_attr($icon_animation['name']).'" data-wow-duration="'.esc_attr($icon_animation['duration']).'ms" data-wow-delay="'.esc_attr($icon_animation['delay']).'ms">';
-						$data_media .= '<i class="' . esc_attr($icon_list) . '"></i>';
+			if ( ! empty( $icon_list ) ) {
+				if ( isset( $icon_animation['itemOpen'] ) && $icon_animation['itemOpen'] ) {
+					$data_media .= '<div class="wppb-feature-box-icon wppb-wow wppb-animated ' . esc_attr( $icon_animation['name'] ) . '" data-wow-duration="'.esc_attr($icon_animation['duration']).'ms" data-wow-delay="'.esc_attr($icon_animation['delay']).'ms">';
+						$data_media .= '<i class="' . esc_attr( $icon_list ) . '"></i>';
 					$data_media .= '</div>';
 				} else {
 					$data_media .= '<div class="wppb-feature-box-icon">';
-						$data_media .= '<i class="' . esc_attr($icon_list) . '"></i>';
+						$data_media .= '<i class="' . esc_attr( $icon_list ) . '"></i>';
 					$data_media .= '</div>';
 				}
 			}
@@ -1100,17 +1100,17 @@ class WPPB_Addon_Feature_Box{
 		$selector = $selector ? $selector : "h3";
 		$subselector = $subselector ? $subselector : "h4";
 
-		if( ( $title ) ){
-			if( !empty($title_link['link']) ){
+		if ( ( $title ) ) {
+			if ( ! empty( $title_link['link'] ) ) {
 				$target = $title_link['window'] ? 'target=_blank' : "";
 				$nofolow = $title_link['nofolow'] ? 'rel=nofolow' : "";
-				if( isset( $title_animation['itemOpen'] )  && $title_animation['itemOpen'] ) {
+				if ( isset( $title_animation['itemOpen'] )  && $title_animation['itemOpen'] ) {
 					$data_title .= '<' .esc_attr($selector). ' class="wppb-feature-box-title wppb-wow wppb-animated '.esc_attr($title_animation['name']).'" data-wow-duration="'.esc_attr($title_animation['duration']).'ms" data-wow-delay="'.esc_attr($title_animation['delay']).'ms"><a '.esc_attr($nofolow).' href="'.esc_url($title_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($title) .'</a></' . esc_attr($selector) . '>';
 				} else {
 					$data_title .= '<' .esc_attr($selector). ' class="wppb-feature-box-title"><a '.esc_attr($nofolow).' href="'.esc_url($title_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($title) .'</a></' . esc_attr($selector) . '>';
 				}
 			} else {
-				if( isset( $title_animation['itemOpen'] ) && $title_animation['itemOpen'] ) {
+				if ( isset( $title_animation['itemOpen'] ) && $title_animation['itemOpen'] ) {
 					$data_title .= '<' .esc_attr($selector). ' class="wppb-feature-box-title wppb-wow wppb-animated '.esc_attr($title_animation['name']).'" data-wow-duration="'.esc_attr($title_animation['duration']).'ms" data-wow-delay="'.esc_attr($title_animation['delay']).'ms">' . wp_kses_post($title) .'</' . esc_attr($selector) . '>';
 				} else {
 					$data_title .= '<' .esc_attr($selector). ' class="wppb-feature-box-title">' . wp_kses_post($title) .'</' . esc_attr($selector) . '>';
@@ -1118,17 +1118,17 @@ class WPPB_Addon_Feature_Box{
 			}
 		}
 
-		if( !empty( $subtitle ) ){
-			if( isset( $subtitle_animation['itemOpen'] ) && $subtitle_animation['itemOpen'] ) {
-				$data_subtitle .= '<' .esc_attr($subselector). ' class="wppb-feature-box-subtitle wppb-wow wppb-animated '.esc_attr($subtitle_animation['name']).'" data-wow-duration="'.esc_attr($subtitle_animation['duration']).'ms" data-wow-delay="'.esc_attr($subtitle_animation['delay']).'ms">' . wp_kses_post($subtitle) .'</' . esc_attr($subselector) . '>';
+		if ( ! empty( $subtitle ) ) {
+			if ( isset( $subtitle_animation['itemOpen'] ) && $subtitle_animation['itemOpen'] ) {
+				$data_subtitle .= '<' . esc_attr($subselector) . ' class="wppb-feature-box-subtitle wppb-wow wppb-animated ' . esc_attr( $subtitle_animation['name'] ) . '" data-wow-duration="' . esc_attr( $subtitle_animation['duration'] ) . 'ms" data-wow-delay="'.esc_attr($subtitle_animation['delay']).'ms">' . wp_kses_post($subtitle) .'</' . esc_attr($subselector) . '>';
 			} else {
 				$data_subtitle .= '<' .esc_attr($subselector). ' class="wppb-feature-box-subtitle">' . wp_kses_post($subtitle) .'</' . esc_attr($subselector) . '>';
 			}
 		}
 
-		if ( !empty( $number ) ) {
-			if( isset( $number_animation['itemOpen'] ) && $number_animation['itemOpen'] ) {
-				$data_number .= '<span class="wppb-feature-box-number wppb-wow wppb-animated '.esc_attr($number_animation['name']).'" data-wow-duration="'.esc_attr($number_animation['duration']).'ms" data-wow-delay="'.esc_attr($number_animation['delay']).'ms">';
+		if ( ! empty( $number ) ) {
+			if ( isset( $number_animation['itemOpen'] ) && $number_animation['itemOpen'] ) {
+				$data_number .= '<span class="wppb-feature-box-number wppb-wow wppb-animated ' . esc_attr( $number_animation['name'] ).'" data-wow-duration="'.esc_attr($number_animation['duration']).'ms" data-wow-delay="'.esc_attr($number_animation['delay']).'ms">';
 					$data_number .= $number;
 				$data_number .= '</span>';
 			} else {
@@ -1138,7 +1138,7 @@ class WPPB_Addon_Feature_Box{
 			}
 		}
 
-		if ( !empty( $introtext ) ) {
+		if ( ! empty( $introtext ) ) {
 			if( isset( $intro_animation['itemOpen'] )  && $intro_animation['itemOpen'] ) {
 				$data_intro .= '<div class="wppb-feature-box-intro wppb-wow wppb-animated '.esc_attr($intro_animation['name']).'" data-wow-duration="'.esc_attr($intro_animation['duration']).'ms" data-wow-delay="'.esc_attr($intro_animation['delay']).'ms">';
 					$data_intro .= $introtext;
@@ -1150,13 +1150,13 @@ class WPPB_Addon_Feature_Box{
 			}
 		}
 
-		if($icon_position == 'left') {
-			$button = (esc_attr($btn_icon_list)) ? '<i class="' . esc_attr($btn_icon_list) . '"></i> <span>' . esc_attr($button_text).'</span>' : '<span>' . esc_attr($button_text). '</span>';
+		if ( $icon_position == 'left' ) {
+			$button = ( esc_attr($btn_icon_list ) ) ? '<i class="' . esc_attr($btn_icon_list) . '"></i> <span>' . esc_attr($button_text).'</span>' : '<span>' . esc_attr($button_text). '</span>';
 		} else {
-			$button = (esc_attr($btn_icon_list)) ? '<span>' . esc_attr($button_text) . '</span> <i class="' . esc_attr($btn_icon_list) . '"></i><span>' : esc_attr($button_text).'</span>';
+			$button = ( esc_attr( $btn_icon_list ) ) ? '<span>' . esc_attr($button_text) . '</span> <i class="' . esc_attr($btn_icon_list) . '"></i><span>' : esc_attr($button_text).'</span>';
 		}
 
-		if( !empty($button_link['link']) ){
+		if ( ! empty( $button_link['link'] ) ) {
 			$btntarget = !empty($button_link['window']) ? 'target=_blank' : 'target=_self';
 			$btnnofolow = !empty($button_link['nofolow']) ? 'rel=nofolow' : "";
 			$btndata  = '<a '.esc_attr($btntarget).' href="'.esc_url($button_link['link']).'" '.esc_attr($btnnofolow).' class="wppb-btn-addons '.$classlist.'">' . $button  . '</a>';

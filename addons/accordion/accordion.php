@@ -460,7 +460,7 @@ class WPPB_Addon_Accordion{
 					}
 				}
 				if( get_wppb_array_value_by_key($value, 'title') ){
-					$output  .= '<span class="wppb-accordion-title-content">'.$value['title'].'</span>';
+					$output  .= '<span class="wppb-accordion-title-content">' . esc_html( $value['title'] ).'</span>';
 				}
 				if(get_wppb_array_value_by_key($value, 'icon_position') == "right" ) {
 					if(! empty($value['icon_list'])){
@@ -478,7 +478,7 @@ class WPPB_Addon_Accordion{
 
 				$panelStyle = (($key != 0 || $openitem == "hide") && $openitem != "show") ? "display: none;" : "";
 				$output  .= '<div class="wppb-panel-collapse" style="'.$panelStyle.'">';
-				$output  .= '<div class="wppb-accordion-content">'.wp_kses_post( $value['content'] ).'</div>';
+				$output  .= '<div class="wppb-accordion-content">' . wp_kses_post( $value['content'] ) . '</div>';
 				$output  .= '</div>';//wppb-panel-collapse
 				$output  .= '</div>';
 			}

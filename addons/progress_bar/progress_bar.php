@@ -256,67 +256,67 @@ class WPPB_Addon_Progress_Bar{
 	public function render($data = null){
 		$settings 			= $data['settings'];
 
-		$title 				= isset($settings['title']) ? $settings['title'] : '';
-		$progress_width  	= isset($settings['progress_width']) ? $settings['progress_width'] : '';
-		$style 				= isset($settings['style']) ? $settings['style'] : '';
-		$stripped 			= isset($settings['stripped']) ? $settings['stripped'] : '';
-		$show_title 		= isset($settings['show_title']) ? $settings['show_title'] : '';
-		$show_percent 		= isset($settings['show_percent']) ? $settings['show_percent'] : '';
-		$progress_layout 	= isset($settings['progress_layout']) ? $settings['progress_layout'] : '';
+		$title 				= isset($settings['title']) ? sanitize_text_field( $settings['title'] ) : '';
+		$progress_width  	= isset($settings['progress_width']) ? sanitize_text_field( $settings['progress_width'] ) : '';
+		$style 				= isset($settings['style']) ? sanitize_text_field( $settings['style'] ) : '';
+		$stripped 			= isset($settings['stripped']) ? sanitize_text_field( $settings['stripped'] ) : '';
+		$show_title 		= isset($settings['show_title']) ? sanitize_text_field( $settings['show_title'] ) : '';
+		$show_percent 		= isset($settings['show_percent']) ? sanitize_text_field( $settings['show_percent'] ) : '';
+		$progress_layout 	= isset($settings['progress_layout']) ? sanitize_text_field( $settings['progress_layout'] ) : '';
 
 		$output = $show_percent_content = $show_title_content = '';
 
-		$stripped = (isset($stripped) && $stripped) ? $stripped : 0;
-		$progress_width = (isset($progress_width) && $progress_width) ? $progress_width : 50;
-		if($stripped){
+		$stripped = ( isset( $stripped ) && $stripped ) ? $stripped : 0;
+		$progress_width = ( isset( $progress_width ) && $progress_width ) ? $progress_width : 50;
+		if ( $stripped ) {
 			$stripped = 'wppb-progress-bar-striped';
 		}
 		$output  .= '<div class="wppb-progress-bar-addon">';
-			$output  .= '<div class="wppb-progressbar-addon-content progressbar-layout-'.esc_attr($progress_layout).'">';
+			$output  .= '<div class="wppb-progressbar-addon-content progressbar-layout-' . esc_attr( $progress_layout ) . '">';
 
-			if( $progress_layout == "two" ){
-				if($show_title == 1){
-					$show_title_content  = esc_attr($title);
+			if ( $progress_layout == "two" ) {
+				if ( $show_title == 1 ) {
+					$show_title_content  = esc_attr( $title );
 				}
-				if( ($show_title == 1) ){
-					$output  .= '<div class="wppb-progress-label wppb-clearfix">'.  $show_title_content .'</div>';
+				if ( ( $show_title == 1 ) ) {
+					$output  .= '<div class="wppb-progress-label wppb-clearfix">' .  esc_html( $show_title_content ) . '</div>';
 				}
 				$output .= '<div class="wppb-progress">';
-					$output .= '<div class="wppb-progress-bar wppb-progress-bar-'. esc_attr($style) . ' ' . esc_attr($stripped) .'" style="width:'. (int) esc_attr($progress_width).'%">';
-					if($show_percent == 1){
-						$output .= '<span class="wppb-progress-percent">'. (int) esc_attr($progress_width) .'%</span>';
+					$output .= '<div class="wppb-progress-bar wppb-progress-bar-' . esc_attr( $style ) . ' ' . esc_attr( $stripped ) . '" style="width:' . (int) esc_attr( $progress_width ) . '%">';
+					if ( $show_percent == 1 ) {
+						$output .= '<span class="wppb-progress-percent">' . (int) esc_html( $progress_width ) . '%</span>';
 					}
 					$output .= '</div>';
 				$output .= '</div>';//wppb-progress
 
 			} elseif ( $progress_layout == "three" ) {
 
-				if($show_title == 1){
-					$show_title_content  = esc_attr($title);
+				if ( $show_title == 1 ) {
+					$show_title_content  = esc_attr( $title );
 				}
-				if( ($show_title == 1) ){
-					$output  .= '<div class="wppb-progress-label wppb-clearfix">'.  $show_title_content .'</div>';
+				if ( ( $show_title == 1 ) ) {
+					$output  .= '<div class="wppb-progress-label wppb-clearfix">' .  esc_html( $show_title_content ) . '</div>';
 				}
 				$output .= '<div class="wppb-progress">';
-					$output .= '<div class="wppb-progress-bar wppb-progress-bar-'. esc_attr($style) . ' ' . esc_attr($stripped) .'" style="width:'. (int) esc_attr($progress_width).'%">';
-					if($show_percent == 1){
-						$output .= '<span class="wppb-progress-percent">'. (int) esc_attr($progress_width) .'%</span>';
+					$output .= '<div class="wppb-progress-bar wppb-progress-bar-'. esc_attr( $style)  . ' ' . esc_attr( $stripped ) . '" style="width:'. (int) esc_attr( $progress_width ) . '%">';
+					if ( $show_percent == 1 ) {
+						$output .= '<span class="wppb-progress-percent">' . (int) esc_html( $progress_width ) . '%</span>';
 					}
 					$output .= '</div>';
 				$output .= '</div>';//wppb-progress
 
 			} else {
 
-				if($show_title == 1){
-					$show_title_content  = esc_attr($title);
+				if ( $show_title == 1 ) {
+					$show_title_content  = esc_attr( $title );
 				}
-				if( ($show_title == 1)){
-					$output  .= '<div class="wppb-progress-label wppb-clearfix">'.  $show_title_content .'</div>';
+				if ( ( $show_title == 1 ) ) {
+					$output  .= '<div class="wppb-progress-label wppb-clearfix">' . esc_html( $show_title_content ) . '</div>';
 				}
 				$output .= '<div class="wppb-progress">';
-					$output .= '<div class="wppb-progress-bar wppb-progress-bar-'. esc_attr($style) . ' ' . esc_attr($stripped) .'" style="width:'. (int) esc_attr($progress_width).'%">';
-					if($show_percent == 1){
-						$output .= '<span class="wppb-progress-percent">'. (int) esc_attr($progress_width) .'%</span>';
+					$output .= '<div class="wppb-progress-bar wppb-progress-bar-' . esc_attr( $style ) . ' ' . esc_attr( $stripped ) . '" style="width:'. (int) esc_attr( $progress_width ) . '%">';
+					if ( $show_percent == 1 ) {
+						$output .= '<span class="wppb-progress-percent">' . (int) esc_attr( $progress_width ) . '%</span>';
 					}
 					$output .= '</div>';
 				$output .= '</div>';//wppb-progress

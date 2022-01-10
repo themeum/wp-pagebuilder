@@ -314,10 +314,10 @@ class WPPB_Addon_Video_Popup{
 	// Video popup Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings'];
-		$video_url 		= isset($settings['video_url']) ? $settings['video_url'] : '';
-		$before_text 	= isset($settings['before_text']) ? $settings['before_text'] : '';
-		$after_text 	= isset($settings['after_text']) ? $settings['after_text'] : '';
-		$video_align 	= isset($settings['video_align']) ? $settings['video_align'] : '';
+		$video_url 		= isset($settings['video_url']) ? sanitize_text_field( $settings['video_url'] ) : '';
+		$before_text 	= isset($settings['before_text']) ? sanitize_text_field( $settings['before_text'] ) : '';
+		$after_text 	= isset($settings['after_text']) ? sanitize_text_field( $settings['after_text'] ) : '';
+		$video_align 	= isset($settings['video_align']) ? sanitize_text_field( $settings['video_align'] ) : '';
 		$output = $video_alignment = '';
 
 
@@ -333,15 +333,15 @@ class WPPB_Addon_Video_Popup{
 		
 			$output  .= '<div class="wppb-video-popup-addon">';
 			$output  .= '<div class="wppb-video-popup-content">';
-			$output  .= '<div class="wppb-video-popup-wrap '.esc_attr($video_alignment).'">';
-				if($before_text){
-					$output  .= '<div class="wppb-video-popup-before-text"><a href="'. esc_url($video_url) .'" class="wppb-video-popup">'.esc_html($before_text).'</a></div>';
+			$output  .= '<div class="wppb-video-popup-wrap ' . esc_attr( $video_alignment ) . '">';
+				if ( $before_text ) {
+					$output  .= '<div class="wppb-video-popup-before-text"><a href="' . esc_url( $video_url ) . '" class="wppb-video-popup">' . esc_html( $before_text ) . '</a></div>';
 				}
 				$output  .= '<div class="wppb-video-popup-content">';
-					$output .= '<a href="'. esc_url($video_url) .'" class="wppb-video-popup wppb-video-popup-icon"><i class="wppb-font-play-button-alt"></i></a>';
+					$output .= '<a href="' . esc_url( $video_url ) . '" class="wppb-video-popup wppb-video-popup-icon"><i class="wppb-font-play-button-alt"></i></a>';
 				$output .= '</div>';
-				if($after_text){
-					$output  .= '<div class="wppb-video-popup-after-text"><a href="'. esc_url($video_url) .'" class="wppb-video-popup">'.esc_html($after_text).'</a></div>';
+				if ( $after_text ) {
+					$output  .= '<div class="wppb-video-popup-after-text"><a href="' . esc_url( $video_url ) . '" class="wppb-video-popup">' . esc_html( $after_text ) . '</a></div>';
 				}
 			$output .= '</div>';
 			$output .= '</div>';

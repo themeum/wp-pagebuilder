@@ -296,7 +296,7 @@ class WPPB_Addon_Icon{
 	// Icon Render HTML
 	public function render($data = null){
 		$settings 			= $data['settings']; 
-		$icon_list 			= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
+		$icon_list 			= isset($settings["icon_list"]) ? sanitize_text_field( $settings["icon_list"] ) : '';
 		$icon_link 	    	= isset($settings["icon_link"]) ? $settings["icon_link"] : array();
 
 		$output = '' ;

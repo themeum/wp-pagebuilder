@@ -647,21 +647,21 @@ class WPPB_Addon_Image_Hover{
 	public function render($data = null){
 		$settings 				= $data['settings'];
 
-		$layout 				= isset($settings['layout']) ? $settings['layout'] : '';
-		$title 					= isset($settings['title']) ? $settings['title'] : '';
-		$selector 				= isset($settings["heading_selector"]) ? $settings["heading_selector"] : '';
-		$subtitle 				= isset($settings['subtitle']) ? $settings['subtitle'] : '';
-		$subselector 			= isset($settings["subheading_selector"]) ? $settings["subheading_selector"] : '';
+		$layout 				= isset($settings['layout']) ? sanitize_text_field( $settings['layout'] ) : '';
+		$title 					= isset($settings['title']) ? sanitize_text_field( $settings['title'] ) : '';
+		$selector 				= isset($settings["heading_selector"]) ? sanitize_text_field( $settings["heading_selector"] ) : '';
+		$subtitle 				= isset($settings['subtitle']) ? sanitize_text_field( $settings['subtitle'] ) : '';
+		$subselector 			= isset($settings["subheading_selector"]) ? sanitize_text_field( $settings["subheading_selector"] ) : '';
 		$title_link 			= isset($settings['title_link']) ? $settings['title_link'] : array();
-		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : '';
+		$button_text 			= isset($settings["button_text"]) ? sanitize_text_field( $settings["button_text"] ) : '';
 		$button_link 			= isset($settings['button_link']) ? $settings['button_link'] : array();
-		$btn_icon_list 			= isset($settings["btn_icon_list"]) ? $settings["btn_icon_list"] : '';
-		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
-		$content_position 		= isset($settings['content_position']) ? $settings['content_position'] : '';
-		$title_show 			= isset($settings['title_show']) ? $settings['title_show'] : '';
-		$subtitle_show 			= isset($settings['subtitle_show']) ? $settings['subtitle_show'] : '';
-		$button_show 			= isset($settings['button_show']) ? $settings['button_show'] : '';
-		$image_hover_effect 	= isset($settings['image_hover_effect']) ? $settings['image_hover_effect'] : '';
+		$btn_icon_list 			= isset($settings["btn_icon_list"]) ? sanitize_text_field( $settings["btn_icon_list"] ) : '';
+		$icon_position 			= isset($settings["icon_position"]) ? sanitize_text_field( $settings["icon_position"] ) : '';
+		$content_position 		= isset($settings['content_position']) ? sanitize_text_field( $settings['content_position'] ) : '';
+		$title_show 			= isset($settings['title_show']) ? sanitize_text_field( $settings['title_show'] ) : '';
+		$subtitle_show 			= isset($settings['subtitle_show']) ? sanitize_text_field( $settings['subtitle_show'] ) : '';
+		$button_show 			= isset($settings['button_show']) ? sanitize_text_field( $settings['button_show'] ) : '';
+		$image_hover_effect 	= isset($settings['image_hover_effect']) ? sanitize_text_field( $settings['image_hover_effect'] ) : '';
 
 		$output = $img_url = $data_media = $data_title = $data_number = $data_subtitle = $data_intro = $btndata = $button = '' ;
 		$title_show = (isset($title_show) && $title_show) ? '1' : '0';

@@ -917,11 +917,11 @@ class WPPB_Addon_Form{
 						$fieldAttr = ' ';
 						$fieldAttrA = array();
 						if ( ! empty($field['placeholder'])){
-							$fieldAttrA['placeholder'] = $field['placeholder'];
+							$fieldAttrA['placeholder'] = sanitize_text_field( $field['placeholder'] );
 						}
 						if ( isset($field['require']) && (int) $field['require'] === 1) {
 							$fieldAttrA['data-required'] = 'true';
-							$fieldAttrA['data-label'] = ( isset($field['label']) ? $field['label'] : '' );
+							$fieldAttrA['data-label'] = ( isset($field['label']) ? sanitize_text_field( $field['label'] ) : '' );
 						}
 						foreach ($fieldAttrA as $attrKey => $attr){
 							$fieldAttr .= $attrKey.'="'.$attr.'" ';
@@ -930,7 +930,7 @@ class WPPB_Addon_Form{
                         <div class="wppb-form-field-repeat repeater-<?php echo $fieldIndex;?>">
                             <div class="wppb-form-field-wrap">
 								<?php if ( isset($field['label']) && $field['label'] && isset($settings['label_show']) && $settings['label_show'] ) { ?>
-									<label class="wppb-form-field-label"><?php echo $field['label']; ?><?php if( (isset($field['require']) && $field['require']) == 1) { echo "<span class='require-sign'>*</span>";}?></label>
+									<label class="wppb-form-field-label"><?php echo esc_html( $field['label'] ); ?><?php if( (isset($field['require']) && $field['require']) == 1) { echo "<span class='require-sign'>*</span>";}?></label>
 								<?php }?>
 								<?php if(isset($field['field_type']) && $field['field_type'] ){ ?>
 									<?php include WPPB_DIR_PATH."addons/form/fields/{$field['field_type']}.php"; ?>
@@ -944,7 +944,7 @@ class WPPB_Addon_Form{
 
 				<?php if ($enableSimpleRecaptcha){ ?>
                     <div class="wppb-custom-recaptcha">
-                        <span class="wppb-form-recaptcha-input"><input type="text" name="wppb_default_form[wppb_form_recaptcha_answer]" data-required="true" placeholder="10+5 = ?" data-label="<?php _e("WPPB Simple reCaptcha", 'wp-pagebuilder'); ?>"/></span>
+                        <span class="wppb-form-recaptcha-input"><input type="text" name="wppb_default_form[wppb_form_recaptcha_answer]" data-required="true" placeholder="10+5 = ?" data-label="<?php esc_attr_e("WPPB Simple reCaptcha", 'wp-pagebuilder'); ?>"/></span>
                     </div>
 				<?php } ?>
 
@@ -953,7 +953,7 @@ class WPPB_Addon_Form{
 					$google_recaptcha_site_key = isset($settings['google_recaptcha_site_key']) ? $settings['google_recaptcha_site_key'] : '';
 					?>
                     <div class="wppb-form-google-recaptcha google_recaptcha_wrap">
-                        <div class="g-recaptcha" data-sitekey="<?php echo $google_recaptcha_site_key; ?>"></div>
+                        <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $google_recaptcha_site_key ); ?>"></div>
                     </div>
 					<?php
 				} ?>

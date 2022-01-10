@@ -1010,77 +1010,77 @@ class WPPB_Addon_Flip_Box{
 	public function render($data = null){
 		$settings 			= $data['settings'];
 
-		$front_title 					= isset($settings['front_title']) ? $settings['front_title'] : '';
-		$front_heading_selector 		= isset($settings["front_heading_selector"]) ? $settings["front_heading_selector"] : '';
-		$front_introtext 				= isset($settings['front_introtext']) ? $settings['front_introtext'] : '';
-		$front_show_icon 	    		= isset($settings['front_show_icon']) ? $settings['front_show_icon'] : '';
-		$front_icon_list 				= isset($settings['front_icon_list']) ? $settings['front_icon_list'] : '';
+		$front_title 					= isset($settings['front_title']) ? sanitize_text_field( $settings['front_title'] ) : '';
+		$front_heading_selector 		= isset($settings["front_heading_selector"]) ? sanitize_text_field( $settings["front_heading_selector"] ) : '';
+		$front_introtext 				= isset($settings['front_introtext']) ? sanitize_text_field( $settings['front_introtext'] ) : '';
+		$front_show_icon 	    		= isset($settings['front_show_icon']) ? sanitize_text_field( $settings['front_show_icon'] ) : '';
+		$front_icon_list 				= isset($settings['front_icon_list']) ? sanitize_text_field( $settings['front_icon_list'] ) : '';
 		$front_image_upload 			= isset($settings['front_image_upload']) ? $settings['front_image_upload'] : array();
-		$front_image_alt 				= isset($settings['front_image_alt']) ? $settings['front_image_alt'] : '';
+		$front_image_alt 				= isset($settings['front_image_alt']) ? sanitize_text_field( $settings['front_image_alt'] ) : '';
 
-		$back_title 					= isset($settings['back_title']) ? $settings['back_title'] : '';
-		$back_heading_selector 			= isset($settings["back_heading_selector"]) ? $settings["back_heading_selector"] : '';
-		$back_introtext 				= isset($settings['back_introtext']) ? $settings['back_introtext'] : '';
-		$back_button_text 	    		= isset($settings['back_button_text']) ? $settings['back_button_text'] : '';
+		$back_title 					= isset($settings['back_title']) ? sanitize_text_field( $settings['back_title'] ) : '';
+		$back_heading_selector 			= isset($settings["back_heading_selector"]) ? sanitize_text_field( $settings["back_heading_selector"] ) : '';
+		$back_introtext 				= isset($settings['back_introtext']) ? sanitize_text_field( $settings['back_introtext'] ) : '';
+		$back_button_text 	    		= isset($settings['back_button_text']) ? sanitize_text_field( $settings['back_button_text'] ) : '';
 		$back_btn_link 					= isset($settings['back_btn_link']) ? $settings['back_btn_link'] : array();
-		$back_show_icon 				= isset($settings['back_show_icon']) ? $settings['back_show_icon'] : '';
-		$back_icon_list 				= isset($settings['back_icon_list']) ? $settings['back_icon_list'] : '';
+		$back_show_icon 				= isset($settings['back_show_icon']) ? sanitize_text_field( $settings['back_show_icon'] ) : '';
+		$back_icon_list 				= isset($settings['back_icon_list']) ? sanitize_text_field( $settings['back_icon_list'] ) : '';
 		$back_image_upload 	    		= isset($settings['back_image_upload']) ? $settings['back_image_upload'] : array();
-		$back_image_alt 	    		= isset($settings['back_image_alt']) ? $settings['back_image_alt'] : '';
+		$back_image_alt 	    		= isset($settings['back_image_alt']) ? sanitize_text_field( $settings['back_image_alt'] ) : '';
 
-		$flip_bhave 	    			= isset($settings['flip_bhave']) ? $settings['flip_bhave'] : '';
-		$flip_style 	    			= isset($settings['flip_style']) ? $settings['flip_style'] : 'rotate_style';
-		$flip_direction 	    		= isset($settings['flip_direction']) ? $settings['flip_direction'] : '';
+		$flip_bhave 	    			= isset($settings['flip_bhave']) ? sanitize_text_field( $settings['flip_bhave'] ) : '';
+		$flip_style 	    			= isset($settings['flip_style']) ? sanitize_text_field( $settings['flip_style'] ) : 'rotate_style';
+		$flip_direction 	    		= isset($settings['flip_direction']) ? sanitize_text_field( $settings['flip_direction'] ) : '';
 
 
 		$output = $img_front_url = $img_back_url = $data_front_title = $data_front_intro = $data_back_title = $data_back_intro = $data_back_button = $data_front_media = $data_back_media = '' ;
 
-		if( !empty( $front_title ) ){
-			$data_front_title .= '<' .esc_attr($front_heading_selector). ' class="wppb-flip-front-title">' . wp_kses_post($front_title) .'</' . esc_attr($front_heading_selector) . '>';
+		if ( ! empty( $front_title ) ) {
+			$data_front_title .= '<' .esc_attr($front_heading_selector). ' class="wppb-flip-front-title">' . wp_kses_post( $front_title ) .'</' . esc_attr($front_heading_selector) . '>';
 		}
 
-		if( !empty( $front_introtext ) ){
-			$data_front_intro .= '<div class="wppb-flip-front-intro">' . wp_kses_post($front_introtext) .'</div>';
+		if ( ! empty( $front_introtext ) ) {
+			$data_front_intro .= '<div class="wppb-flip-front-intro">' . wp_kses_post( $front_introtext ) .'</div>';
 		}
 
-		if($front_show_icon == 1) {	
-			if( !empty( $front_icon_list ) ){
+		if ( $front_show_icon == 1 ) {	
+			if ( ! empty( $front_icon_list ) ) {
 				$data_front_media .= '<div class="wppb-flip-front-icon">';
-					$data_front_media .= '<i class="' . esc_attr($front_icon_list) . '"></i>';
+					$data_front_media .= '<i class="' . esc_attr( $front_icon_list ) . '"></i>';
 				$data_front_media .= '</div>';
 			}
 		} else {
-			if ( ! empty($front_image_upload['url']) ) {
+			if ( ! empty( $front_image_upload['url'] ) ) {
 				$img_front_url = $front_image_upload['url'];	
 				$data_front_media .= '<div class="wppb-flip-front-img">';
-				$data_front_media .= '<img src="'.esc_url($img_front_url).'" alt="'. $front_image_alt .'">';
+				$data_front_media .= '<img src="' . esc_url( $img_front_url ) . '" alt="'. $front_image_alt .'">';
 				$data_front_media .= '</div>';
 			}
 		}
 
-		if( !empty( $back_title ) ){
-			$data_back_title .= '<' .esc_attr($back_heading_selector). ' class="wppb-flip-back-title">' . wp_kses_post($back_title) .'</' . esc_attr($back_heading_selector) . '>';
+		if ( ! empty( $back_title ) ) {
+			$data_back_title .= '<' . esc_attr( $back_heading_selector ) . ' class="wppb-flip-back-title">' . wp_kses_post($back_title) .'</' . esc_attr($back_heading_selector) . '>';
 		}
-		if( !empty( $back_introtext ) ){
+		if ( ! empty( $back_introtext ) ) {
 			$data_back_intro .= '<div class="wppb-flip-back-intro">' . wp_kses_post($back_introtext) .'</div>';
 		}
-		if( !empty($back_btn_link['link']) ){
+		if ( ! empty( $back_btn_link['link'] ) ) {
 			$btntarget = $back_btn_link['window'] ? 'target=_blank' : 'target=_self';
 			$btnnofolow = $back_btn_link['nofolow'] ? 'rel=nofolow' : "";
-			$data_back_button  = '<a '.esc_attr($btntarget).' href="'.esc_url($back_btn_link['link']).'" '.esc_attr($btnnofolow).' class="wppb-back-view-btn">' . $back_button_text  . '</a>';
+			$data_back_button  = '<a ' . esc_attr( $btntarget ) . ' href="'.esc_url($back_btn_link['link']).'" '.esc_attr($btnnofolow).' class="wppb-back-view-btn">' . $back_button_text  . '</a>';
 		}
 
-		if($back_show_icon == 1) {	
-			if( !empty( $back_icon_list ) ){
+		if ( $back_show_icon == 1 ) {	
+			if ( ! empty( $back_icon_list ) ) {
 				$data_back_media .= '<div class="wppb-flip-back-icon">';
-					$data_back_media .= '<i class="' . esc_attr($back_icon_list) . '"></i>';
+					$data_back_media .= '<i class="' . esc_attr( $back_icon_list ) . '"></i>';
 				$data_back_media .= '</div>';
 			}
 		} else {
-			if ( ! empty($back_image_upload['url']) ) {
+			if ( ! empty( $back_image_upload['url'] ) ) {
 				$img_back_url = $back_image_upload['url'];	
 				$data_back_media .= '<div class="wppb-flip-back-img">';
-				$data_back_media .= '<img src="'.esc_url($img_back_url).'" alt="'. $back_image_alt .'">';
+				$data_back_media .= '<img src="' . esc_url( $img_back_url ) . '" alt="'. $back_image_alt .'">';
 				$data_back_media .= '</div>';
 			}
 		}		

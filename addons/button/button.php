@@ -237,36 +237,36 @@ class WPPB_Addon_Button{
 	// Button Render HTML
 	public function render($data = null){
 		$settings 			= $data['settings']; 
-		$button_text 		= isset($settings["button_text"]) ? $settings["button_text"] : '';
-		$button_link 		= isset($settings['button_link']) ? $settings['button_link'] : array();
-		$fullwidth_button 	= isset($settings["fullwidth_button"]) ? $settings["fullwidth_button"] : '';
-		$icon_list 			= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
-		$icon_position 		= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
-		$style 				= isset($settings["style"]) ? $settings["style"] : '';
-		$btn_size 			= isset($settings["btn_size"]) ? $settings["btn_size"] : '';
-		$shape 				= isset($settings["shape"]) ? $settings["shape"] : '';
+		$button_text 		= isset( $settings["button_text"] ) ? sanitize_text_field( $settings["button_text"] ) : '';
+		$button_link 		= isset( $settings['button_link'] ) ? $settings['button_link'] : array();
+		$fullwidth_button 	= isset( $settings["fullwidth_button"] ) ? sanitize_text_field( $settings["fullwidth_button"] ) : '';
+		$icon_list 			= isset( $settings["icon_list"] ) ? sanitize_text_field( $settings["icon_list"] ) : '';
+		$icon_position 		= isset( $settings["icon_position"] ) ? sanitize_text_field( $settings["icon_position"] ) : '';
+		$style 				= isset( $settings["style"] ) ? sanitize_text_field( $settings["style"] ) : '';
+		$btn_size 			= isset( $settings["btn_size"] ) ? sanitize_text_field( $settings["btn_size"] ) : '';
+		$shape 				= isset( $settings["shape"] ) ? sanitize_text_field( $settings["shape"] ) : '';
 		//$appearance 		= isset($settings["appearance"]) ? $settings["appearance"] : '';
 
 		$output = $button = $classlist = '' ;
 
-		$target = ( isset( $button_link['window']) && $button_link['window'] ) ? 'target=_blank' : 'target=_self';
-		$nofolow = ( isset( $button_link['nofolow']) && $button_link['nofolow'] ) ? 'rel=nofolow' : "";
+		$target = ( isset( $button_link['window'] ) && $button_link['window'] ) ? 'target=_blank' : 'target=_self';
+		$nofolow = ( isset( $button_link['nofolow'] ) && $button_link['nofolow'] ) ? 'rel=nofolow' : "";
 
 		//$classlist .= (isset($appearance) && $appearance) ? ' wppb-btn-' . $appearance : '';
-		$classlist .= (isset($style) && $style) ? ' wppb-btn-' . $style : '';
-		$classlist .= (isset($shape) && $shape) ? ' wppb-btn-' . $shape : '';
-		$classlist .= (isset($btn_size) && $btn_size) ? ' wppb-btn-' . $btn_size : '';
-		$classlist .= (isset($fullwidth_button) && $fullwidth_button) ? ' wppb-btn-' . $fullwidth_button : '';
+		$classlist .= ( isset( $style ) && $style ) ? ' wppb-btn-' . $style : '';
+		$classlist .= ( isset( $shape ) && $shape ) ? ' wppb-btn-' . $shape : '';
+		$classlist .= ( isset( $btn_size ) && $btn_size ) ? ' wppb-btn-' . $btn_size : '';
+		$classlist .= ( isset( $fullwidth_button ) && $fullwidth_button ) ? ' wppb-btn-' . $fullwidth_button : '';
 
-		if($icon_position == 'left') {
-			$button = (esc_attr($icon_list)) ? '<i class="' . esc_attr($icon_list) . '"></i> ' . esc_attr($button_text) : esc_attr($button_text);
+		if ( $icon_position == 'left' ) {
+			$button = ( esc_attr( $icon_list ) ) ? '<i class="' . esc_attr( $icon_list ) . '"></i> ' . esc_attr( $button_text ) : esc_attr( $button_text );
 		} else {
-			$button = (esc_attr($icon_list)) ? esc_attr($button_text) . ' <i class="' . esc_attr($icon_list) . '"></i>' : esc_attr($button_text);
+			$button = ( esc_attr( $icon_list ) ) ? esc_attr( $button_text ) . ' <i class="' . esc_attr( $icon_list ) . '"></i>' : esc_attr( $button_text );
 		}
-		if( $button_link['link'] ){
+		if ( $button_link['link'] ) {
 			$output  .= '<div class="wppb-addon wppb-button-addon">';
 				$output  .= '<div class="wppb-button-addon-content">';
-					$output  .= '<a '.esc_attr($nofolow).' href="'.esc_url($button_link['link']).'" '.esc_attr($target).' class="wppb-btn-addons '.esc_attr($classlist).'">' . $button  . '</a>';
+					$output  .= '<a ' . esc_attr( $nofolow ).' href="' . esc_url( $button_link['link'] ) . '" '. esc_attr( $target ) . ' class="wppb-btn-addons ' . esc_attr( $classlist ) . '">' . $button  . '</a>';
 				$output  .= '</div>';
 			$output  .= '</div>';
 		}

@@ -12,7 +12,7 @@ if( isset( $field['select_options'] ) ){
 				<?php
 				foreach ($options as $key => $option){
 					?>
-					<option value="<?php echo $option['label']; ?>"><?php echo $option['label']; ?></option>
+					<option value="<?php echo esc_attr( $option['label'] ); ?>"><?php echo esc_html( $option['label'] ); ?></option>
 					<?php
 				}
 				?>

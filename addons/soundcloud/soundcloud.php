@@ -105,15 +105,15 @@ class WPPB_Addon_Soundcloud{
 	// Sound Cloud Render HTML
 	public function render($data = null){
 		$settings 			= $data['settings'];
-		$link 				= isset($settings['link']) ? $settings['link'] : '';
-		$visual_player 		= isset($settings['visual_player']) ? $settings['visual_player'] : '';
-		$autoplay 			= isset($settings['autoplay']) ? $settings['autoplay'] : '';
-		$buy_button 		= isset($settings['buy_button']) ? $settings['buy_button'] : '';
-		$download 			= isset($settings['download']) ? $settings['download'] : '';
-		$share_button 		= isset($settings['share_button']) ? $settings['share_button'] : '';
-		$play_count 		= isset($settings['play_count']) ? $settings['play_count'] : '';
-		$username 			= isset($settings['username']) ? $settings['username'] : '';
-		$control_color 		= isset($settings['control_color']) ? $settings['control_color'] : '';
+		$link 				= isset($settings['link']) ? sanitize_text_field( $settings['link'] ) : '';
+		$visual_player 		= isset($settings['visual_player']) ? sanitize_text_field( $settings['visual_player'] ) : '';
+		$autoplay 			= isset($settings['autoplay']) ? sanitize_text_field( $settings['autoplay'] ) : '';
+		$buy_button 		= isset($settings['buy_button']) ? sanitize_text_field( $settings['buy_button'] ) : '';
+		$download 			= isset($settings['download']) ? sanitize_text_field( $settings['download'] ) : '';
+		$share_button 		= isset($settings['share_button']) ? sanitize_text_field( $settings['share_button'] ) : '';
+		$play_count 		= isset($settings['play_count']) ? sanitize_text_field( $settings['play_count'] ) : '';
+		$username 			= isset($settings['username']) ? sanitize_text_field( $settings['username'] ) : '';
+		$control_color 		= isset($settings['control_color']) ? sanitize_text_field( $settings['control_color'] ) : '';
 
 		$output = '';
 
@@ -125,16 +125,16 @@ class WPPB_Addon_Soundcloud{
 		$buy_button = ($buy_button) ? 'true' : 'false';
 		$visual_player = ($visual_player) ? 'true' : 'false';
 
-		if( $control_color ) {
-			$control_color = str_replace("#","",$control_color);
-		}else {
+		if ( $control_color ) {
+			$control_color = str_replace( "#","",$control_color );
+		} else {
 			$control_color = "e46719";
 		}
 
 		$output  .= '<div class="wppb-soundcloud-addon">';
 			$output  .= '<div class="wppb-soundcloud-content">';
 				$output  .= '<iframe';
-					$output  .= ' src="https://w.soundcloud.com/player/?url='.esc_attr($link).'&auto_play='.esc_attr($autoplay).'&sharing='.esc_attr($share_button).'&download='.esc_attr($download).'&show_user='.esc_attr($username).'&show_playcount='.esc_attr($play_count).'&buying='.esc_attr($buy_button).'&color='.$control_color.'&visual='.esc_attr($visual_player).'">';
+					$output  .= ' src="https://w.soundcloud.com/player/?url=' . esc_url( $link ) . '&auto_play=' . esc_attr( $autoplay ) . '&sharing=' . esc_attr( $share_button ) . '&download=' . esc_attr( $download ) . '&show_user=' . esc_attr( $username ) . '&show_playcount=' . esc_attr( $play_count ) . '&buying=' . esc_attr( $buy_button ) . '&color=' . $control_color . '&visual=' . esc_attr( $visual_player ) . '">';
 				$output  .= '</iframe>';
 			$output  .= '</div>';
 		$output  .= '</div>';

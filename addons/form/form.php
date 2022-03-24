@@ -907,7 +907,7 @@ class WPPB_Addon_Form{
 		ob_start();
 		if (is_array($input_items) && count($input_items)){
 			?>
-            <form method="post" enctype="multipart/form-data" class="wppb-form-addon">
+            <form method="post" enctype="multipart/form-data" class="wppb-form-addon" data-form-id="<?php echo esc_attr( $form_data['addon_id'] ); ?>">
 				<?php wp_nonce_field( 'wppb_form_submit_action', 'wppb_form_nonce_field' ); ?>
                 <input type="hidden" name="wppb_form_data" value="<?php echo esc_attr(json_encode($form_data)); ?>">
                 <div class="wppb-form-msg"></div>

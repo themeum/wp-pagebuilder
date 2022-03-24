@@ -240,7 +240,8 @@ If any bug is found, Please let us know by posting on the support section of thi
 = 1.2.8 =
 Fix: Fixed Post Grid Addon Layout Breaking Issue
 Fix: Known Functional Issue
-Fix: Tutor Course Widget Thumbnail Issue
+Fix: Tutor Course Widget Thumbnail Image Issue
+Fix: Multiple Form in Single Page Not Working Issue
 
 = 1.2.7 - February 2, 2022 =
 Update: Security Update

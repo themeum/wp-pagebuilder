@@ -283,12 +283,12 @@ class WPPB_Addon_Image{
 	public function render($data = null){
 		$settings 		= $data['settings'];
 		$upload_image 	= isset($settings['upload_image']) ? $settings['upload_image'] : array();
-		$lightbox 		= isset($settings['lightbox']) ? $settings['lightbox'] : '';
-        $lightbox_icon 	= isset($settings['lightbox_icon']) ? $settings['lightbox_icon'] : '';
-		$alt_text 		= isset($settings['alt_text']) ? $settings['alt_text'] : '';
-		$caption_text 	= isset($settings['caption_text']) ? $settings['caption_text'] : '';
+		$lightbox 		= isset($settings['lightbox']) ? sanitize_text_field( $settings['lightbox'] ) : '';
+        $lightbox_icon 	= isset($settings['lightbox_icon']) ? sanitize_text_field( $settings['lightbox_icon'] ) : '';
+		$alt_text 		= isset($settings['alt_text']) ? sanitize_text_field( $settings['alt_text'] ) : '';
+		$caption_text 	= isset($settings['caption_text']) ? sanitize_text_field( $settings['caption_text'] ) : '';
 		$image_link 	= isset($settings['image_link']) ? $settings['image_link'] : array();
-		$image_display  = isset($settings["image_display"]) ? $settings["image_display"] : 'imginlineblock';
+		$image_display  = isset($settings["image_display"]) ? sanitize_text_field( $settings["image_display"] ) : 'imginlineblock';
 
 		$img_url = '';
 		$output = '';
@@ -320,7 +320,7 @@ class WPPB_Addon_Image{
         }
 		$output .= '</div>';
 		if($caption_text){
-			$output .= '<figcaption class="wppb-addon-image-caption">'. esc_attr($caption_text).'</figcaption>';
+			$output .= '<figcaption class="wppb-addon-image-caption">'. esc_html($caption_text).'</figcaption>';
 		}
 		$output .= '</figure>';//wppb-image-addon-content-wrap
 		$output .= '</div>';

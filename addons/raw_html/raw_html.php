@@ -76,11 +76,11 @@ class WPPB_Addon_Raw_Html{
 	// Raw HTML Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings'];
-		$rawhtml 		= isset($settings['rawhtml']) ? $settings['rawhtml'] : '';
+		$rawhtml 		= isset($settings['rawhtml']) ? wp_kses_post( $settings['rawhtml'] ) : '';
 		$output = '';
 		$output  .= '<div class="wppb-raw-html-addon">';
-			if($rawhtml){
-				$output .= '<div class="wppb-raw-html-content">'. $rawhtml .'</div>';
+			if ( $rawhtml ) {
+				$output .= '<div class="wppb-raw-html-content">' . $rawhtml . '</div>';
 			}
 		$output .= '</div>';
 

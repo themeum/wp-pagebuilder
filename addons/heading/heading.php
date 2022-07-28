@@ -91,8 +91,8 @@ class WPPB_Addon_Heading{
 	// Headline Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings']; 
-		$title_selector = isset($settings["title_selector"]) ? $settings["title_selector"] : 'h2';
-		$title 			= isset($settings["title"]) ? $settings["title"] : '';
+		$title_selector = isset($settings["title_selector"]) ? sanitize_text_field( $settings["title_selector"] ) : 'h2';
+		$title 			= isset($settings["title"]) ? sanitize_text_field( $settings["title"] ) : '';
 		$title_link 	= isset($settings["title_link"]) ? $settings["title_link"] : array();
 
 		$output = '';

@@ -277,14 +277,14 @@ class WPPB_Addon_Pie_Progress{
 	public function render($data = null){
 		$settings 				= $data['settings'];
 
-		$progress_percentage 	= isset($settings['progress_percentage']) ? $settings['progress_percentage'] : '';
-		$progress_size 			= isset($settings['progress_size']) ? $settings['progress_size'] : '';
-		$progress_width  		= isset($settings['progress_width']) ? $settings['progress_width'] : '';
-		$show_icon_title 		= isset($settings['show_icon_title']) ? $settings['show_icon_title'] : 1;
-		$icon_list 				= isset($settings['icon_list']) ? $settings['icon_list'] : '';
-		$progress_title 		= isset($settings['progress_title']) ? $settings['progress_title'] : '';
-		$progress_bar 			= isset($settings['progress_bar']) ? $settings['progress_bar'] : '';
-		$progress_bar_active 	= isset($settings['progress_bar_active']) ? $settings['progress_bar_active'] : '';
+		$progress_percentage 	= isset($settings['progress_percentage']) ? sanitize_text_field( $settings['progress_percentage'] ) : '';
+		$progress_size 			= isset($settings['progress_size']) ? sanitize_text_field( $settings['progress_size'] ) : '';
+		$progress_width  		= isset($settings['progress_width']) ? sanitize_text_field( $settings['progress_width'] ) : '';
+		$show_icon_title 		= isset($settings['show_icon_title']) ? sanitize_text_field( $settings['show_icon_title'] ) : 1;
+		$icon_list 				= isset($settings['icon_list']) ? sanitize_text_field( $settings['icon_list'] ) : '';
+		$progress_title 		= isset($settings['progress_title']) ? sanitize_text_field( $settings['progress_title'] ) : '';
+		$progress_bar 			= isset($settings['progress_bar']) ? sanitize_text_field( $settings['progress_bar'] ) : '';
+		$progress_bar_active 	= isset($settings['progress_bar_active']) ? sanitize_text_field( $settings['progress_bar_active'] ) : '';
 
 		$output = '';
 
@@ -311,13 +311,13 @@ class WPPB_Addon_Pie_Progress{
 
 				$output .= '<div class="wppb-pie-chart" data-size="'. (int) $progress_size .'" data-percent="'.$progress_percentage.'" data-width="'.$progress_width.'" data-barcolor="'.$progress_bar_active.'" data-trackcolor="'.$progress_bar.'">';
 
-					if( $show_icon_title == 1 ) {
-						if( $progress_title ) {
-							$output .= '<div class="wppb-chart-title"><span>'.esc_attr($progress_title).'</span></div>';
+					if ( $show_icon_title == 1 ) {
+						if ( $progress_title ) {
+							$output .= '<div class="wppb-chart-title"><span>' . esc_html( $progress_title ) . '</span></div>';
 						}
 					} elseif ( $show_icon_title == 2 ) {
-						if( $icon_list ) {
-							$output .= '<div class="wppb-chart-icon"><span><i class="'.esc_attr($icon_list).'"></i></span></div>';
+						if ( $icon_list ) {
+							$output .= '<div class="wppb-chart-icon"><span><i class="' . esc_attr( $icon_list ) . '"></i></span></div>';
 						}
 					} else {
 						$output .= '<div class="wppb-chart-percent"><span></span></div>';

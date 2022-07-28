@@ -898,21 +898,21 @@ class WPPB_Addon_Pricing_Table{
 	public function render($data = null){
 		$settings 			= $data['settings'];
 
-		$title 				= isset($settings["title"]) ? $settings["title"] : '';
-		$subtitle 			= isset($settings["subtitle"]) ? $settings["subtitle"] : '';
-		$pt_icon_list 		= isset($settings["pt_icon_list"]) ? $settings["pt_icon_list"] : '';
-		$pricing 			= isset($settings["pricing"]) ? $settings["pricing"] : '';
-		$sales 				= isset($settings["sales"]) ? $settings["sales"] : '';
-		$currency 			= isset($settings["currency"]) ? $settings["currency"] : '';
-		$period 			= isset($settings["period"]) ? $settings["period"] : '';
-		$aditional_info 	= isset($settings["aditional_info"]) ? $settings["aditional_info"] : '';
+		$title 				= isset($settings["title"]) ? sanitize_text_field( $settings["title"] ) : '';
+		$subtitle 			= isset($settings["subtitle"]) ? sanitize_text_field( $settings["subtitle"] ) : '';
+		$pt_icon_list 		= isset($settings["pt_icon_list"]) ? sanitize_text_field( $settings["pt_icon_list"] ) : '';
+		$pricing 			= isset($settings["pricing"]) ? sanitize_text_field( $settings["pricing"] ) : '';
+		$sales 				= isset($settings["sales"]) ? sanitize_text_field( $settings["sales"] ) : '';
+		$currency 			= isset($settings["currency"]) ? sanitize_text_field( $settings["currency"] ) : '';
+		$period 			= isset($settings["period"]) ? sanitize_text_field( $settings["period"] ) : '';
+		$aditional_info 	= isset($settings["aditional_info"]) ? sanitize_textarea_field( $settings["aditional_info"] ) : '';
 		$btn_link 			= isset($settings["btn_link"]) ? $settings["btn_link"] : array();
-		$button_text 		= isset($settings["button_text"]) ? $settings["button_text"] : '';
-		$icon_list 			= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
-		$icon_position 		= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
+		$button_text 		= isset($settings["button_text"]) ? sanitize_text_field( $settings["button_text"] ) : '';
+		$icon_list 			= isset($settings["icon_list"]) ? sanitize_text_field( $settings["icon_list"] ) : '';
+		$icon_position 		= isset($settings["icon_position"]) ? sanitize_text_field( $settings["icon_position"] ) : '';
 		$pricing_feature 	= isset($settings["pricing_feature"]) ? $settings["pricing_feature"] : array();
-		$pricing_layout 	= isset($settings["pricing_layout"]) ? $settings["pricing_layout"] : '';
-		$button_display 	= isset($settings["button_display"]) ? $settings["button_display"] : 'btnblock';
+		$pricing_layout 	= isset($settings["pricing_layout"]) ? sanitize_text_field( $settings["pricing_layout"] ) : '';
+		$button_display 	= isset($settings["button_display"]) ? sanitize_text_field( $settings["button_display"] ) : 'btnblock';
 
 		$output = $button = $data_pt_media = '';
 
@@ -939,31 +939,31 @@ class WPPB_Addon_Pricing_Table{
 						if( !empty($title) ){
 							$output  .= '<div class="wppb-pricing-title-wrap">';
 								if( !empty($title) ){
-									$output  .= '<h3 class="wppb-pricing-title">'.wp_kses_post($title).'</h3>';
+									$output  .= '<h3 class="wppb-pricing-title">' . esc_html( $title ) . '</h3>';
 								}
-								if( !empty($subtitle) ){	
-									$output  .= '<span class="wppb-pricing-subtitle">'.wp_kses_post($subtitle).'</span>';
+								if ( ! empty( $subtitle ) ) {	
+									$output  .= '<span class="wppb-pricing-subtitle">' . esc_html( $subtitle ) . '</span>';
 								}
-								if( !empty($pricing) || !empty($sales) || !empty($currency) || !empty($period) ){
+								if ( ! empty( $pricing ) || ! empty( $sales ) || ! empty( $currency ) || ! empty( $period ) ) {
 									$output  .= '<div class="wppb-pricing-content">';	
-										if( !empty($pricing) ){
+										if ( ! empty( $pricing ) ) {
 											$output  .= '<div class="wppb-pricing-text-wrapper">';
-												if( !empty($sales) ){
+												if ( ! empty( $sales ) ) {
 													$output  .= '<span class="wppb-title-sales-wrapper">';
-														if( !empty($currency) ){
-															$output  .= '<span class="wppb-title-currency">'.esc_attr($currency).'</span>';
+														if ( ! empty( $currency ) ) {
+															$output  .= '<span class="wppb-title-currency">' . esc_html( $currency ) . '</span>';
 														}
-														$output  .= '<span class="wppb-title-sales">'.esc_attr($sales).'</span>';
+														$output  .= '<span class="wppb-title-sales">' . esc_html( $sales ) . '</span>';
 														$output  .= '</span>';
 												}
-												if( !empty($currency) ){
-													$output  .= '<sup><span class="wppb-title-currency">'.esc_attr($currency).'</span></sup>';
+												if ( ! empty( $currency ) ) {
+													$output  .= '<sup><span class="wppb-title-currency">' . esc_html( $currency ) . '</span></sup>';
 												}
-												if( !empty($pricing) ){
-													$output  .= '<span class="wppb-pricing-text">'.$pricing.'</span>';
+												if ( ! empty( $pricing ) ) {
+													$output  .= '<span class="wppb-pricing-text">' . esc_html( $pricing ) . '</span>';
 												}
-												if( !empty($period) ){
-													$output  .= '<sub class="wppb-title-period">'.esc_attr($period).'</sub>';
+												if ( ! empty( $period ) ) {
+													$output  .= '<sub class="wppb-title-period">' . esc_html( $period ) . '</sub>';
 												}
 											$output  .= '</div>';
 										}
@@ -973,16 +973,16 @@ class WPPB_Addon_Pricing_Table{
 						}
 						$output  .= $data_pt_media;
 
-						if ( is_array($pricing_feature) && count($pricing_feature)){
+						if ( is_array( $pricing_feature ) && count( $pricing_feature ) ) {
 							$output  .= '<div class="wppb-pricing-feature">';
 							foreach ( $pricing_feature as $key => $value ) {
 								$output  .= '<div class="repeater-'.$key.'">';
 									$output  .= '<div class="wppb-pricing-list">';
-									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="'.$value['icon_list'].'"></i>';
+									if ( ! empty( $value['icon_list'] ) ) {
+										$output  .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 									}
-									if( ! empty( $value['feature_text'] ) ) {
-										$output  .= '<span>'.$value['feature_text'].'</span>';
+									if ( ! empty( $value['feature_text'] ) ) {
+										$output  .= '<span>' . esc_html( $value['feature_text'] ) . '</span>';
 									}
 									$output  .= '</div>';
 								$output  .= '</div>';
@@ -990,64 +990,64 @@ class WPPB_Addon_Pricing_Table{
 							$output  .= '</div>';
 						}
 	
-						if( !empty($btn_link['link']) ) {
-							$output  .= '<a class="wppb-btn-pricing wppb-'.esc_attr($button_display).'" '.$nofolow.' href="' . esc_url($btn_link['link']) . '" target="'.esc_attr($target).'">' . $button  . '</a>';
+						if ( ! empty( $btn_link['link'] ) ) {
+							$output  .= '<a class="wppb-btn-pricing wppb-' . esc_attr( $button_display ) . '" ' . $nofolow . ' href="' . esc_url( $btn_link['link'] ) . '" target="' . esc_attr( $target ) . '">' . esc_html( $button )  . '</a>';
 						}
 	
-						if( !empty($aditional_info) ){
-							$output  .= '<span class="wppb-title-aditional-info">'.wp_kses_post($aditional_info).'</span>';
+						if ( ! empty( $aditional_info ) ) {
+							$output  .= '<span class="wppb-title-aditional-info">' . wp_kses_post( $aditional_info ) . '</span>';
 						}
 
 					$output  .= '</div>';//wppb-pricing-content-two
 
 				} elseif ( $pricing_layout == "three" ) {
 
-					if( !empty($title) || !empty($subtitle) ){
+					if ( ! empty( $title ) || ! empty( $subtitle ) ) {
 						$output  .= '<div class="wppb-pricing-title-wrap">';
-							if( !empty($title) ){
-								$output  .= '<h3 class="wppb-pricing-title">'.wp_kses_post($title).'</h3>';
+							if ( ! empty( $title ) ) {
+								$output  .= '<h3 class="wppb-pricing-title">' . esc_html( $title ) . '</h3>';
 							}
 							$output  .= '</div>';
 					}
 
-					if( !empty($pricing) || !empty($sales) || !empty($currency) || !empty($period) ){
+					if ( ! empty( $pricing ) || ! empty( $sales ) || ! empty( $currency ) || ! empty( $period ) ) {
 						$output  .= '<div class="wppb-pricing-content">';	
 
-							if( !empty($pricing) ){
+							if ( ! empty( $pricing ) ) {
 								$output  .= '<div class="wppb-pricing-text-wrapper">';
-									if( !empty($sales) ){
+									if ( ! empty( $sales ) ) {
 										$output  .= '<span class="wppb-title-sales-wrapper">';
-											if( !empty($currency) ){
-												$output  .= '<span class="wppb-title-currency">'.esc_attr($currency).'</span>';
+											if ( ! empty( $currency ) ) {
+												$output  .= '<span class="wppb-title-currency">' . esc_html( $currency ) . '</span>';
 											}
-											$output  .= '<span class="wppb-title-sales">'.esc_attr($sales).'</span>';
+											$output  .= '<span class="wppb-title-sales">' . esc_html( $sales ) . '</span>';
 											$output  .= '</span>';
 									}
 
-									if( !empty($currency) ){
-										$output  .= '<sup><span class="wppb-title-currency">'.esc_attr($currency).'</span></sup>';
+									if ( ! empty( $currency ) ) {
+										$output  .= '<sup><span class="wppb-title-currency">' . esc_html( $currency ) . '</span></sup>';
 									}
-									if( !empty($pricing) ){
-										$output  .= '<span class="wppb-pricing-text">'.$pricing.'</span>';
+									if ( ! empty( $pricing ) ) {
+										$output  .= '<span class="wppb-pricing-text">' . esc_html( $pricing ) . '</span>';
 									}
-									if( !empty($period) ){
-										$output  .= '<sub class="wppb-title-period">'.esc_attr($period).'</sub>';
+									if ( ! empty( $period ) ) {
+										$output  .= '<sub class="wppb-title-period">' . esc_html( $period ) . '</sub>';
 									}
 								$output  .= '</div>';
 							}
 						$output  .= '</div>';
 					}
 
-					if ( is_array($pricing_feature) && count($pricing_feature)){
+					if ( is_array( $pricing_feature ) && count( $pricing_feature ) ) {
 						$output  .= '<div class="wppb-pricing-feature">';
 							foreach ( $pricing_feature as $key => $value ) {
-								$output  .= '<div class="repeater-'.$key.'">';
+								$output  .= '<div class="repeater-'. esc_attr( $key ) .'">';
 									$output  .= '<div class="wppb-pricing-list">';
-									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="'.$value['icon_list'].'"></i>';
+									if ( ! empty( $value['icon_list'] ) ) {
+										$output  .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 									}
-									if( ! empty( $value['feature_text'] ) ) {
-										$output  .= '<span>'.$value['feature_text'].'</span>';
+									if ( ! empty( $value['feature_text'] ) ) {
+										$output  .= '<span>' . esc_html( $value['feature_text'] ) .'</span>';
 									}
 									$output  .= '</div>';
 								$output  .= '</div>';
@@ -1055,66 +1055,66 @@ class WPPB_Addon_Pricing_Table{
 						$output  .= '</div>';
 					}
 
-					if( !empty($btn_link['link']) ) {
-						$output  .= '<a class="wppb-btn-pricing  wppb-'.esc_attr($button_display).'" '.$nofolow.' href="' . esc_url($btn_link['link']) . '" target="'.esc_attr($target).'">' . $button  . '</a>';
+					if ( ! empty( $btn_link['link'] ) ) {
+						$output  .= '<a class="wppb-btn-pricing  wppb-' . esc_attr( $button_display ) . '" ' . $nofolow . ' href="' . esc_url( $btn_link['link'] ) . '" target="' . esc_attr( $target ) . '">' . esc_html( $button ) . '</a>';
 					}
 
-					if( !empty($aditional_info) ){
-						$output  .= '<span class="wppb-title-aditional-info">'.wp_kses_post($aditional_info).'</span>';
+					if ( ! empty( $aditional_info ) ) {
+						$output  .= '<span class="wppb-title-aditional-info">' . wp_kses_post( $aditional_info ) . '</span>';
 					}
 
 				} else {
 					$output  .= '<div class="wppb-pricing-content-one">';
-						if( !empty($title) ){
+						if ( ! empty( $title ) ) {
 							$output  .= '<div class="wppb-pricing-title-wrap">';
-								if( !empty($title) ){
-									$output  .= '<h3 class="wppb-pricing-title">'.wp_kses_post($title).'</h3>';
+								if ( ! empty( $title ) ) {
+									$output  .= '<h3 class="wppb-pricing-title">' . esc_html( $title ) . '</h3>';
 								}
-								if( !empty($subtitle) ){	
-									$output  .= '<span class="wppb-pricing-subtitle">'.wp_kses_post($subtitle).'</span>';
+								if ( ! empty( $subtitle ) ) {	
+									$output  .= '<span class="wppb-pricing-subtitle">' . esc_html( $subtitle ) . '</span>';
 								}
 								$output  .= '</div>';
 						}
 
 						$output  .= $data_pt_media;
 
-						if( !empty($pricing) || !empty($sales) || !empty($currency) || !empty($period) ){
+						if ( ! empty( $pricing ) || ! empty( $sales ) || ! empty( $currency ) || ! empty( $period ) ) {
 							$output  .= '<div class="wppb-pricing-content">';	
 
-								if( !empty($pricing) ){
+								if ( ! empty( $pricing ) ) {
 									$output  .= '<div class="wppb-pricing-text-wrapper">';
-										if( !empty($sales) ){
+										if ( ! empty( $sales ) ) {
 											$output  .= '<span class="wppb-title-sales-wrapper">';
-												if( !empty($currency) ){
-													$output  .= '<span class="wppb-title-currency">'.esc_attr($currency).'</span>';
+												if ( ! empty( $currency ) ) {
+													$output  .= '<span class="wppb-title-currency">' . esc_html( $currency ) . '</span>';
 												}
-												$output  .= '<span class="wppb-title-sales">'.esc_attr($sales).'</span>';
+												$output  .= '<span class="wppb-title-sales">' . esc_html( $sales ) . '</span>';
 												$output  .= '</span>';
 										}
 
-										if( !empty($currency) ){
-											$output  .= '<sup><span class="wppb-title-currency">'.esc_attr($currency).'</span></sup>';
+										if ( ! empty( $currency ) ) {
+											$output  .= '<sup><span class="wppb-title-currency">' . esc_html( $currency ) . '</span></sup>';
 										}
-										if( !empty($pricing) ){
-											$output  .= '<span class="wppb-pricing-text">'.$pricing.'</span>';
+										if ( ! empty( $pricing ) ) {
+											$output  .= '<span class="wppb-pricing-text">' . esc_html( $pricing ) . '</span>';
 										}
-										if( !empty($period) ){
-											$output  .= '<sub class="wppb-title-period">'.esc_attr($period).'</sub>';
+										if ( ! empty( $period ) ) {
+											$output  .= '<sub class="wppb-title-period">' . esc_html( $period ) . '</sub>';
 										}
 									$output  .= '</div>';
 								}
 							$output  .= '</div>';
 						}
-						if ( isset($pricing_feature) && count($pricing_feature)){
+						if ( isset( $pricing_feature ) && count( $pricing_feature ) ) {
 							$output  .= '<div class="wppb-pricing-feature">';
 							foreach ( $pricing_feature as $key => $value ) {
-								$output  .= '<div class="repeater-'.$key.'">';
+								$output  .= '<div class="repeater-' . esc_attr( $key ) . '">';
 									$output  .= '<div class="wppb-pricing-list">';
-									if( ! empty( $value['icon_list'] ) ) {
-										$output  .= '<i class="'.$value['icon_list'].'"></i>';
+									if ( ! empty( $value['icon_list'] ) ) {
+										$output  .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 									}
-									if( ! empty( $value['feature_text'] ) ) {
-										$output  .= '<span>'.$value['feature_text'].'</span>';
+									if ( ! empty( $value['feature_text'] ) ) {
+										$output  .= '<span>' . esc_html( $value['feature_text'] ) . '</span>';
 									}
 									$output  .= '</div>';
 								$output  .= '</div>';
@@ -1122,12 +1122,12 @@ class WPPB_Addon_Pricing_Table{
 							$output  .= '</div>';
 						}
 
-						if( !empty($btn_link['link']) ) {
-							$output  .= '<a class="wppb-btn-pricing  wppb-'.esc_attr($button_display).'" '.$nofolow.' href="' . esc_url($btn_link['link']) . '" target="'.esc_attr($target).'">' . $button  . '</a>';
+						if ( ! empty( $btn_link['link'] ) ) {
+							$output  .= '<a class="wppb-btn-pricing  wppb-' . esc_attr( $button_display ) . '" ' . $nofolow . ' href="' . esc_url( $btn_link['link'] ) . '" target="' . esc_attr( $target ) . '">' . esc_html( $button ) . '</a>';
 						}
 
-						if( !empty($aditional_info) ){
-							$output  .= '<span class="wppb-title-aditional-info">'.wp_kses_post($aditional_info).'</span>';
+						if ( !empty( $aditional_info ) ) {
+							$output  .= '<span class="wppb-title-aditional-info">' . wp_kses_post( $aditional_info ) . '</span>';
 						}
 					$output .= '</div>';	
 				}

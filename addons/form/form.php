@@ -881,12 +881,12 @@ class WPPB_Addon_Form{
 	public function generateDefaultForm($data = array()){
 		$settings 				= $data['settings'];
 		$classlist				= '';
-		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
-		$button_text 			= isset($settings["button_text"]) ? $settings["button_text"] : 'Submit Form';
-		$icon_list 				= isset($settings["icon_list"]) ? $settings["icon_list"] : '';
-		$icon_position 			= isset($settings["icon_position"]) ? $settings["icon_position"] : '';
-		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
-		$fullwidth_button 		= isset($settings["fullwidth_button"]) ? $settings["fullwidth_button"] : '';
+		$form_type 				= isset($settings["form_type"]) ? sanitize_text_field( $settings["form_type"] ) : '';
+		$button_text 			= isset($settings["button_text"]) ? sanitize_text_field( $settings["button_text"] ) : 'Submit Form';
+		$icon_list 				= isset($settings["icon_list"]) ? sanitize_text_field( $settings["icon_list"] ) : '';
+		$icon_position 			= isset($settings["icon_position"]) ? sanitize_text_field( $settings["icon_position"] ) : '';
+		$textarea_resize 		= isset($settings["textarea_resize"]) ? sanitize_text_field( $settings["textarea_resize"] ) : '';
+		$fullwidth_button 		= isset($settings["fullwidth_button"]) ? sanitize_text_field( $settings["fullwidth_button"] ) : '';
 		
 		$classlist .= (isset($fullwidth_button) && $fullwidth_button) ? ' wppb-btn-' . $fullwidth_button : '';
 
@@ -907,7 +907,7 @@ class WPPB_Addon_Form{
 		ob_start();
 		if (is_array($input_items) && count($input_items)){
 			?>
-            <form method="post" enctype="multipart/form-data" class="wppb-form-addon">
+            <form method="post" enctype="multipart/form-data" class="wppb-form-addon" data-form-id="<?php echo esc_attr( $form_data['addon_id'] ); ?>">
 				<?php wp_nonce_field( 'wppb_form_submit_action', 'wppb_form_nonce_field' ); ?>
                 <input type="hidden" name="wppb_form_data" value="<?php echo esc_attr(json_encode($form_data)); ?>">
                 <div class="wppb-form-msg"></div>
@@ -917,11 +917,11 @@ class WPPB_Addon_Form{
 						$fieldAttr = ' ';
 						$fieldAttrA = array();
 						if ( ! empty($field['placeholder'])){
-							$fieldAttrA['placeholder'] = $field['placeholder'];
+							$fieldAttrA['placeholder'] = sanitize_text_field( $field['placeholder'] );
 						}
 						if ( isset($field['require']) && (int) $field['require'] === 1) {
 							$fieldAttrA['data-required'] = 'true';
-							$fieldAttrA['data-label'] = ( isset($field['label']) ? $field['label'] : '' );
+							$fieldAttrA['data-label'] = ( isset($field['label']) ? sanitize_text_field( $field['label'] ) : '' );
 						}
 						foreach ($fieldAttrA as $attrKey => $attr){
 							$fieldAttr .= $attrKey.'="'.$attr.'" ';
@@ -930,7 +930,7 @@ class WPPB_Addon_Form{
                         <div class="wppb-form-field-repeat repeater-<?php echo $fieldIndex;?>">
                             <div class="wppb-form-field-wrap">
 								<?php if ( isset($field['label']) && $field['label'] && isset($settings['label_show']) && $settings['label_show'] ) { ?>
-									<label class="wppb-form-field-label"><?php echo $field['label']; ?><?php if( (isset($field['require']) && $field['require']) == 1) { echo "<span class='require-sign'>*</span>";}?></label>
+									<label class="wppb-form-field-label"><?php echo esc_html( $field['label'] ); ?><?php if( (isset($field['require']) && $field['require']) == 1) { echo "<span class='require-sign'>*</span>";}?></label>
 								<?php }?>
 								<?php if(isset($field['field_type']) && $field['field_type'] ){ ?>
 									<?php include WPPB_DIR_PATH."addons/form/fields/{$field['field_type']}.php"; ?>
@@ -944,7 +944,7 @@ class WPPB_Addon_Form{
 
 				<?php if ($enableSimpleRecaptcha){ ?>
                     <div class="wppb-custom-recaptcha">
-                        <span class="wppb-form-recaptcha-input"><input type="text" name="wppb_default_form[wppb_form_recaptcha_answer]" data-required="true" placeholder="10+5 = ?" data-label="<?php _e("WPPB Simple reCaptcha", 'wp-pagebuilder'); ?>"/></span>
+                        <span class="wppb-form-recaptcha-input"><input type="text" name="wppb_default_form[wppb_form_recaptcha_answer]" data-required="true" placeholder="10+5 = ?" data-label="<?php esc_attr_e("WPPB Simple reCaptcha", 'wp-pagebuilder'); ?>"/></span>
                     </div>
 				<?php } ?>
 
@@ -953,7 +953,7 @@ class WPPB_Addon_Form{
 					$google_recaptcha_site_key = isset($settings['google_recaptcha_site_key']) ? $settings['google_recaptcha_site_key'] : '';
 					?>
                     <div class="wppb-form-google-recaptcha google_recaptcha_wrap">
-                        <div class="g-recaptcha" data-sitekey="<?php echo $google_recaptcha_site_key; ?>"></div>
+                        <div class="g-recaptcha" data-sitekey="<?php echo esc_attr( $google_recaptcha_site_key ); ?>"></div>
                     </div>
 					<?php
 				} ?>
@@ -1009,7 +1009,7 @@ class WPPB_Addon_Form{
 
 		$responseData = array();
 		$responseData['enable_redirect_url'] = false;
-		$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
+		//$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
 
 
 		//Checking Recaptcha if exists?
@@ -1083,9 +1083,9 @@ class WPPB_Addon_Form{
 		}
 
 
-		$toEmail = ! empty($formSettings['wppb_default_form_to_email']) ? $formSettings['wppb_default_form_to_email'] : '';
-		$fromEmail = ! empty($formSettings['wppb_default_form_from_email']) ? $formSettings['wppb_default_form_from_email'] : '';
-		$subject = ! empty($formSettings['wppb_default_form_subject']) ? $formSettings['wppb_default_form_subject'] : '';
+		$toEmail = ! empty($formSettings['wppb_default_form_to_email']) ? sanitize_email( $formSettings['wppb_default_form_to_email'] ) : '';
+		$fromEmail = ! empty($formSettings['wppb_default_form_from_email']) ? sanitize_email( $formSettings['wppb_default_form_from_email'] ) : '';
+		$subject = ! empty($formSettings['wppb_default_form_subject']) ? sanitize_text_field( $formSettings['wppb_default_form_subject'] ) : '';
 
 		$date = date(get_option('date_format'));
 		$time = date(get_option('time_format'));
@@ -1109,11 +1109,10 @@ class WPPB_Addon_Form{
 
 		//Setting Mail Headers
 		$headers = array('Content-Type: text/html; charset=UTF-8');
-
 		//Send E-Mail Now or through error msg
 		try{
 			$isMail = wp_mail($toEmail, $subject, $htmlEmail, $headers );
-			if ($isMail){
+			if ( $isMail ) {
 				$responseData['msg'] = __('Thank you for submitting form', 'wp-pagebuilder');
 				if ( ! empty($formSettings['success_message'])){
 					$responseData['msg'] = $formSettings['success_message'];
@@ -1123,8 +1122,11 @@ class WPPB_Addon_Form{
 					$responseData['enable_redirect_url'] = (bool) $formSettings['enable_redirect_url'];
 					$responseData['redirect_url'] = $formSettings['redirect_url'];
 				}
+				wp_send_json_success($responseData);
+			} else {
+				$responseData['msg'] = __('Something went wrong, please try again later', 'wp-pagebuilder');
+				wp_send_json_error( $responseData );
 			}
-			wp_send_json_success($responseData);
 		}catch (\Exception $e){
 			$responseData['msg'] = $e->getMessage();
 			wp_send_json_error($responseData);
@@ -1194,9 +1196,9 @@ class WPPB_Addon_Form{
 	// Form
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$form_type 				= isset($settings["form_type"]) ? $settings["form_type"] : '';
-		$cf7_form 				= isset($settings["cf7_form"]) ? $settings["cf7_form"] : '';
-		$we_form 				= isset($settings["we_form"]) ? $settings["we_form"] : '';
+		$form_type 				= isset($settings["form_type"]) ? sanitize_text_field( $settings["form_type"] ) : '';
+		$cf7_form 				= isset($settings["cf7_form"]) ? sanitize_text_field( $settings["cf7_form"] ) : '';
+		$we_form 				= isset($settings["we_form"]) ? sanitize_text_field( $settings["we_form"] ) : '';
 		$textarea_resize 		= isset($settings["textarea_resize"]) ? $settings["textarea_resize"] : '';
 
 		$output = '';

@@ -574,47 +574,47 @@ class WPPB_Addon_Person{
 	public function render($data = null){
 		$settings 		= $data['settings'];
 		$person_image 	= isset($settings['person_image']) ? $settings['person_image'] : array();
-		$person_layout 	= isset($settings['person_layout']) ? $settings['person_layout'] : '';
-		$name 			= isset($settings['name']) ? $settings['name'] : '';
+		$person_layout 	= isset($settings['person_layout']) ? sanitize_text_field( $settings['person_layout'] ) : '';
+		$name 			= isset($settings['name']) ? sanitize_text_field( $settings['name'] ) : '';
 		$name_link 		= isset($settings['name_link']) ? $settings['name_link'] : array();
-		$designation 	= isset($settings['designation']) ? $settings['designation'] : '';
-		$email 			= isset($settings['email']) ? $settings['email'] : '';
-		$introtext 		= isset($settings['introtext']) ? $settings['introtext'] : '';
-		$show_social 	= isset($settings['show_social']) ? $settings['show_social'] : '';
+		$designation 	= isset($settings['designation']) ? sanitize_text_field( $settings['designation'] ) : '';
+		$email 			= isset($settings['email']) ? sanitize_email( $settings['email'] ) : '';
+		$introtext 		= isset($settings['introtext']) ? sanitize_text_field( $settings['introtext'] ) : '';
+		$show_social 	= isset($settings['show_social']) ? sanitize_text_field( $settings['show_social'] ) : '';
 		$social_item 	= isset($settings['social_item']) ? $settings['social_item'] : array();
 
 		$output = $img_url = '' ;
 
-		if(! empty($person_image['url'])){
+		if (! empty( $person_image['url'] ) ) {
 			$img_url = $person_image['url'];
 		}
 		$target = $name_link['window'] ? 'target=_blank' : "";
 		$nofolow = $name_link['nofolow'] ? 'rel=nofolow' : "";
 
 		$output  .= '<div class="wppb-person-addon">';
-			$output  .= '<div class="wppb-person-addon-content person-layout-'.esc_attr($person_layout).'">';
+			$output  .= '<div class="wppb-person-addon-content person-layout-' . esc_attr( $person_layout ) . '">';
 
-				if( $person_layout == "two" ){
-					if($img_url) {
+				if ( $person_layout == "two" ) {
+					if ( $img_url ) {
 						$output  .= '<div class="wppb-person-image">';
-						$output  .= '<img class="wppb-person-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+						$output  .= '<img class="wppb-person-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 						$output  .= '</div>';//wppb-person-image
 					}
 					$output  .= '<div class="wppb-person-information-wrap">';
 						$output  .= '<div class="wppb-person-information">';
-							if( $name_link['link'] ){
-								$output .= '<span class="wppb-person-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></span>';
+							if ( $name_link['link'] ) {
+								$output .= '<span class="wppb-person-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link['link'] ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></span>';
 							} else {
-								$output .= '<span class="wppb-person-name">' . wp_kses_post($name) .'</span>';
+								$output .= '<span class="wppb-person-name">' . esc_html( $name ) . '</span>';
 							}
-							if($designation) { $output  .= '<span class="wppb-person-designation">' . wp_kses_post($designation) . '</span>'; }
-							if($email) { $output  .= '<span class="wppb-person-email">' . sanitize_email($email) . '</span>'; }
-							if($introtext) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post($introtext) . '</div>'; }
+							if ( $designation ) { $output  .= '<span class="wppb-person-designation">' . esc_html( $designation ) . '</span>'; }
+							if ( $email ) { $output  .= '<span class="wppb-person-email">' . esc_html( $email ) . '</span>'; }
+							if ( $introtext ) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post( $introtext ) . '</div>'; }
 						$output  .= '</div>';//wppb-person-information
-						if( $show_social == 1 ) {
+						if ( $show_social == 1 ) {
 							$output  .= '<ul class="wppb-person-social">';
 							foreach ( $social_item as $key => $value ) {
-								$output  .= '<li class="repeater-'.$key.'"><span class="wppb-person-social-list"><a href="'.esc_url($value['socialurl']).'" target="_blank"><i class="'.esc_attr($value['icon_list']).'"></i></a></span></li>';
+								$output  .= '<li class="repeater-' . esc_attr( $key ) . '"><span class="wppb-person-social-list"><a href="' . esc_url( $value['socialurl'] ) . '" target="_blank"><i class="' . esc_attr( $value['icon_list'] ) . '"></i></a></span></li>';
 							}
 							$output  .= '</ul>';
 						}
@@ -622,26 +622,26 @@ class WPPB_Addon_Person{
 
 				} elseif ( $person_layout == "three" ) {
 					$output  .= '<div class="wppb-person-media">';
-						if($img_url) {
+						if ( $img_url ) {
 							$output  .= '<div class="wppb-person-image">';
-							$output  .= '<img class="wppb-person-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+							$output  .= '<img class="wppb-person-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 							$output  .= '</div>';//wppb-person-image
 						}
 						$output  .= '<div class="wppb-person-media-body">';
 							$output  .= '<div class="wppb-person-information">';
-								if( $name_link['link'] ){
-									$output .= '<span class="wppb-person-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></span>';
+								if ( $name_link['link'] ) {
+									$output .= '<span class="wppb-person-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link['link'] ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></span>';
 								} else {
-									$output .= '<span class="wppb-person-name">' . wp_kses_post($name) .'</span>';
+									$output .= '<span class="wppb-person-name">' . esc_html( $name ) . '</span>';
 								}
-								if($designation) { $output  .= '<span class="wppb-person-designation">' . wp_kses_post($designation) . '</span>'; }
-								if($email) { $output  .= '<span class="wppb-person-email">' . sanitize_email($email) . '</span>'; }
-								if($introtext) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post($introtext) . '</div>'; }
+								if ( $designation ) { $output  .= '<span class="wppb-person-designation">' . esc_html( $designation ) . '</span>'; }
+								if ( $email ) { $output  .= '<span class="wppb-person-email">' . esc_html( $email ) . '</span>'; }
+								if ( $introtext ) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post( $introtext ) . '</div>'; }
 							$output  .= '</div>';//wppb-person-information
-							if( $show_social == 1 ) {
+							if ( $show_social == 1 ) {
 								$output  .= '<ul class="wppb-person-social">';
 								foreach ( $social_item as $key => $value ) {
-									$output  .= '<li class="repeater-'.$key.'"><span class="wppb-person-social-list"><a href="'.esc_url($value['socialurl']).'" target="_blank"><i class="'.esc_attr($value['icon_list']).'"></i></a></span></li>';
+									$output  .= '<li class="repeater-' . esc_attr( $key ) . '"><span class="wppb-person-social-list"><a href="' . esc_url( $value['socialurl'] ) . '" target="_blank"><i class="' . esc_attr( $value['icon_list'] ) . '"></i></a></span></li>';
 								}
 								$output  .= '</ul>';
 							}
@@ -650,26 +650,26 @@ class WPPB_Addon_Person{
 					
 				} elseif ( $person_layout == "four" ) {
 					$output  .= '<div class="wppb-person-media">';
-						if($img_url) {
+						if ( $img_url ) {
 							$output  .= '<div class="wppb-person-image">';
-							$output  .= '<img class="wppb-person-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+							$output  .= '<img class="wppb-person-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 							$output  .= '</div>';//wppb-person-image
 						}
 						$output  .= '<div class="wppb-person-media-body">';
 							$output  .= '<div class="wppb-person-information">';
-								if( $name_link['link'] ){
-									$output .= '<span class="wppb-person-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></span>';
+								if ( $name_link['link'] ) {
+									$output .= '<span class="wppb-person-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link['link'] ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></span>';
 								} else {
-									$output .= '<span class="wppb-person-name">' . wp_kses_post($name) .'</span>';
+									$output .= '<span class="wppb-person-name">' . esc_html( $name ) . '</span>';
 								}
-								if($designation) { $output  .= '<span class="wppb-person-designation">' . wp_kses_post($designation) . '</span>'; }
-								if($email) { $output  .= '<span class="wppb-person-email">' . sanitize_email($email) . '</span>'; }
-								if($introtext) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post($introtext) . '</div>'; }
+								if ( $designation ) { $output  .= '<span class="wppb-person-designation">' . esc_html( $designation ) . '</span>'; }
+								if ( $email ) { $output  .= '<span class="wppb-person-email">' . esc_html( $email ) . '</span>'; }
+								if ( $introtext ) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post( $introtext ) . '</div>'; }
 							$output  .= '</div>';//wppb-person-information
-							if( $show_social == 1 ) {
+							if ( $show_social == 1 ) {
 								$output  .= '<ul class="wppb-person-social">';
 								foreach ( $social_item as $key => $value ) {
-									$output  .= '<li class="repeater-'.$key.'"><span class="wppb-person-social-list"><a href="'.esc_url($value['socialurl']).'" target="_blank"><i class="'.esc_attr($value['icon_list']).'"></i></a></span></li>';
+									$output  .= '<li class="repeater-' . esc_attr( $key ) . '"><span class="wppb-person-social-list"><a href="' . esc_url( $value['socialurl'] ) . '" target="_blank"><i class="' . esc_attr( $value['icon_list'] ) . '"></i></a></span></li>';
 								}
 								$output  .= '</ul>';
 							}
@@ -677,52 +677,52 @@ class WPPB_Addon_Person{
 					$output  .= '</div>';
 				} elseif ( $person_layout == "five" ) {
 					$output  .= '<div class="wppb-person-five-wrap">';
-						if($img_url) {
+						if ( $img_url ) {
 							$output  .= '<div class="wppb-person-image">';
-							$output  .= '<img class="wppb-person-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+							$output  .= '<img class="wppb-person-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 							$output  .= '</div>';//wppb-person-image
 						}
 						$output  .= '<div class="wppb-person-information-wrap wppb-person-five-overlay">';
-							if( $show_social == 1 ) {
+							if ( $show_social == 1 ) {
 								$output  .= '<ul class="wppb-person-social">';
 								foreach ( $social_item as $key => $value ) {
-									$output  .= '<li class="repeater-'.$key.'"><span class="wppb-person-social-list"><a href="'.esc_url($value['socialurl']).'" target="_blank"><i class="'.esc_attr($value['icon_list']).'"></i></a></span></li>';
+									$output  .= '<li class="repeater-' . esc_attr( $key ) . '"><span class="wppb-person-social-list"><a href="' . esc_url( $value['socialurl'] ) . '" target="_blank"><i class="' . esc_attr( $value['icon_list'] ) . '"></i></a></span></li>';
 								}
 								$output  .= '</ul>';
 							}
 							$output  .= '<div class="wppb-person-information">';
-								if( $name_link['link'] ){
-									$output .= '<span class="wppb-person-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></span>';
+								if ( $name_link['link'] ) {
+									$output .= '<span class="wppb-person-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link['link'] ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></span>';
 								} else {
-									$output .= '<span class="wppb-person-name">' . wp_kses_post($name) .'</span>';
+									$output .= '<span class="wppb-person-name">' . esc_html( $name ) . '</span>';
 								}
-								if($designation) { $output  .= '<span class="wppb-person-designation">' . wp_kses_post($designation) . '</span>'; }
-								if($email) { $output  .= '<span class="wppb-person-email">' . sanitize_email($email) . '</span>'; }
-								if($introtext) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post($introtext) . '</div>'; }
+								if ( $designation ) { $output  .= '<span class="wppb-person-designation">' . esc_html( $designation ) . '</span>'; }
+								if ( $email ) { $output  .= '<span class="wppb-person-email">' . esc_html( $email ) . '</span>'; }
+								if ( $introtext ) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post( $introtext ) . '</div>'; }
 							$output  .= '</div>';//wppb-person-information
 						$output  .= '</div>';
 					$output  .= '</div>';
 					
 				} else {
-					if($img_url) {
+					if ( $img_url ) {
 						$output  .= '<div class="wppb-person-image">';
-						$output  .= '<img class="wppb-person-addon-img" src="'.esc_url($img_url).'" alt="'. esc_attr($name) .'">';
+						$output  .= '<img class="wppb-person-addon-img" src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $name ) . '">';
 						$output  .= '</div>';//wppb-person-image
 					}
 					$output  .= '<div class="wppb-person-information">';
-						if( $name_link['link'] ){
-							$output .= '<span class="wppb-person-name"><a '.esc_attr($nofolow).' href="'.esc_url($name_link['link']).'" '.esc_attr($target).'>' . wp_kses_post($name) .'</a></span>';
+						if ( $name_link['link'] ) {
+							$output .= '<span class="wppb-person-name"><a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $name_link['link'] ) . '" ' . esc_attr( $target ) . '>' . esc_html( $name ) . '</a></span>';
 						} else {
-							$output .= '<span class="wppb-person-name">' . wp_kses_post($name) .'</span>';
+							$output .= '<span class="wppb-person-name">' . esc_html( $name ) . '</span>';
 						}
-						if($designation) { $output  .= '<span class="wppb-person-designation">' . wp_kses_post($designation) . '</span>'; }
-						if($email) { $output  .= '<span class="wppb-person-email">' . sanitize_email($email) . '</span>'; }
-						if($introtext) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post($introtext) . '</div>'; }
+						if ( $designation ) { $output  .= '<span class="wppb-person-designation">' . esc_html( $designation ) . '</span>'; }
+						if ( $email ) { $output  .= '<span class="wppb-person-email">' . esc_html( $email ) . '</span>'; }
+						if ( $introtext ) { $output  .= '<div class="wppb-person-introtext">' . wp_kses_post( $introtext ) . '</div>'; }
 					$output  .= '</div>';//wppb-person-information
-					if( $show_social == 1 ) {
+					if ( $show_social == 1 ) {
 						$output  .= '<ul class="wppb-person-social">';
 						foreach ( $social_item as $key => $value ) {
-							$output  .= '<li class="repeater-'.$key.'"><span class="wppb-person-social-list"><a href="'.esc_url($value['socialurl']).'" target="_blank"><i class="'.esc_attr($value['icon_list']).'"></i></a></span></li>';
+							$output  .= '<li class="repeater-' . esc_attr( $key ) . '"><span class="wppb-person-social-list"><a href="' . esc_url( $value['socialurl'] ) . '" target="_blank"><i class="' . esc_attr( $value['icon_list'] ) . '"></i></a></span></li>';
 						}
 						$output  .= '</ul>';
 					}

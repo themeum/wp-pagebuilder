@@ -149,19 +149,19 @@ class WPPB_Addon_Alert{
 	// Alert Render HTML
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$alert_title 			= isset($settings['alert_title']) ? $settings['alert_title'] : '';
-		$alert_description 		= isset($settings['alert_description']) ? $settings['alert_description'] : '';
+		$alert_title 			= isset($settings['alert_title']) ? sanitize_text_field( $settings['alert_title'] ) : '';
+		$alert_description 		= isset($settings['alert_description']) ? sanitize_text_field( $settings['alert_description'] ) : '';
 		$alert_close 			= (bool) isset($settings['alert_close']) ? $settings['alert_close'] : false;
-		$alert_style 			= isset($settings['alert_style']) ? $settings['alert_style'] : 'info';
+		$alert_style 			= isset($settings['alert_style']) ? sanitize_text_field( $settings['alert_style'] ) : 'info';
 		$output = '';
 
 		$output  .= '<div class="wppb-alert-addon">';
 			$output  .= '<div class="wppb-alert-addon-content wppb-alert-'.esc_attr($alert_style).'">';
 			if ($alert_title) {
-				$output .= '<span class="wppb-alert-title">' . esc_attr($alert_title) .'</span>';
+				$output .= '<span class="wppb-alert-title">' . esc_html( $alert_title ) .'</span>';
 			}
 			if ($alert_description) {
-				$output .= '<span class="wppb-alert-desc">' . esc_attr($alert_description) . '</span>';
+				$output .= '<span class="wppb-alert-desc">' . wp_kses_post( $alert_description ) . '</span>';
 			}
 			if ($alert_close == 1) {
 				$output .= '<button type="button" class="wppb-close-alert" data-dismiss="wppb-alert"><span aria-hidden="true">&times;</span></button>';

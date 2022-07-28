@@ -314,25 +314,25 @@ class WPPB_Addon_Social_Button{
 		$settings 		= $data['settings'];
 
 		$social_item    = isset($settings['social_item']) ? $settings['social_item'] : array();
-		$shape 			= isset($settings['shape']) ? $settings['shape'] : '';
-		$btn_size       = isset($settings['btn_size']) ? $settings['btn_size'] : '';
+		$shape 			= isset($settings['shape']) ? sanitize_text_field( $settings['shape'] ) : '';
+		$btn_size       = isset($settings['btn_size']) ? sanitize_text_field( $settings['btn_size'] ) : '';
 
 		$output  = $socialdesign = '' ;
-		$socialdesign .= (isset($shape) && $shape) ? ' wppb-social-'.$shape : '';
-		$socialdesign .= (isset($btn_size) && $btn_size) ? ' wppb-social-'.$btn_size : '';
+		$socialdesign .= ( isset( $shape ) && $shape ) ? ' wppb-social-' . $shape : '';
+		$socialdesign .= ( isset( $btn_size ) && $btn_size ) ? ' wppb-social-' . $btn_size : '';
 
 		$output  .= '<div class="wppb-social-addon">';
 			$output  .= '<div class="wppb-social-addon-content">';
-				$output  .= '<ul class="wppb-social-button '.esc_attr($socialdesign).'">';
-				if (is_array($social_item) && count($social_item)){
+				$output  .= '<ul class="wppb-social-button ' . esc_attr( $socialdesign ) . '">';
+				if ( is_array( $social_item ) && count( $social_item ) ) {
 					foreach ( $social_item as $key => $value ) {
 						$classlist = '';
-						if( isset($value['socialurl']['link'])) {
-							$classlist .= ($value['style'] && $value['style']) ? ' wppb-social-' . $value['style'] : '';
-							$output  .= '<li class="wppb-social-button-list repeater-'.$key.'">';
+						if ( isset( $value['socialurl']['link'] ) ) {
+							$classlist .= ( $value['style'] && $value['style'] ) ? ' wppb-social-' . $value['style'] : '';
+							$output  .= '<li class="wppb-social-button-list repeater-' . esc_attr( $key ) . '">';
 							$target = $value['socialurl']['window'] ? 'target=_blank' : 'target=_self';
 							$nofolow = $value['socialurl']['nofolow'] ? 'rel=nofolow' : "";
-							$output  .= '<a '.esc_attr($nofolow).' href="'.esc_url($value['socialurl']['link']).'" '.esc_attr($target).' class="wppb-social-btn '.esc_attr($classlist).'"><i class="'.esc_attr($value['icon_list']).'"></i><span>'.esc_attr($value['socialtext']).'</span>';
+							$output  .= '<a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $value['socialurl']['link'] ) . '" ' . esc_attr( $target ) . ' class="wppb-social-btn ' . esc_attr( $classlist ) . '"><i class="' . esc_attr( $value['icon_list'] ) . '"></i><span>' . esc_html( $value['socialtext'] ) . '</span>';
 							$output  .= '</a></li>';
 						}
 					}

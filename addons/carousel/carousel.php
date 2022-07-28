@@ -1084,7 +1084,7 @@ if ( ! class_exists('WPPB_Addon_Carousel')) {
 			?>
             <div class="wppb-carousel-addon">
             <div class="wppb-carousel-addon-content">
-                <div class="wppb-carousel stick-dots" data-addon-id="<?php echo $data['id'];?>" data-settings="<?php echo esc_attr(json_encode($attrSettings));  ?>" >
+                <div class="wppb-carousel stick-dots" data-addon-id="<?php echo esc_attr( $data['id'] ); ?>" data-settings="<?php echo esc_attr(json_encode($attrSettings));  ?>" >
 
 					<?php foreach ( $items as $key => $value ) {
 
@@ -1182,29 +1182,29 @@ if ( ! class_exists('WPPB_Addon_Carousel')) {
 					if ( get_wppb_array_value_by_key( $value, 'media_type' ) == "media_video" ) {
 						if ( $video_url ) {
 							$ImageMedia .= '<div class="wppb-video-slide">';
-							$ImageMedia .= '<iframe height="280" width:="100%" class="wppb-embed-responsive-item" src="' . $videosrc . '" allowFullScreen></iframe>';
+							$ImageMedia .= '<iframe height="280" width:="100%" class="wppb-embed-responsive-item" src="' . esc_url( $videosrc ) . '" allowFullScreen></iframe>';
 							$ImageMedia .= '</div>';
 						} else {
 							if ( ! empty($value['imageupload']['url'])){
-								$ImageMedia .= '<img src="'.$value['imageupload']['url'].'" class="animated" '.$ImageAnimation.' alt="image" />';
+								$ImageMedia .= '<img src="' . esc_url( $value['imageupload']['url'] ) . '" class="animated" '.$ImageAnimation.' alt="image" />';
 							}
 						}
 					} else {
 						if ( ! empty($value['imageupload']['url'])){
-							$ImageMedia .= '<img src="'.$value['imageupload']['url'].'" class="animated" '.$ImageAnimation.' alt="image" />';
+							$ImageMedia .= '<img src="' . esc_url( $value['imageupload']['url'] ) . '" class="animated" '.$ImageAnimation.' alt="image" />';
 						}
 					}
 
 					// button 1
 					$button1 = '';
 					if ( ! empty( get_wppb_array_value_by_key( $value, 'button_link' )['link'] ) ) {
-						$button1 .= '<a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $value['button_link']['link'] ) . '" ' . esc_attr( $target ) . ' class="animated wppb-carousel-btn wppb-btn-carousel1" '.$Button1Animation.'>' . get_wppb_array_value_by_key( $value, 'button_text' ) . '</a>';
+						$button1 .= '<a ' . esc_attr( $nofolow ) . ' href="' . esc_url( $value['button_link']['link'] ) . '" ' . esc_attr( $target ) . ' class="animated wppb-carousel-btn wppb-btn-carousel1" '.$Button1Animation.'>' . esc_html( get_wppb_array_value_by_key( $value, 'button_text' ) ) . '</a>';
 					}
 
 					//button 2
 					$button2 = '';
 					if ( ! empty( get_wppb_array_value_by_key( $value, 'button_link2' )['link'] ) ) {
-						$button2 .= '<a ' . esc_attr( $nofolow2 ) . ' href="' . esc_url( $value['button_link2']['link'] ) . '" ' . esc_attr( $target2 ) . ' class="animated wppb-carousel-btn wppb-btn-carousel2" '.$Button2Animation.'>' . get_wppb_array_value_by_key( $value, 'button_text2' ) . '</a>';
+						$button2 .= '<a ' . esc_attr( $nofolow2 ) . ' href="' . esc_url( $value['button_link2']['link'] ) . '" ' . esc_attr( $target2 ) . ' class="animated wppb-carousel-btn wppb-btn-carousel2" '.$Button2Animation.'>' . esc_html( get_wppb_array_value_by_key( $value, 'button_text2' ) ) . '</a>';
 					}
 
 					?>
@@ -1225,9 +1225,9 @@ if ( ! class_exists('WPPB_Addon_Carousel')) {
 									<?php } else { ?>
                                     <div class="wppb-carousel-content-in">
 										<?php } ?>
-										<?php echo '<' . esc_attr( $selector ) . ' class="animated wppb-carousel-title" '.$titleAnimation.'>' . get_wppb_array_value_by_key( $value, 'title' ) . '</' . esc_attr( $selector ) . '>';?>
-										<?php echo '<' . esc_attr( $subselector ) . ' class="animated wppb-carousel-subtitle" '.$SubtitleAnimation.'>' . get_wppb_array_value_by_key( $value, 'subtitle' ) . '</' . esc_attr( $subselector ) . '>';?>
-										<?php echo '<div class="animated wppb-carousel-content" '.$SubtitleAnimation.'>' . get_wppb_array_value_by_key( $value, 'content' ) . '</div>';?>
+										<?php echo '<' . esc_attr( $selector ) . ' class="animated wppb-carousel-title" '.$titleAnimation.'>' . esc_html( get_wppb_array_value_by_key( $value, 'title' ) ) . '</' . esc_attr( $selector ) . '>';?>
+										<?php echo '<' . esc_attr( $subselector ) . ' class="animated wppb-carousel-subtitle" '.$SubtitleAnimation.'>' . esc_html( get_wppb_array_value_by_key( $value, 'subtitle' ) ) . '</' . esc_attr( $subselector ) . '>';?>
+										<?php echo '<div class="animated wppb-carousel-content" '.$SubtitleAnimation.'>' . wp_kses_post( get_wppb_array_value_by_key( $value, 'content' ) ) . '</div>';?>
 										<?php echo $button1; ?>
 										<?php echo $button2; ?>
                                     </div> <!--/.wppb-carousel-content-in-->

@@ -364,14 +364,14 @@ class WPPB_Addon_Animated_Number{
 	// Animated Render HTML
 	public function render($data = null){
 		$settings 				= $data['settings'];
-		$title 					= isset($settings['counter_title']) ? $settings['counter_title'] : '';
+		$title 					= isset($settings['counter_title']) ? sanitize_text_field( $settings['counter_title'] ) : '';
 		$duration  				= (int) isset($settings['duration']) ? $settings['duration'] : 1000;
 		$digit 					= (int) isset($settings['digit']) ? $settings['digit'] : 500;
-		$animated_layout 		= isset($settings['animated_layout']) ? $settings['animated_layout'] : 'one';
+		$animated_layout 		= isset($settings['animated_layout']) ? sanitize_text_field( $settings['animated_layout'] ) : 'one';
 		$digit_animation 		= (bool) isset($settings['digit_animation']) ? $settings['digit_animation'] : false;
-		$title_animation 		= isset($settings['title_animation']) ? $settings['title_animation'] : '';
-		$additional 			= isset($settings['additional']) ? $settings['additional'] : '';
-		$prefix_text     		= isset($settings['prefix_text']) ? $settings['prefix_text'] : '';
+		$title_animation 		= isset($settings['title_animation']) ? sanitize_text_field( $settings['title_animation'] ) : '';
+		$additional 			= isset($settings['additional']) ? sanitize_text_field( $settings['additional'] ) : '';
+		$prefix_text     		= isset($settings['prefix_text']) ? sanitize_text_field( $settings['prefix_text'] ) : '';
 
 		$output = '';
 

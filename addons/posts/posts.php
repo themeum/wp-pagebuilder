@@ -914,6 +914,31 @@ class WPPB_Addon_Posts_Grid{
 		return $settings;
 	}
 
+	/**
+	 * Sanitize array
+	 * 
+	 * @param array $settings
+	 * 
+	 * @return array $settings
+	 */
+	private function wppb_sanitize_array( $settings = array() ) {
+		$sanitized_array = array();
+
+		if ( is_array( $settings ) && ! empty( $settings ) ) {
+			foreach ( $settings as $key => $setting ) {
+				if ( is_array( $setting ) ) {
+					$sanitized_array[ $key ] = $this->wppb_sanitize_array( $setting );
+				} else {
+					$key                     = sanitize_text_field( $key );
+					$setting                 = sanitize_text_field( $setting );
+					$sanitized_array[ $key ] = $setting;
+				}
+			}
+		}
+
+		return $sanitized_array;
+	}
+
 
 	// Posts Render HTML
 	public function render($data = null){
@@ -923,34 +948,34 @@ class WPPB_Addon_Posts_Grid{
 		add_filter('excerpt_more', array($this, 'excerpt_more_text'), 30);
 		add_filter('excerpt_length', array($this, 'excerpt_length'), 30);
 
-		$posts_layout           = isset($settings['posts_layout']) ? $settings['posts_layout'] : '';
-		$posts_column        	= isset($settings['posts_column']) ? $settings['posts_column'] : '3';
-		$posts_title_position   = isset($settings['posts_title_position']) ? $settings['posts_title_position'] : 'above_meta';
-		$posts_per_page         = isset($settings['posts_per_page']) ? $settings['posts_per_page'] : '-1';
-		$posts_image_size       = isset($settings['posts_image_size']) ? $settings['posts_image_size'] : 'wppb-medium';
-		$posts_image_position   = isset($settings['posts_image_position']) ? $settings['posts_image_position'] : '';
-		$posts_title            = (bool) isset($settings['posts_title']) ? $settings['posts_title'] : false;
-		$posts_title_tag        = isset($settings['posts_title_tag']) ? $settings['posts_title_tag'] : 'h3';
-		$posts_excerpt          = (bool) isset($settings['posts_excerpt']) ? $settings['posts_excerpt'] : false;
-		$posts_excerpt_length   = isset($settings['posts_excerpt_length']) ? $settings['posts_excerpt_length'] : 30;
-		$posts_metadata         = isset($settings['posts_metadata']) ? $settings['posts_metadata'] : array();
-		$posts_separator        = isset($settings['posts_separator']) ? $settings['posts_separator'] : '/';
-		$posts_separator        = '<span class="wppb-postmeta-sept">'.$posts_separator.'</span>';
-		$posts_read_more        = (bool) isset($settings['posts_read_more']) ? $settings['posts_read_more'] : false;
-		$posts_read_more_text   = isset($settings['posts_read_more_text']) ? $settings['posts_read_more_text'] : __('Read More »', 'wp-pagebuilder');
+		$posts_layout           = isset($settings['posts_layout']) ? sanitize_text_field( $settings['posts_layout'] ) : '';
+		$posts_column        	= isset($settings['posts_column']) ? $this->wppb_sanitize_array( $settings['posts_column'] ) : array();
+		$posts_title_position   = isset($settings['posts_title_position']) ? sanitize_text_field( $settings['posts_title_position'] ) : 'above_meta';
+		$posts_per_page         = isset($settings['posts_per_page']) ? sanitize_text_field( $settings['posts_per_page'] ) : '-1';
+		$posts_image_size       = isset($settings['posts_image_size']) ? sanitize_text_field( $settings['posts_image_size'] ) : 'wppb-medium';
+		$posts_image_position   = isset($settings['posts_image_position']) ? sanitize_text_field( $settings['posts_image_position'] ) : '';
+		$posts_title            = (bool) isset($settings['posts_title']) ? sanitize_text_field( $settings['posts_title'] ) : false;
+		$posts_title_tag        = isset($settings['posts_title_tag']) ? sanitize_text_field( $settings['posts_title_tag'] ) : 'h3';
+		$posts_excerpt          = (bool) isset($settings['posts_excerpt']) ? sanitize_text_field( $settings['posts_excerpt'] ) : false;
+		$posts_excerpt_length   = isset($settings['posts_excerpt_length']) ? sanitize_text_field( $settings['posts_excerpt_length'] ) : 30;
+		$posts_metadata         = isset($settings['posts_metadata']) ? $this->wppb_sanitize_array( $settings['posts_metadata'] ) : array();
+		$posts_separator        = isset($settings['posts_separator']) ? sanitize_text_field( $settings['posts_separator'] ) : '/';
+		$posts_separator        = '<span class="wppb-postmeta-sept">' . wp_kses_post( $posts_separator ) . '</span>';
+		$posts_read_more        = (bool) isset($settings['posts_read_more']) ? sanitize_text_field( $settings['posts_read_more'] ) : false;
+		$posts_read_more_text   = isset($settings['posts_read_more_text']) ? sanitize_text_field( $settings['posts_read_more_text'] ) : __( 'Read More »', 'wp-pagebuilder' );
 
 		//Advance Query
-		$post_type              = isset($settings['post_type']) ? $settings['post_type'] : 'post';
-		$posts_categories       = isset($settings['posts_categories']) ? $settings['posts_categories'] : array();
-		$posts_tags             = isset($settings['posts_tags']) ? $settings['posts_tags'] : array();
-		$post_order_by          = isset($settings['post_order_by']) ? $settings['post_order_by'] : 'date';
-		$post_order             = isset($settings['post_order']) ? $settings['post_order'] : 'desc';
-		$posts_ids              = isset($settings['posts_ids']) ? $settings['posts_ids'] : false;
-		$posts_exclude_ids      = isset($settings['posts_exclude_ids']) ? $settings['posts_exclude_ids'] : false;
+		$post_type              = isset($settings['post_type']) ? sanitize_text_field( $settings['post_type'] ) : 'post';
+		$posts_categories       = isset($settings['posts_categories']) ? $this->wppb_sanitize_array( $settings['posts_categories'] ) : array();
+		$posts_tags             = isset($settings['posts_tags']) ? $this->wppb_sanitize_array( $settings['posts_tags'] ) : array();
+		$post_order_by          = isset($settings['post_order_by']) ? sanitize_text_field( $settings['post_order_by'] ) : 'date';
+		$post_order             = isset($settings['post_order']) ? sanitize_text_field( $settings['post_order'] ) : 'desc';
+		$posts_ids              = isset($settings['posts_ids']) ? sanitize_text_field( $settings['posts_ids'] ) : false;
+		$posts_exclude_ids      = isset($settings['posts_exclude_ids']) ? sanitize_text_field( $settings['posts_exclude_ids'] ) : false;
 
 		//Pagination
-		$posts_enable_pagination      = (bool) isset($settings['posts_enable_pagination']) ? $settings['posts_enable_pagination'] : false;
-		$post_pagination_type      = isset($settings['post_pagination_type']) ? $settings['post_pagination_type'] : 'numbers_next_previous';
+		$posts_enable_pagination   = (bool) isset($settings['posts_enable_pagination']) ? sanitize_text_field( $settings['posts_enable_pagination'] ) : false;
+		$post_pagination_type      = isset($settings['post_pagination_type']) ? sanitize_text_field( $settings['post_pagination_type'] ) : 'numbers_next_previous';
 
 		//Query Arguments
 		$args = array(
@@ -962,23 +987,23 @@ class WPPB_Addon_Posts_Grid{
 		);
 
 		//pagination
-		if ($posts_enable_pagination){
-			$paged = isset($_POST['paged']) ? $_POST['paged'] : 1;
+		if ( $posts_enable_pagination ) {
+			$paged = isset( $_POST['paged'] ) ? absint( $_POST['paged'] ) : 1;
 			$current_page = $paged;
 			$args['paged'] = $paged;
 			$paged = $paged+1;
 		}
 
-		if ($posts_ids){
-			$args['post__in'] = explode(',', $posts_ids);
+		if ( $posts_ids ) {
+			$args['post__in'] = explode( ',', $posts_ids );
 		}
-		if ($posts_exclude_ids){
-			$args['post__not_in'] = explode(',', $posts_exclude_ids);
+		if ( $posts_exclude_ids ) {
+			$args['post__not_in'] = explode( ',', $posts_exclude_ids );
 		}
-		if (is_array($posts_categories) && count($posts_categories)){
+		if ( is_array( $posts_categories ) && count( $posts_categories ) ) {
 			$args['category__in'] = $posts_categories;
 		}
-		if (is_array($posts_tags) && count($posts_tags)){
+		if ( is_array( $posts_tags ) && count( $posts_tags ) ) {
 			$args['tag__in'] = $posts_tags;
 		}
 
@@ -992,8 +1017,8 @@ class WPPB_Addon_Posts_Grid{
                 <div class="wppb-posts-addon-content">
 					<div class="wppb-addons-col">
 						<?php 
-						if ( ! is_array($posts_metadata)){
-							$posts_metadata = explode(',', $posts_metadata);
+						if ( ! is_array( $posts_metadata ) ) {
+							$posts_metadata = explode( ',', $posts_metadata );
 						}
 
 						while ( $the_query->have_posts() ) {
@@ -1004,26 +1029,26 @@ class WPPB_Addon_Posts_Grid{
 
 							//MetaData
 							$meta_data_print = '';
-							if (count($posts_metadata)) {
-								$meta_data              = array();
-								if (in_array('author', $posts_metadata)){
-									$meta_data['author']    = get_the_author();
+							if ( count( $posts_metadata ) ) {
+								$meta_data = array();
+								if ( in_array( 'author', $posts_metadata ) ) {
+									$meta_data['author'] = get_the_author();
 								}
-								if (in_array('date', $posts_metadata)) {
+								if ( in_array( 'date', $posts_metadata ) ) {
 									$meta_data['date'] = get_the_date();
 								}
-								if (in_array('time', $posts_metadata)) {
+								if ( in_array( 'time', $posts_metadata ) ) {
 									$meta_data['time'] = get_the_time();
 								}
-								if (in_array('comments', $posts_metadata)) {
+								if ( in_array( 'comments', $posts_metadata ) ) {
 									$meta_data['comments'] = get_comments_number() . ' ' . __( 'Comments', 'wp-pagebuilder' );
 								}
-								if (in_array('tags', $posts_metadata)) {
+								if ( in_array( 'tags', $posts_metadata ) ) {
 									if ( get_the_tag_list() ) {
 										$meta_data['tags'] = get_the_tag_list( '', ', ' );
 									}
 								}
-								if (in_array('categories', $posts_metadata)) {
+								if ( in_array( 'categories', $posts_metadata ) ) {
 									if ( get_the_category_list() ) {
 										$meta_data['categories'] = get_the_category_list( ', ' );
 									}
@@ -1032,37 +1057,37 @@ class WPPB_Addon_Posts_Grid{
 								$meta_data_print = implode( "{$posts_separator}", $meta_data_arr );
 							}
 							//Post feature Image
-							$img_url = get_the_post_thumbnail_url(get_the_ID(), $posts_image_size);
+							$img_url = get_the_post_thumbnail_url( get_the_ID(), $posts_image_size );
 							?>
-							<div class="wppb-addons-col-md<?php echo $posts_column['md'];?> wppb-addons-col-sm<?php echo $posts_column['sm'];?> wppb-addons-col-xs<?php echo $posts_column['xs'];?>">
+							<div class="wppb-addons-col-md<?php echo esc_attr( $posts_column['md'] ); ?> wppb-addons-col-sm<?php echo esc_attr( $posts_column['sm'] ); ?> wppb-addons-col-xs<?php echo esc_attr( $posts_column['xs'] ); ?>">
 								
 								<?php
 
 								echo '<div class="wppb-post-grid-wrap wppb-post-grid-one">';
-								if(has_post_thumbnail()) {
+								if ( has_post_thumbnail() ) {
 									echo '<div class="wppb-post-grid-img">';
-									echo "<a href='{$post_permalink}'><img src='{$img_url}' alt='{$post_title}'/></a>";
+									echo '<a href="' . esc_url( $post_permalink ) . '"><img src="' . esc_url( $img_url ) . '" alt="' . esc_attr( $post_title ) . '"/></a>';
 									echo '</div>';//wppb-post-grid-img
 								}
 								echo '<div class="wppb-post-grid-content">';
-								if($posts_title_position == 'above_meta') {
-									if ($posts_title){
-										echo "<$posts_title_tag class='wppb-post-grid-title'><a href='{$post_permalink}'>{$post_title}</a></$posts_title_tag>";
+								if ( $posts_title_position == 'above_meta' ) {
+									if ( $posts_title ) {
+										echo '<' . esc_attr( $posts_title_tag ) . ' class="wppb-post-grid-title"><a href="' . esc_url( $post_permalink ) . '">' . esc_html( $post_title ) . '</a></' . esc_attr( $posts_title_tag ) . '>';
 									}
 								}
-								if (count($posts_metadata)){
-									echo "<div class='wppb-post-grid-meta'>{$meta_data_print} </div>";
+								if ( count( $posts_metadata ) ) {
+									echo '<div class="wppb-post-grid-meta">' . wp_kses_post( $meta_data_print ) . '</div>';
 								}
-								if($posts_title_position == 'below_meta') {
-									if ($posts_title){
-										echo "<$posts_title_tag class='wppb-post-grid-title'><a href='{$post_permalink}'>{$post_title}</a></$posts_title_tag>";
+								if ( $posts_title_position == 'below_meta' ) {
+									if ( $posts_title ) {
+										echo '<' . esc_attr( $posts_title_tag ) . ' class="wppb-post-grid-title"><a href="' . esc_url( $post_permalink ) . '">' . esc_html( $post_title ) . '</a></' . esc_attr( $posts_title_tag ) . '>';
 									}
 								}
-								if ($posts_excerpt){
-									echo "<div class='wppb-post-grid-intro'>{$post_excerpt}</div>";
+								if ( $posts_excerpt ) {
+									echo '<div class="wppb-post-grid-intro">' . wp_kses_post( $post_excerpt ) . '</div>';
 								}
-								if ($posts_read_more){
-									echo "<div class='wppb-post-grid-btn-wrap'><a class='wppb-post-grid-btn' href='{$post_permalink}'>{$posts_read_more_text}</a></div>";
+								if ( $posts_read_more ) {
+									echo '<div class="wppb-post-grid-btn-wrap"><a class="wppb-post-grid-btn" href="' . esc_url( $post_permalink ) . '">' . esc_html( $posts_read_more_text ) . '</a></div>';
 								}
 								echo '</div>';//wppb-post-grid-content
 								echo '</div>';//wppb-post-grid-wrap
@@ -1075,9 +1100,9 @@ class WPPB_Addon_Posts_Grid{
 					</div><!--/.wppb-posts-addon-content-->
 
 					<?php
-					if ($posts_enable_pagination) {
+					if ( $posts_enable_pagination ) {
 						$max_pages = $the_query->max_num_pages;
-						$data_paged = ($paged > $max_pages) ? $max_pages : $paged;
+						$data_paged = ( $paged > $max_pages ) ? $max_pages : $paged;
 
 						echo "<div class='wppb-posts-addon-pagination'>";
 
@@ -1094,44 +1119,44 @@ class WPPB_Addon_Posts_Grid{
 							) );
 							$previous_page = $paged - 2;
 
-							if ($post_pagination_type === 'numbers_next_previous'){
-								if ($current_page > 1){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fas fa-angle-left'></i></a>";
-								}else{
+							if ( $post_pagination_type === 'numbers_next_previous' ) {
+								if ( $current_page > 1 ) {
+									echo '<a href="#" class="wppb-posts-paginate-link" data-paged="' . esc_attr( $previous_page ) . '"><i class="fas fa-angle-left"></i></a>';
+								} else {
+									echo '<span class="wppb-posts-paginate-link wppb-posts-paginate-link-disable"><i class="fas fa-angle-left"></i></span>';
+								}
+
+								for ( $i = 1; $i <= $max_pages; $i++ ) {
+									$active_class = ( $i == $current_page ) ? 'paginate-active' : '';
+									echo '<a href="#" class="wppb-posts-paginate-link ' . esc_attr( $active_class ) . '" data-paged="' . esc_attr( $i ) . '">' . esc_html( $i ) . '</a>';
+								}
+								if ( $current_page < $max_pages ) {
+									echo '<a href="#" class="wppb-posts-paginate-link" data-paged="' . esc_attr( $data_paged ) . '"><i class="fas fa-angle-right"></i></a>';
+								} else {
+									echo '<span class="wppb-posts-paginate-link wppb-posts-paginate-link-disable"><i class="fas fa-angle-right"></i></span>';
+								}
+							}
+							if ( $post_pagination_type === 'numbers' ) {
+								for ( $i = 1; $i <= $max_pages; $i++ ) {
+									$active_class = ( $i == $current_page ) ? 'paginate-active' : '';
+									echo '<a href="#" class="wppb-posts-paginate-link ' . esc_attr( $active_class ) . '" data-paged="' . esc_attr( $i ) . '">' . esc_html( $i ) . '</a>';
+								}
+							}
+							if ( $post_pagination_type === 'next_previous' ) {
+								if ( $current_page > 1 ) {
+									echo '<a href="#" class="wppb-posts-paginate-link" data-paged="' . esc_attr( $previous_page ) . '"><i class="fas fa-angle-left"></i></a>';
+								} else {
 									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-left'></i></span>";
 								}
 
-								for ($i = 1; $i <= $max_pages; $i++){
-									$active_class = ( $i == $current_page ) ? 'paginate-active' : '';
-									echo "<a href='#' class='wppb-posts-paginate-link {$active_class}' data-paged='{$i}'>{$i}</a>";
-								}
-								if ( $current_page < $max_pages){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fas fa-angle-right'></i></a>";
-								}else{
+								if ( $current_page < $max_pages ) {
+									echo '<a href="#" class="wppb-posts-paginate-link" data-paged="' . esc_attr( $data_paged ) . '"><i class="fas fa-angle-right"></i></a>';
+								} else {
 									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-right'></i></span>";
 								}
 							}
-							if ($post_pagination_type === 'numbers') {
-								for ($i = 1; $i <= $max_pages; $i++){
-									$active_class = ( $i == $current_page ) ? 'paginate-active' : '';
-									echo "<a href='#' class='wppb-posts-paginate-link {$active_class}' data-paged='{$i}'>{$i}</a>";
-								}
-							}
-							if ($post_pagination_type === 'next_previous') {
-								if ($current_page > 1){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$previous_page}'><i class='fas fa-angle-left'></i></a>";
-								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-left'></i></span>";
-								}
-
-								if ( $current_page < $max_pages){
-									echo "<a href='#' class='wppb-posts-paginate-link' data-paged='{$data_paged}'><i class='fas fa-angle-right'></i></a>";
-								}else{
-									echo "<span class='wppb-posts-paginate-link wppb-posts-paginate-link-disable'><i class='fas fa-angle-right'></i></span>";
-								}
-							}
-							if ($post_pagination_type === 'load_more'){
-								echo '<a href="#" data-paged="'.$paged.'" class="wppb-posts-addon-loadmore-btn">'.__( 'Load More', 'wp-pagebuilder' ).'</a>';
+							if ( $post_pagination_type === 'load_more' ) {
+								echo '<a href="#" data-paged="' . esc_attr( $paged ) . '" class="wppb-posts-addon-loadmore-btn">' . esc_html__( 'Load More', 'wp-pagebuilder' ) . '</a>';
 							}
 						echo '</div>';//wppb-posts-addon-pagination
 						
@@ -1146,7 +1171,7 @@ class WPPB_Addon_Posts_Grid{
 	}
 
 	public function excerpt_length(){
-		return isset($this->settings['posts_excerpt_length']) ? $this->settings['posts_excerpt_length'] : 30;
+		return isset( $this->settings['posts_excerpt_length'] ) ? $this->settings['posts_excerpt_length'] : 30;
 	}
 
 	public function excerpt_more_text($more){
@@ -1154,13 +1179,13 @@ class WPPB_Addon_Posts_Grid{
 	}
 
 	public function wppb_posts_addon_load_more(){
-	    $addon_id   = sanitize_text_field($_POST['addon_id']);
-	    $page_id    = sanitize_text_field($_POST['page_id']);
-	    $paged      = sanitize_text_field($_POST['paged']);
+	    $addon_id   = sanitize_text_field( $_POST['addon_id'] );
+	    $page_id    = sanitize_text_field( $_POST['page_id'] );
+	    $paged      = sanitize_text_field( $_POST['paged'] );
 
-	    $addon = wppb_get_saved_addon_settings($addon_id, $page_id);
+	    $addon = wppb_get_saved_addon_settings( $addon_id, $page_id );
 
-	    echo $this->render($addon);
+	    echo $this->render( $addon );
         die();
     }
 

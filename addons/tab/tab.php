@@ -721,9 +721,9 @@ class WPPB_Addon_Tab{
 		$settings 			 = $data['settings'];
 
 		$tab_list 			 = isset($settings["tab_list"]) ? $settings["tab_list"] : array();
-		$tabtype 			 = isset($settings["tabtype"]) ? $settings["tabtype"] : '';
-		$vertical_position 	 = isset($settings["vertical_position"]) ? $settings["vertical_position"] : '';
-		$horizontal_align 	 = isset($settings["horizontal_align"]) ? $settings["horizontal_align"] : '';
+		$tabtype 			 = isset($settings["tabtype"]) ? sanitize_text_field( $settings["tabtype"] ) : '';
+		$vertical_position 	 = isset($settings["vertical_position"]) ? sanitize_text_field( $settings["vertical_position"] ) : '';
+		$horizontal_align 	 = isset($settings["horizontal_align"]) ? sanitize_text_field( $settings["horizontal_align"] ) : '';
 		$rand = rand(1000,999999);
 		$output = $classlist = '';
 
@@ -741,28 +741,28 @@ class WPPB_Addon_Tab{
 		if (is_array($tab_list) && count($tab_list)) {
 			foreach ( $tab_list as $key => $value ) {
 				$activeClass = ( $key == 0 ) ? "active" : "";
-				$output      .= '<li class="wppb-tab-nav-list wppb-nav-' . get_wppb_array_value_by_key( $value, 'icon_position' ) . ' ' . $activeClass . '" data-tab="tab-' . $key . $rand . '">';
+				$output      .= '<li class="wppb-tab-nav-list wppb-nav-' . esc_attr( get_wppb_array_value_by_key( $value, 'icon_position' ) ) . ' ' . $activeClass . '" data-tab="tab-' . $key . $rand . '">';
 				$output      .= '<div class="wppb-tab-nav-list-wrap">';
 				$output      .= '<div>';
 				if ( get_wppb_array_value_by_key( $value, 'icon_position' ) == "left" || get_wppb_array_value_by_key( $value, 'icon_position' ) == "top" ) {
 					if ( ! empty( $value['icon_list'] ) ) {
-						$output .= '<i class="' . $value['icon_list'] . '"></i>';
+						$output .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 					}
 				}
 				if ( get_wppb_array_value_by_key( $value, 'title' ) ) {
-					$output .= '<span class="wppb-tab-title-content">' . $value['title'] . '</span>';
+					$output .= '<span class="wppb-tab-title-content">' . esc_html( $value['title'] ) . '</span>';
 				}
 				if ( get_wppb_array_value_by_key( $value, 'icon_position' ) == "right" ) {
 					if ( get_wppb_array_value_by_key( $value, 'icon_list' ) ) {
-						$output .= '<i class="' . $value['icon_list'] . '"></i>';
+						$output .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 					}
 				}
 				if ( get_wppb_array_value_by_key( $value, 'subtitle' ) ) {
-					$output .= '<span class="wppb-tab-subtitle-content">' . $value['subtitle'] . '</span>';
+					$output .= '<span class="wppb-tab-subtitle-content">' . esc_html( $value['subtitle'] ) . '</span>';
 				}
 				if ( get_wppb_array_value_by_key( $value, 'icon_position' ) == "bottom" ) {
 					if ( get_wppb_array_value_by_key( $value, 'icon_list' ) ) {
-						$output .= '<i class="' . $value['icon_list'] . '"></i>';
+						$output .= '<i class="' . esc_attr( $value['icon_list'] ) . '"></i>';
 					}
 				}
 				$output .= '</div>';

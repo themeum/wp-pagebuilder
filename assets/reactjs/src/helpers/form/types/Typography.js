@@ -41,12 +41,7 @@ class Typography extends Component {
     
     _getWeight(){
         const { input:{value} } =  this.props
-        if( value && value.fontFamily ){
-            let fontWeight = __.filter( Fontfamily, function(o) { return o.n == value.fontFamily; })[0].v
-            return __.map( fontWeight , (e) => { return { value:e,label:e }; } )
-        }else{
-            return defaultFontWeight;
-        }
+        return defaultFontWeight;
     }
 
     onClickHandle( val,type ){

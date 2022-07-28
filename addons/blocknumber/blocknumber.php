@@ -207,26 +207,26 @@ class WPPB_Addon_Blocknumber{
 	}
 
 	// Block Number Render HTML
-	public function render($data = null){
-		$settings 				= $data['settings'];
+	public function render( $data = null ) {
+		$settings 		    = $data['settings'];
 
-		$number_title 	        = isset($settings['number_title']) ? $settings['number_title'] : '';
-		$number_description 	= isset($settings['number_description']) ? $settings['number_description'] : '';
-		$number 		        = isset($settings['number']) ? $settings['number'] : '';
+		$number_title 	    = isset( $settings['number_title'] ) ? sanitize_text_field( $settings['number_title'] ) : '';
+		$number_description = isset( $settings['number_description'] ) ? sanitize_textarea_field( $settings['number_description'] ) : '';
+		$number 		    = isset( $settings['number'] ) ? (int) $settings['number'] : '';
 
 		$output                 = '';
 		$output  .= '<div class="wppb-blocknumber-addon">';
 			$output  .= '<div class="wppb-blocknumber-addon-content">';
 				$output  .= '<div class="wppb-blocknumber-media">';
-					if($number){
-						$output .= '<div class="wppb-blocknumber-number"><span>'.esc_attr($number).'</span></div>';
+					if ( $number ) {
+						$output .= '<div class="wppb-blocknumber-number"><span>' . esc_html( $number ) . '</span></div>';
 					}
 					$output .= '<div class="wppb-blocknumber-body">';
-					if($number_title){
-						$output .= '<h5 class="wppb-blocknumber-title">'.esc_attr($number_title).'</h5>';
+					if ( $number_title ) {
+						$output .= '<h5 class="wppb-blocknumber-title">' . esc_html( $number_title ) . '</h5>';
 					}
-					if($number_description){
-						$output .= '<div class="wppb-blocknumber-desc">'.esc_attr($number_description).'</div>';
+					if ( $number_description ) {
+						$output .= '<div class="wppb-blocknumber-desc">' . esc_html( $number_description ) . '</div>';
 					}
 					$output .= '</div>';//wppb-blocknumber-body
 				$output  .= '</div>';//wppb-blocknumber-media

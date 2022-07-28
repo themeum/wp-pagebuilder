@@ -108,6 +108,9 @@ body.currently-activated-editor-wppb_builder_activated div#wp-pagebuilder-switch
 }
 .edit-with-wppb-builder {
     transition: 400ms;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .wppb-editor-warper .edit-with-wppb-builder.components-button{
     line-height: 33px !important;
@@ -128,7 +131,6 @@ body.currently-activated-editor-wppb_builder_activated div#wp-pagebuilder-switch
 }
 
 .wppb-editor-warper .wppb-back-to-gutenberg i.dashicons {
-    line-height: 35px;
     margin-right: 3px;
 }
 

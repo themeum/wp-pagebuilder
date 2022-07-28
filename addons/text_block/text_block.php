@@ -98,17 +98,17 @@ class WPPB_Addon_Text_Block{
 	// text block Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings'];
-		$text 			= isset($settings['text']) ? $settings['text'] : '';
-		$drop_cap 		= isset($settings['drop_cap']) ? $settings['drop_cap'] : '';
+		$text 			= isset($settings['text']) ? wp_kses_post( $settings['text'] ) : '';
+		$drop_cap 		= isset($settings['drop_cap']) ? sanitize_text_field( $settings['drop_cap'] ) : '';
 
 		$output = '';
-		$drop_cap = (isset($drop_cap) && $drop_cap) ? $drop_cap : 0;
-		if($drop_cap){
+		$drop_cap = ( isset( $drop_cap ) && $drop_cap ) ? $drop_cap : 0;
+		if ( $drop_cap ) {
 			$drop_cap = 'wppb-text-block-drop';
 		}
 		$output  .= '<div class="wppb-text-block-addon">';
-		if($text){
-			$output .= '<div class="wppb-text-block-content '.esc_attr($drop_cap).'">'. $text.'</div>';
+		if ( $text ) {
+			$output .= '<div class="wppb-text-block-content ' . esc_attr( $drop_cap ) . '">' . wp_kses_post( $text ) . '</div>';
 		}
 		$output .= '</div>';
 

@@ -123,35 +123,35 @@ class WPPB_Addon_Video{
 	// Video Render HTML
 	public function render($data = null){
 		$settings 		= $data['settings'];
-		$video_url 		= isset($settings['video_url']) ? $settings['video_url'] : '';
-		$video_controls = isset($settings['video_controls']) ? $settings['video_controls'] : '';
-		$video_hide_logo = isset($settings['video_hide_logo']) ? $settings['video_hide_logo'] : '';
+		$video_url 		= isset( $settings['video_url'] ) ? sanitize_text_field( $settings['video_url'] ) : '';
+		$video_controls = isset( $settings['video_controls'] ) ? sanitize_text_field( $settings['video_controls'] ) : '';
+		$video_hide_logo = isset( $settings['video_hide_logo'] ) ? sanitize_text_field( $settings['video_hide_logo'] ) : '';
 		$output = '';
-		if($video_url) {
-			$video = parse_url($video_url);
+		if ( $video_url ) {
+			$video = parse_url( $video_url );
 
-			switch($video['host']) {
+			switch( $video['host'] ) {
 				case 'youtu.be':
-				$id = trim($video['path'],'/');
-				$src = '//www.youtube.com/embed/' . $id.'?controls='.esc_attr($video_controls).'&modestbranding='.esc_attr($video_hide_logo);
+				$id = trim( $video['path'],'/' );
+				$src = '//www.youtube.com/embed/' . $id.'?controls=' . esc_attr( $video_controls ) . '&modestbranding=' . esc_attr( $video_hide_logo );
 				break;
 
 				case 'www.youtube.com':
 				case 'youtube.com':
-				parse_str($video['query'], $query);
+				parse_str( $video['query'], $query );
 				$id = $query['v'];
-				$src = '//www.youtube.com/embed/' . $id.'?controls='.esc_attr($video_controls).'&modestbranding='.esc_attr($video_hide_logo);
+				$src = '//www.youtube.com/embed/' . $id . '?controls=' . esc_attr( $video_controls ) . '&modestbranding=' . esc_attr( $video_hide_logo );
 				break;
 
 				case 'vimeo.com':
 				case 'www.vimeo.com':
-				$id = trim($video['path'],'/');
+				$id = trim( $video['path'],'/' );
 				$src = "//player.vimeo.com/video/{$id}";
 			}
 			$output  .= '<div class="wppb-video-addon">';
 			$output  .= '<div class="wppb-video-content">';
 			$output .= '<div class="wppb-video-block wppb-embed-responsive wppb-embed-responsive-16by9">';
-			$output .= '<iframe class="wppb-embed-responsive-item" src="' . $src . '" allowFullScreen></iframe>';
+			$output .= '<iframe class="wppb-embed-responsive-item" src="' . esc_url( $src ) . '" allowFullScreen></iframe>';
 			$output .= '</div>';
 			$output .= '</div>';
 			$output .= '</div>';

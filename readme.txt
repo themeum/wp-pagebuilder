@@ -3,7 +3,7 @@ Contributors: themeum
 Donate link: https://www.themeum.com
 Tags: page builder, website builder, live editor, wp page builder, drag and drop editor, responsive, site editor, editor, drag-and-drop, visual editor, landing page, frontend editor, wordpress page builder, free page builder, layout builder
 Requires at least: 5.0
-Tested up to: 5.9
+Tested up to: 6.0.1
 Requires PHP: 7.0
 Stable tag: 1.2.8
 License: GPLv3
